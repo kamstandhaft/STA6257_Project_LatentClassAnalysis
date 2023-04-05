@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Daniel Martin, Kameron Standhaft, Esra Acar">
+<meta name="author" content="Daniel Martin, Kameron Standhaft, Esra Ari Acar">
 <meta name="dcterms.date" content="2023-04-05">
 
 <title>Latent Class Analysis</title>
@@ -140,7 +140,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Daniel Martin, Kameron Standhaft, Esra Acar </p>
+             <p>Daniel Martin, Kameron Standhaft, Esra Ari Acar </p>
           </div>
   </div>
     
@@ -173,6 +173,17 @@ div.csl-indent {
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p>The general steps to use latent class analysis are as follows:</p>
+<p>1.Identify the research question and define the variables Define the categorical variables that will be used in the analysis</p>
+<ol start="2" type="1">
+<li>Select the appropriate software: In this project R studio will be used for the LCA</li>
+</ol>
+<p>3.Determine the number of latent classes</p>
+<p>4.Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation</p>
+<p>5.Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC). If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.</p>
+<ol start="6" type="1">
+<li>Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.</li>
+</ol>
 <p>The common non-parametric regression model is <span class="math inline">\(Y_i = m(X_i) + \varepsilon_i\)</span>, where <span class="math inline">\(Y_i\)</span> can be defined as the sum of the regression function value <span class="math inline">\(m(x)\)</span> for <span class="math inline">\(X_i\)</span>. Here <span class="math inline">\(m(x)\)</span> is unknown and <span class="math inline">\(\varepsilon_i\)</span> some errors. With the help of this definition, we can create the estimation for local averaging i.e.&nbsp;<span class="math inline">\(m(x)\)</span> can be estimated with the product of <span class="math inline">\(Y_i\)</span> average and <span class="math inline">\(X_i\)</span> is near to <span class="math inline">\(x\)</span>. In other words, this means that we are discovering the line through the data points with the help of surrounding data points. The estimation formula is printed below <span class="citation" data-cites="R-base">(<a href="#ref-R-base" role="doc-biblioref">R Core Team 2019</a>)</span>:</p>
 <p><span class="math display">\[
 M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
