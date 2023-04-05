@@ -2,12 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
+<<<<<<< HEAD
 <meta name="generator" content="quarto-1.1.189">
+=======
+<meta name="generator" content="quarto-1.2.335">
+>>>>>>> 9b53176968ad050b18a4cab6ce7ed16373b6ba30
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Daniel Martin, Kameron Standhaft, Esra Acar">
+<<<<<<< HEAD
 <meta name="dcterms.date" content="2023-04-05">
+=======
+<meta name="dcterms.date" content="2023-04-04">
+>>>>>>> 9b53176968ad050b18a4cab6ce7ed16373b6ba30
 
 <title>Latent Class Analysis</title>
 <style>
@@ -147,9 +155,14 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
+<<<<<<< HEAD
       <p class="date">April 5, 2023</p>
+=======
+      <p class="date">April 4, 2023</p>
+>>>>>>> 9b53176968ad050b18a4cab6ce7ed16373b6ba30
     </div>
   </div>
+  
     
   </div>
   
@@ -158,6 +171,7 @@ div.csl-indent {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<<<<<<< HEAD
 <p>Latent Class Analysis (LCA) is a statistical modeling method that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population. To identify these unobserved groups, LCA searches for and analyzes response patterns that may exist within categorical variables reported in the dataset (Nylund-Gibson &amp; Choi, 2018). Latent Class Analysis is an example of a broader class of models called finite mixture models(FFM) (Grimm et al., 2021) that seek to identify and classify instances of variance within model parameters between groups within the data that have not been explicitly defined as groups by the attributes provided within the dataset itself.</p>
 <p>LCA specifically makes the assumption that within the population potentially exists a finite number of unobserved subgroups, or latent classes, and that each individual belongs to only one of these classes (Weller et al., 2020). The overarching goal of LCA is to identify where a specific subset of classes exist within a group and estimate the proportions of those subset classes within the overall population. Additionally, LCA can be used to help determine if any relationships exist between the identified latent classes and any other observed variables within the dataset.</p>
 <p>As computational efficiency has improved, Latent Class Analysis has seen an uptick in interest for researchers across a variety of fields with applications in science, business, and health (Petersen et al., 2019). LCA is often most closely associated with identifying patterns of behavior or psychological characteristics that prove often otherwise difficult groups to identify(Kaplan et al., 2004).</p>
@@ -170,6 +184,11 @@ div.csl-indent {
 <p>LCA has the ability to use mixture-modeling to distinguish and label instances of heterogeneity within a population and to identify subgroups of characteristics or individuals that may be more likely to exhibit those characteristics of heterogeneity (Weller et al., 2020). Identifying and labeling subgroups of a population that may not be explicitly obvious based upon its reported attributes has substantial application for helping to identify individuals within that population who may be at greater risk or likelihood for a particular outcome. This application can help drive execution of actions that may require intervention (Petersen et al., 2019).</p>
 <p>Latent class Analysis has application across a variety of fields, but there are also limitations that exist with to its use under certain circumstances that can prove challenging to its implementation. One of the major challenges that exist in any attempted implementation of this method, is being able to determine the appropriate number of latent classes. Doing so can prove time intensive and cumbersome, as the process can be somewhat subjective and often requires using a multi-step process to test multiple models and/or number of classes (Asparouhov &amp; Muthén, 2014). Interpretation of the classes themselves that were generated can also provide some significant challenge as it may require knowledge of not only the implementation methodology of the LCA upon the data but also requires that the analyst have access to background information about the data attributes and context (Weller et al., 2020). Though a class may be correctly identified, if the researcher/analyst does not correctly identify what is heterogenous about that class, it can lead to improper naming and assumptions about the defining characteristics of the members of that class for analysis (Weller et al., 2020).</p>
 </section>
+=======
+<p>Latent Class Analysis (LCA) is a statistical modeling method that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population. To identify these unobserved groups, LCA searches for and analyzes response patterns that may exist within categorical variables reported in the dataset (Nylund-Gibson &amp; Choi, 2018). Latent Class Analysis is an example of a broader class of models called finite mixture models(FFM) (Grimm et al., 2021) that seek to identify and classify instances of variance within model parameters between groups within the data that have not been explicitly defined as groups by the attributes provided within the dataset itself. LCA specifically makes the assumption that within the population potentially exists a finite number of unobserved subgroups, or latent classes, and that each individual belongs to only one of these classes (Weller et al., 2020). The overarching goal of LCA is to identify where a specific subset of classes exist within a group and estimate the proportions of those subset classes within the overall population. Additionally, LCA can be used to help determine if any relationships exist between the identified latent classes and any other observed variables within the dataset. As computational efficiency has improved, Latent Class Analysis has seen an uptick in interest for researchers across a variety of fields with applications in science, business, and health (Petersen et al., 2019). LCA is often most closely associated with identifying patterns of behavior or psychological characteristics that prove often otherwise difficult groups to identify(Kaplan et al., 2004).</p>
+<p>###1.1 LCA Applications One frequent application of Latent Class Analysis (LCA) has been to utilize it to identify subgroups of individuals within a population that may have similar or associated symptoms or characteristics of a mental health profile (Petersen et al., 2019) or when and which specific barriers may exist to receiving medical care (Thorpe et al., 2011). LCA has also been used to identify when any subgroups of a population exist containing individuals that may have different risk factors or potential outcomes of a particular disease or disease pattern (Petersen et al., 2019). Outside of health field applications, Latent Class Analysis can also be used in business and marketing to assess buying habits and even latent classes for groups with preferences for specific types of products (Kaplan et al., 2004).</p>
+<p>1.2 Challenges with Implementation and Analysis of Classes using LCA LCA has the ability to use mixture-modeling to distinguish and label instances of heterogeneity within a population and to identify subgroups of characteristics or individuals that may be more likely to exhibit those characteristics of heterogeneity (Weller et al., 2020). Identifying and labeling subgroups of a population that may not be explicitly obvious based upon its reported attributes has substantial application for helping to identify individuals within that population who may be at greater risk or likelihood for a particular outcome. This application can help drive execution of actions that may require intervention (Petersen et al., 2019). Latent class Analysis has application across a variety of fields, but there are also limitations that exist with to its use under certain circumstances that can prove challenging to its implementation. One of the major challenges that exist in any attempted implementation of this method, is being able to determine the appropriate number of latent classes. Doing so can prove time intensive and cumbersome, as the process can be somewhat subjective and often requires using a multi-step process to test multiple models and/or number of classes (Asparouhov &amp; Muthén, 2014). Interpretation of the classes themselves that were generated can also provide some significant challenge as it may require knowledge of not only the implementation methodology of the LCA upon the data but also requires that the analyst have access to background information about the data attributes and context (Weller et al., 2020). Though a class may be correctly identified, if the researcher/analyst does not correctly identify what is heterogenous about that class, it can lead to improper naming and assumptions about the defining characteristics of the members of that class for analysis (Weller et al., 2020).</p>
+>>>>>>> 9b53176968ad050b18a4cab6ce7ed16373b6ba30
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
@@ -336,7 +355,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -372,24 +408,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
