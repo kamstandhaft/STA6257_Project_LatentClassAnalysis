@@ -21,10 +21,12 @@ closely associated with identifying patterns of behavior or psychological
 characteristics that prove often otherwise difficult groups to identify(Kaplan et al., 2004).
 
 ###1.1 LCA Applications
+
 One frequent application of Latent Class Analysis (LCA) has been to utilize it to identify subgroups of individuals within a population that may have similar or associated symptoms or characteristics of a mental health profile (Petersen et al., 2019) or when and which specific barriers may exist to receiving medical care (Thorpe et al., 2011). LCA has also been used to identify when any subgroups of a population exist containing individuals that may have different risk factors or potential outcomes of a particular disease or disease pattern (Petersen et al., 2019). Outside of health field applications, Latent Class Analysis can also be used in business and marketing to assess buying habits and even latent classes for groups with preferences for specific types of products (Kaplan et al., 2004).
 
 
-1.2 Challenges with Implementation and Analysis of Classes using LCA
+###1.2 Challenges with Implementation and Analysis of Classes using LCA
+
 LCA has the ability to use mixture-modeling to distinguish and label instances of heterogeneity within a population and to identify subgroups of characteristics or individuals that may be more likely to exhibit those characteristics of heterogeneity (Weller et al., 2020). Identifying and labeling subgroups of a population that may not be explicitly obvious based upon its reported attributes has substantial application for helping to identify individuals within that population who may be at greater risk or likelihood for a particular outcome. This application can help drive execution of actions that may require intervention (Petersen et al., 2019).
 Latent class Analysis has application across a variety of fields, but there are also limitations that exist with to its use under certain circumstances that can prove challenging to its implementation. One of the major challenges that exist in any attempted implementation of this method, is being able to determine the appropriate number of latent classes. Doing so can prove time intensive and cumbersome, as the process can be somewhat subjective and often requires using a multi-step process to test multiple models and/or number of classes (Asparouhov & Muthén, 2014). Interpretation of the classes themselves that were generated can also provide some significant challenge as it may require knowledge of not only the implementation methodology of the LCA upon the data but also requires that the analyst have access to background information about the data attributes and context (Weller et al., 2020). Though a class may be correctly identified, if the researcher/analyst does not correctly identify what is heterogenous about that class, it can lead to improper naming and assumptions about the defining characteristics of the members of that class for analysis (Weller et al., 2020).
 
@@ -32,54 +34,58 @@ Latent class Analysis has application across a variety of fields, but there are 
 
 ## Methods
 
+The general steps to use latent class analysis are as follows:
 
-The common non-parametric regression model is $Y_i = m(X_i) + \varepsilon_i$, where
-$Y_i$ can be defined as the sum of the regression function value $m(x)$ for $X_i$.
-Here $m(x)$ is unknown and $\varepsilon_i$ some errors. With the help of this definition, we can create the estimation for
-local averaging i.e. $m(x)$ can be estimated with the product of $Y_i$ average
-and $X_i$ is near to $x$. In other words, this means that we are discovering
-the line through the data points with the help of surrounding data points.
-The estimation formula is printed below [@R-base]:
+1.Identify the research question and define the variables
+Define the categorical variables that will be used in the analysis
 
-$$
-M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
-$$
-$W_n(x)$ is the sum of weights that belongs to all real numbers. Weights
-are positive numbers and small if $X_i$ is far from $x$.
+2. Select the appropriate software: In this project R studio will be used for the LCA
+
+3.Determine the number of latent classes
+
+4.Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation
+
+5.Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC). If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.
+
+6. Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.
+
 
 ## Analysis and Results
-### Data and Vizualisation
-A study was conducted to determine how...
+
+### 3.1 Data Overview
+
+For the purpose of this paper, we are using a dataset from Kaggle called Zoo Animals (https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals). There are a total of 18 variables in this dataset and they give information on the physical attributes of each animal. Of the 18 variables, 15 of them are binary variables and one of them is discrete. This majority of binary variables is why we chose this dataset for Latent Class Analysis. Since the variables Domestic and Catsize could be seen as subjective, we decided to omit these categories in our analysis. 
+
+
+### 3.2 Load Data
+
+When the data is first loaded, with each categorical variable, there is an apostrophe and a “b” before each word and at the end, there is an apostrophe.
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 # loading packages 
-library(tidyverse)
-library(knitr)
-library(ggthemes)
-library(ggrepel)
-library(dslabs)
+library(readr)
+Zoo <- read_csv("Zoo.csv")
+head(Zoo)
 ```
+
+Below is the fixed dataset without the apostrophes or the "b"s.
 
 
 ```{r, warning=FALSE, echo=TRUE}
 # Load Data
-kable(head(murders))
-
-ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
-
-  ggplot1 + geom_point(aes(col=region), size = 4) +
-  geom_text_repel(aes(label=abb)) +
-  scale_x_log10() +
-  scale_y_log10() +
-  geom_smooth(formula = "y~x", method=lm,se = F)+
-  xlab("Populations in millions (log10 scale)") + 
-  ylab("Total number of murders (log10 scale)") +
-  ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name = "Region")+
-      theme_wsj()
-  
+Zoo <- read_csv("Zoo_clean.csv")
+head(Zoo)
 
 ```
+
+As mentioned above, we will be removing the Domestic and Catsize variables.
+
+```{r, warning=FALSE, echo=TRUE}
+Zoo <- subset(Zoo, select = -c(domestic, catsize))
+Zoo
+```
+
+
 
 ### Statistical Modeling
 
