@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Daniel Martin, Kameron Standhaft, Esra Acar">
-<meta name="dcterms.date" content="2023-04-05">
+<meta name="author" content="Daniel Martin, Kameron Standhaft, Esra Ari Acar">
+<meta name="dcterms.date" content="2023-04-09">
 
 <title>Latent Class Analysis</title>
 <style>
@@ -120,14 +120,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Daniel Martin, Kameron Standhaft, Esra Acar </p>
+             <p>Daniel Martin, Kameron Standhaft, Esra Ari Acar </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 5, 2023</p>
+      <p class="date">April 9, 2023</p>
     </div>
   </div>
   
@@ -139,15 +139,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Latent Class Analysis (LCA) is a statistical modeling method that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population. To identify these unobserved groups, LCA searches for and analyzes response patterns that may exist within categorical variables reported in the dataset (Nylund-Gibson &amp; Choi, 2018). Latent Class Analysis is an example of a broader class of models called finite mixture models(FFM) (Grimm et al., 2021) that seek to identify and classify instances of variance within model parameters between groups within the data that have not been explicitly defined as groups by the attributes provided within the dataset itself. LCA specifically makes the assumption that within the population potentially exists a finite number of unobserved subgroups, or latent classes, and that each individual belongs to only one of these classes (Weller et al., 2020). The overarching goal of LCA is to identify where a specific subset of classes exist within a group and estimate the proportions of those subset classes within the overall population. Additionally, LCA can be used to help determine if any relationships exist between the identified latent classes and any other observed variables within the dataset. As computational efficiency has improved, Latent Class Analysis has seen an uptick in interest for researchers across a variety of fields with applications in science, business, and health (Petersen et al., 2019). LCA is often most closely associated with identifying patterns of behavior or psychological characteristics that prove often otherwise difficult groups to identify(Kaplan et al., 2004).</p>
-<p>###1.1 LCA Applications</p>
+<p>Latent Class Analysis (LCA) is a statistical modeling method that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population. To identify these unobserved groups, LCA searches for and analyzes response patterns that may exist within categorical variables reported in the dataset (Nylund-Gibson &amp; Choi, 2018). Latent Class Analysis is an example of a broader class of models called finite mixture models(FFM) (Grimm et al., 2021) that seek to identify and classify instances of variance within model parameters between groups within the data that have not been explicitly defined as groups by the attributes provided within the dataset itself.</p>
+<p>LCA specifically makes the assumption that within the population potentially exists a finite number of unobserved subgroups, or latent classes, and that each individual belongs to only one of these classes (Weller et al., 2020). The overarching goal of LCA is to identify where a specific subset of classes exist within a group and estimate the proportions of those subset classes within the overall population. Additionally, LCA can be used to help determine if any relationships exist between the identified latent classes and any other observed variables within the dataset.</p>
+<p>As computational efficiency has improved, Latent Class Analysis has seen an uptick in interest for researchers across a variety of fields with applications in science, business, and health (Petersen et al., 2019). LCA is often most closely associated with identifying patterns of behavior or psychological characteristics that prove often otherwise difficult groups to identify(Kaplan et al., 2004).</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD ###1.1 LCA Applications</p>
 <p>One frequent application of Latent Class Analysis (LCA) has been to utilize it to identify subgroups of individuals within a population that may have similar or associated symptoms or characteristics of a mental health profile (Petersen et al., 2019) or when and which specific barriers may exist to receiving medical care (Thorpe et al., 2011). LCA has also been used to identify when any subgroups of a population exist containing individuals that may have different risk factors or potential outcomes of a particular disease or disease pattern (Petersen et al., 2019). Outside of health field applications, Latent Class Analysis can also be used in business and marketing to assess buying habits and even latent classes for groups with preferences for specific types of products (Kaplan et al., 2004).</p>
 <p>###1.2 Challenges with Implementation and Analysis of Classes using LCA</p>
-<p>LCA has the ability to use mixture-modeling to distinguish and label instances of heterogeneity within a population and to identify subgroups of characteristics or individuals that may be more likely to exhibit those characteristics of heterogeneity (Weller et al., 2020). Identifying and labeling subgroups of a population that may not be explicitly obvious based upon its reported attributes has substantial application for helping to identify individuals within that population who may be at greater risk or likelihood for a particular outcome. This application can help drive execution of actions that may require intervention (Petersen et al., 2019). Latent class Analysis has application across a variety of fields, but there are also limitations that exist with to its use under certain circumstances that can prove challenging to its implementation. One of the major challenges that exist in any attempted implementation of this method, is being able to determine the appropriate number of latent classes. Doing so can prove time intensive and cumbersome, as the process can be somewhat subjective and often requires using a multi-step process to test multiple models and/or number of classes (Asparouhov &amp; Muthén, 2014). Interpretation of the classes themselves that were generated can also provide some significant challenge as it may require knowledge of not only the implementation methodology of the LCA upon the data but also requires that the analyst have access to background information about the data attributes and context (Weller et al., 2020). Though a class may be correctly identified, if the researcher/analyst does not correctly identify what is heterogenous about that class, it can lead to improper naming and assumptions about the defining characteristics of the members of that class for analysis (Weller et al., 2020).</p>
+<p>======= ### 1.1 LCA Applications One frequent application of Latent Class Analysis (LCA) has been to utilize it to identify subgroups of individuals within a population that may have similar or associated symptoms or characteristics of a mental health profile (Petersen et al., 2019) or when and which specific barriers may exist to receiving medical care (Thorpe et al., 2011). LCA has also been used to identify when any subgroups of a population exist containing individuals that may have different risk factors or potential outcomes of a particular disease or disease pattern (Petersen et al., 2019). Outside of health field applications, Latent Class Analysis can also be used in business and marketing to assess buying habits and even latent classes for groups with preferences for specific types of products (Kaplan et al., 2004).</p>
+<section id="challenges-with-implementation-and-analysis-of-classes-using-lca" class="level3">
+<h3 class="anchored" data-anchor-id="challenges-with-implementation-and-analysis-of-classes-using-lca">1.2 Challenges with Implementation and Analysis of Classes using LCA</h3>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>2acb52485b8448d67bb8b073a3e2ae0c48285e44</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>LCA has the ability to use mixture-modeling to distinguish and label instances of heterogeneity within a population and to identify subgroups of characteristics or individuals that may be more likely to exhibit those characteristics of heterogeneity (Weller et al., 2020). Identifying and labeling subgroups of a population that may not be explicitly obvious based upon its reported attributes has substantial application for helping to identify individuals within that population who may be at greater risk or likelihood for a particular outcome. This application can help drive execution of actions that may require intervention (Petersen et al., 2019).</p>
+<p>Latent class Analysis has application across a variety of fields, but there are also limitations that exist with to its use under certain circumstances that can prove challenging to its implementation. One of the major challenges that exist in any attempted implementation of this method, is being able to determine the appropriate number of latent classes. Doing so can prove time intensive and cumbersome, as the process can be somewhat subjective and often requires using a multi-step process to test multiple models and/or number of classes (Asparouhov &amp; Muthén, 2014). Interpretation of the classes themselves that were generated can also provide some significant challenge as it may require knowledge of not only the implementation methodology of the LCA upon the data but also requires that the analyst have access to background information about the data attributes and context (Weller et al., 2020). Though a class may be correctly identified, if the researcher/analyst does not correctly identify what is heterogenous about that class, it can lead to improper naming and assumptions about the defining characteristics of the members of that class for analysis (Weller et al., 2020).</p>
+</section>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<p>The general steps to use latent class analysis are as follows:</p>
+<p>The general steps to use latent class analysis are as follows: &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD =======</p>
+<p>1.Identify the research question and define the variables Define the categorical variables that will be used in the analysis</p>
+<ol start="2" type="1">
+<li>Select the appropriate software: In this project R studio will be used for the LCA</li>
+</ol>
+<p>3.Determine the number of latent classes</p>
+<p>4.Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation</p>
+<p>5.Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC). If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.</p>
+<ol start="6" type="1">
+<li>Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.</li>
+</ol>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>2acb52485b8448d67bb8b073a3e2ae0c48285e44</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <p>1.Identify the research question and define the variables Define the categorical variables that will be used in the analysis</p>
 <ol start="2" type="1">
 <li>Select the appropriate software: In this project R studio will be used for the LCA</li>
@@ -163,7 +210,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="analysis-and-results">Analysis and Results</h2>
 <section id="data-overview" class="level3">
 <h3 class="anchored" data-anchor-id="data-overview">3.1 Data Overview</h3>
-<p>For the purpose of this paper, we are using a dataset from Kaggle called Zoo Animals (https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals). There are a total of 18 variables in this dataset and they give information on the physical attributes of each animal. Of the 18 variables, 15 of them are binary variables and one of them is discrete. This majority of binary variables is why we chose this dataset for Latent Class Analysis. Since the variables Domestic and Catsize could be seen as subjective, we decided to omit these categories in our analysis.</p>
+<p>For the purpose of this paper, we are using a dataset from Kaggle called Zoo Animals (https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals). There are 101 entries and a total of 18 variables in this dataset.The variables give information about the physical attributes of each of the animals, such as if they have hair, if they have teeth, if they lay eggs, etc. Of the 18 variables, 15 of them are binary variables and one of them is discrete. This majority of binary variables is why we chose this dataset for Latent Class Analysis.</p>
+<p>The variable that we are concerned with the most is the “type” variable. This variable has 7 categories: mammals, fish, birds, insects, reptiles, invertebrates, amphibians. Of the 101 entries, 42 are mammals (41.58%), 21 are birds (20.79%), 14 are fish (13.86%), 11 are invertebrates (10.89%), 8 are insects (7.92%), 6 are reptiles (5.94%), and 5 are amphibians (4.95%).</p>
+<p>Among other variables, we will be removing the “type” variable from the dataset. Latent Class Analysis will be utilized to ascertain whether the groups identified by this method correspond to the seven animal types.</p>
 </section>
 <section id="load-data" class="level3">
 <h3 class="anchored" data-anchor-id="load-data">3.2 Load Data</h3>
@@ -173,8 +222,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loading packages </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Zoo <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Zoo.csv"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Zoo_full <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Zoo.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Zoo_full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 18
@@ -195,7 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Zoo <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Zoo_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Zoo_full <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"Zoo_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 101 Columns: 18
@@ -210,7 +259,7 @@ lgl (15): hair, feathers, eggs, milk, airborne, aquatic, predator, toothed, ...
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Zoo_full)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 18
@@ -226,34 +275,957 @@ lgl (15): hair, feathers, eggs, milk, airborne, aquatic, predator, toothed, ...
 #   legs &lt;dbl&gt;, tail &lt;lgl&gt;, domestic &lt;lgl&gt;, catsize &lt;lgl&gt;, type &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>As mentioned above, we will be removing the Domestic and Catsize variables.</p>
+</section>
+<section id="data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="data-preparation">3.3 Data Preparation</h3>
+<p>As mentioned above, we will be removing the “type” variable from the dataset. The identifier variable “animal” will also be removed. Finally, we only want objective variables in our dataset, so we will also be removing “catsize” and “domestic” from the dataset.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Zoo <span class="ot">&lt;-</span> <span class="fu">subset</span>(Zoo, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(domestic, catsize))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Zoo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ ggplot2 3.3.6     ✔ dplyr   1.1.0
+✔ tibble  3.1.7     ✔ stringr 1.4.0
+✔ tidyr   1.2.0     ✔ forcats 0.5.1
+✔ purrr   0.3.4     </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Zoo <span class="ot">&lt;-</span> Zoo_full <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">animal=</span><span class="cn">NULL</span>, <span class="at">domestic=</span><span class="cn">NULL</span>, <span class="at">catsize=</span><span class="cn">NULL</span>, <span class="at">type=</span><span class="cn">NULL</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 101 × 16
-   animal  hair  feathers eggs  milk  airborne aquatic predator toothed backbone
-   &lt;chr&gt;   &lt;lgl&gt; &lt;lgl&gt;    &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;    &lt;lgl&gt;   &lt;lgl&gt;    &lt;lgl&gt;   &lt;lgl&gt;   
- 1 aardva… TRUE  FALSE    FALSE TRUE  FALSE    FALSE   TRUE     TRUE    TRUE    
- 2 antelo… TRUE  FALSE    FALSE TRUE  FALSE    FALSE   FALSE    TRUE    TRUE    
- 3 bass    FALSE FALSE    TRUE  FALSE FALSE    TRUE    TRUE     TRUE    TRUE    
- 4 bear    TRUE  FALSE    FALSE TRUE  FALSE    FALSE   TRUE     TRUE    TRUE    
- 5 boar    TRUE  FALSE    FALSE TRUE  FALSE    FALSE   TRUE     TRUE    TRUE    
- 6 buffalo TRUE  FALSE    FALSE TRUE  FALSE    FALSE   FALSE    TRUE    TRUE    
- 7 calf    TRUE  FALSE    FALSE TRUE  FALSE    FALSE   FALSE    TRUE    TRUE    
- 8 carp    FALSE FALSE    TRUE  FALSE FALSE    TRUE    FALSE    TRUE    TRUE    
- 9 catfish FALSE FALSE    TRUE  FALSE FALSE    TRUE    TRUE     TRUE    TRUE    
-10 cavy    TRUE  FALSE    FALSE TRUE  FALSE    FALSE   FALSE    TRUE    TRUE    
-# … with 91 more rows, and 6 more variables: breathes &lt;lgl&gt;, venomous &lt;lgl&gt;,
-#   fins &lt;lgl&gt;, legs &lt;dbl&gt;, tail &lt;lgl&gt;, type &lt;chr&gt;</code></pre>
+<pre><code># A tibble: 6 × 14
+  hair  feathers eggs  milk  airborne aquatic predator toothed backbone breathes
+  &lt;lgl&gt; &lt;lgl&gt;    &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;    &lt;lgl&gt;   &lt;lgl&gt;    &lt;lgl&gt;   &lt;lgl&gt;    &lt;lgl&gt;   
+1 TRUE  FALSE    FALSE TRUE  FALSE    FALSE   TRUE     TRUE    TRUE     TRUE    
+2 TRUE  FALSE    FALSE TRUE  FALSE    FALSE   FALSE    TRUE    TRUE     TRUE    
+3 FALSE FALSE    TRUE  FALSE FALSE    TRUE    TRUE     TRUE    TRUE     FALSE   
+4 TRUE  FALSE    FALSE TRUE  FALSE    FALSE   TRUE     TRUE    TRUE     TRUE    
+5 TRUE  FALSE    FALSE TRUE  FALSE    FALSE   TRUE     TRUE    TRUE     TRUE    
+6 TRUE  FALSE    FALSE TRUE  FALSE    FALSE   FALSE    TRUE    TRUE     TRUE    
+# … with 4 more variables: venomous &lt;lgl&gt;, fins &lt;lgl&gt;, legs &lt;dbl&gt;, tail &lt;lgl&gt;</code></pre>
 </div>
+</div>
+<p>To keep our data uniform, we will transform the discrete variable “legs” into a Boolean variable indicating the presence or absence of legs.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Zoo <span class="ot">&lt;-</span> Zoo <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_legs =</span> <span class="fu">ifelse</span>(legs <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>Zoo <span class="ot">&lt;-</span> Zoo <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">legs =</span> <span class="cn">NULL</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(Zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>To construct the classes, we employed the poLCA function. However, due to the function’s constraints, only positive integer values can be used. Therefore, we transformed all TRUE/FALSE values to binary form and then added one to all of them, in order to have all positive integers.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Zoo <span class="ot">&lt;-</span> Zoo <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">as.integer</span>(.))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Zoo <span class="ot">&lt;-</span> Zoo <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span>. <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="statistical-modeling" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
+<p>As mentioned above, we will be using the poLCA function to create our classes. Ideally, we want to construct 7 classes to match the number of types of animals the dataset contains, but we will perform some tests to see which number of classes is best for our dataset.</p>
+<p>We will start with 2 classes and then work our way up to 7.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"poLCA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: scatterplot3d</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: MASS</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'MASS'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    select</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#2 classes</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>lca_bind2 <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, milk, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>lca_fit2 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind2, <span class="at">data =</span> Zoo, </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">2</span>, <span class="at">graphs =</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Conditional item response (column) probabilities,
+ by outcome variable, for each class (row) 
+ 
+$hair
+           Pr(1)  Pr(2)
+class 1:  0.9202 0.0798
+class 2:  0.0000 1.0000
+
+$feathers
+           Pr(1)  Pr(2)
+class 1:  0.6827 0.3173
+class 2:  1.0000 0.0000
+
+$eggs
+           Pr(1)  Pr(2)
+class 1:  0.0639 0.9361
+class 2:  1.0000 0.0000
+
+$milk
+           Pr(1)  Pr(2)
+class 1:  0.9519 0.0481
+class 2:  0.0000 1.0000
+
+$airborne
+           Pr(1)  Pr(2)
+class 1:  0.6510 0.3490
+class 2:  0.9473 0.0527
+
+$aquatic
+           Pr(1)  Pr(2)
+class 1:  0.4760 0.5240
+class 2:  0.9218 0.0782
+
+$predator
+           Pr(1)  Pr(2)
+class 1:  0.4125 0.5875
+class 2:  0.5004 0.4996
+
+$toothed
+           Pr(1)  Pr(2)
+class 1:  0.6346 0.3654
+class 2:  0.0000 1.0000
+
+$backbone
+           Pr(1)  Pr(2)
+class 1:  0.2856 0.7144
+class 2:  0.0000 1.0000
+
+$breathes
+           Pr(1)  Pr(2)
+class 1:  0.3332 0.6668
+class 2:  0.0000 1.0000
+
+$venomous
+           Pr(1)  Pr(2)
+class 1:  0.8731 0.1269
+class 2:  1.0000 0.0000
+
+$fins
+           Pr(1)  Pr(2)
+class 1:  0.7616 0.2384
+class 2:  0.9481 0.0519
+
+$tail
+           Pr(1)  Pr(2)
+class 1:  0.3178 0.6822
+class 2:  0.1573 0.8427
+
+$has_legs
+           Pr(1)  Pr(2)
+class 1:  0.3495 0.6505
+class 2:  0.0256 0.9744
+
+Estimated class population shares 
+ 0.6241 0.3759 
+ 
+Predicted class memberships (by modal posterior prob.) 
+ 0.6238 0.3762 
+ 
+========================================================= 
+Fit for 2 latent classes: 
+========================================================= 
+number of observations: 101 
+number of estimated parameters: 29 
+residual degrees of freedom: 72 
+maximum log-likelihood: -609.2337 
+ 
+AIC(2): 1276.467
+BIC(2): 1352.306
+G^2(2): 572.5984 (Likelihood ratio/deviance statistic) 
+X^2(2): 38009.51 (Chi-square goodness of fit) 
+ </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lca_bind3 <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, milk, </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>lca_fit3 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind3, <span class="at">data =</span> Zoo, </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">3</span>, <span class="at">graphs =</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Conditional item response (column) probabilities,
+ by outcome variable, for each class (row) 
+ 
+$hair
+          Pr(1) Pr(2)
+class 1:  0.500 0.500
+class 2:  0.918 0.082
+class 3:  0.000 1.000
+
+$feathers
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.6721 0.3279
+class 3:  1.0000 0.0000
+
+$eggs
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.0328 0.9672
+class 3:  1.0000 0.0000
+
+$milk
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.9836 0.0164
+class 3:  0.0000 1.0000
+
+$airborne
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.6393 0.3607
+class 3:  0.9444 0.0556
+
+$aquatic
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.4918 0.5082
+class 3:  0.9722 0.0278
+
+$predator
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.4262 0.5738
+class 3:  0.5278 0.4722
+
+$toothed
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.6557 0.3443
+class 3:  0.0000 1.0000
+
+$backbone
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.2951 0.7049
+class 3:  0.0000 1.0000
+
+$breathes
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.3443 0.6557
+class 3:  0.0000 1.0000
+
+$venomous
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.8689 0.1311
+class 3:  1.0000 0.0000
+
+$fins
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.7869 0.2131
+class 3:  1.0000 0.0000
+
+$tail
+           Pr(1)  Pr(2)
+class 1:  0.2500 0.7500
+class 2:  0.3279 0.6721
+class 3:  0.1389 0.8611
+
+$has_legs
+           Pr(1)  Pr(2)
+class 1:  0.7500 0.2500
+class 2:  0.3279 0.6721
+class 3:  0.0000 1.0000
+
+Estimated class population shares 
+ 0.0396 0.604 0.3564 
+ 
+Predicted class memberships (by modal posterior prob.) 
+ 0.0396 0.604 0.3564 
+ 
+========================================================= 
+Fit for 3 latent classes: 
+========================================================= 
+number of observations: 101 
+number of estimated parameters: 44 
+residual degrees of freedom: 57 
+maximum log-likelihood: -581.3841 
+ 
+AIC(3): 1250.768
+BIC(3): 1365.834
+G^2(3): 516.8993 (Likelihood ratio/deviance statistic) 
+X^2(3): 16336.14 (Chi-square goodness of fit) 
+ </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>lca_bind4 <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, milk, </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>lca_fit4 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind4, <span class="at">data =</span> Zoo, </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">4</span>, <span class="at">graphs =</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Conditional item response (column) probabilities,
+ by outcome variable, for each class (row) 
+ 
+$hair
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.9545 0.0455
+class 3:  0.7778 0.2222
+class 4:  0.9572 0.0428
+
+$feathers
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.0909 0.9091
+class 3:  1.0000 0.0000
+class 4:  1.0000 0.0000
+
+$eggs
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.0000 1.0000
+class 3:  0.0556 0.9444
+class 4:  0.1677 0.8323
+
+$milk
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.9545 0.0455
+class 3:  1.0000 0.0000
+class 4:  0.8739 0.1261
+
+$airborne
+           Pr(1)  Pr(2)
+class 1:  0.9459 0.0541
+class 2:  0.2727 0.7273
+class 3:  0.6667 0.3333
+class 4:  1.0000 0.0000
+
+$aquatic
+           Pr(1)  Pr(2)
+class 1:  0.9467 0.0533
+class 2:  0.6818 0.3182
+class 3:  0.6667 0.3333
+class 4:  0.1249 0.8751
+
+$predator
+           Pr(1)  Pr(2)
+class 1:  0.5139 0.4861
+class 2:  0.5455 0.4545
+class 3:  0.5000 0.5000
+class 4:  0.2081 0.7919
+
+$toothed
+          Pr(1) Pr(2)
+class 1:      0     1
+class 2:      1     0
+class 3:      1     0
+class 4:      0     1
+
+$backbone
+          Pr(1) Pr(2)
+class 1:      0     1
+class 2:      0     1
+class 3:      1     0
+class 4:      0     1
+
+$breathes
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.0000 1.0000
+class 3:  0.3889 0.6111
+class 4:  0.5826 0.4174
+
+$venomous
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  1.0000 0.0000
+class 3:  0.7778 0.2222
+class 4:  0.8335 0.1665
+
+$fins
+           Pr(1)  Pr(2)
+class 1:  0.9737 0.0263
+class 2:  1.0000 0.0000
+class 3:  1.0000 0.0000
+class 4:  0.3329 0.6671
+
+$tail
+           Pr(1)  Pr(2)
+class 1:  0.1352 0.8648
+class 2:  0.0000 1.0000
+class 3:  0.9444 0.0556
+class 4:  0.1665 0.8335
+
+$has_legs
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.0000 1.0000
+class 3:  0.2222 0.7778
+class 4:  0.7907 0.2093
+
+Estimated class population shares 
+ 0.366 0.2178 0.1782 0.2379 
+ 
+Predicted class memberships (by modal posterior prob.) 
+ 0.3663 0.2178 0.1782 0.2376 
+ 
+========================================================= 
+Fit for 4 latent classes: 
+========================================================= 
+number of observations: 101 
+number of estimated parameters: 59 
+residual degrees of freedom: 42 
+maximum log-likelihood: -447.855 
+ 
+AIC(4): 1013.71
+BIC(4): 1168.002
+G^2(4): 249.841 (Likelihood ratio/deviance statistic) 
+X^2(4): 10015.88 (Chi-square goodness of fit) 
+ </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>lca_bind5 <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, milk, </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>lca_fit5 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind5, <span class="at">data =</span> Zoo, </span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">5</span>, <span class="at">graphs =</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Conditional item response (column) probabilities,
+ by outcome variable, for each class (row) 
+ 
+$hair
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  1.0000 0.0000
+class 3:  0.6352 0.3648
+class 4:  1.0000 0.0000
+class 5:  1.0000 0.0000
+
+$feathers
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.0476 0.9524
+class 3:  1.0000 0.0000
+class 4:  1.0000 0.0000
+class 5:  1.0000 0.0000
+
+$eggs
+           Pr(1)  Pr(2)
+class 1:  0.9744 0.0256
+class 2:  0.0000 1.0000
+class 3:  0.0912 0.9088
+class 4:  0.1500 0.8500
+class 5:  0.0000 1.0000
+
+$milk
+          Pr(1) Pr(2)
+class 1:    0.0   1.0
+class 2:    1.0   0.0
+class 3:    1.0   0.0
+class 4:    0.9   0.1
+class 5:    1.0   0.0
+
+$airborne
+           Pr(1)  Pr(2)
+class 1:  0.9487 0.0513
+class 2:  0.2381 0.7619
+class 3:  0.4529 0.5471
+class 4:  1.0000 0.0000
+class 5:  1.0000 0.0000
+
+$aquatic
+           Pr(1)  Pr(2)
+class 1:  0.8974 0.1026
+class 2:  0.7143 0.2857
+class 3:  1.0000 0.0000
+class 4:  0.1500 0.8500
+class 5:  0.1030 0.8970
+
+$predator
+           Pr(1)  Pr(2)
+class 1:  0.4872 0.5128
+class 2:  0.5714 0.4286
+class 3:  0.8176 0.1824
+class 4:  0.2000 0.8000
+class 5:  0.1030 0.8970
+
+$toothed
+           Pr(1)  Pr(2)
+class 1:  0.0256 0.9744
+class 2:  1.0000 0.0000
+class 3:  1.0000 0.0000
+class 4:  0.0000 1.0000
+class 5:  0.7010 0.2990
+
+$backbone
+          Pr(1) Pr(2)
+class 1:  0.000 1.000
+class 2:  0.000 1.000
+class 3:  1.000 0.000
+class 4:  0.000 1.000
+class 5:  0.701 0.299
+
+$breathes
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.0000 1.0000
+class 3:  0.0000 1.0000
+class 4:  0.7000 0.3000
+class 5:  0.6976 0.3024
+
+$venomous
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  1.0000 0.0000
+class 3:  0.7264 0.2736
+class 4:  0.8500 0.1500
+class 5:  0.8007 0.1993
+
+$fins
+           Pr(1)  Pr(2)
+class 1:  0.9487 0.0513
+class 2:  1.0000 0.0000
+class 3:  1.0000 0.0000
+class 4:  0.2500 0.7500
+class 5:  1.0000 0.0000
+
+$tail
+           Pr(1)  Pr(2)
+class 1:  0.1538 0.8462
+class 2:  0.0000 1.0000
+class 3:  0.9088 0.0912
+class 4:  0.0000 1.0000
+class 5:  1.0000 0.0000
+
+$has_legs
+           Pr(1)  Pr(2)
+class 1:  0.0256 0.9744
+class 2:  0.0000 1.0000
+class 3:  0.1807 0.8193
+class 4:  0.9000 0.1000
+class 5:  0.2011 0.7989
+
+Estimated class population shares 
+ 0.3861 0.2079 0.1086 0.198 0.0993 
+ 
+Predicted class memberships (by modal posterior prob.) 
+ 0.3861 0.2079 0.1089 0.198 0.099 
+ 
+========================================================= 
+Fit for 5 latent classes: 
+========================================================= 
+number of observations: 101 
+number of estimated parameters: 74 
+residual degrees of freedom: 27 
+maximum log-likelihood: -423.8456 
+ 
+AIC(5): 995.6911
+BIC(5): 1189.21
+G^2(5): 201.8222 (Likelihood ratio/deviance statistic) 
+X^2(5): 5108.988 (Chi-square goodness of fit) 
+ </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>lca_bind6 <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, milk, </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>lca_fit6 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind6, <span class="at">data =</span> Zoo, </span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">6</span>, <span class="at">graphs =</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Conditional item response (column) probabilities,
+ by outcome variable, for each class (row) 
+ 
+$hair
+           Pr(1)  Pr(2)
+class 1:  0.0500 0.9500
+class 2:  1.0000 0.0000
+class 3:  1.0000 0.0000
+class 4:  0.8889 0.1111
+class 5:  0.6000 0.4000
+class 6:  1.0000 0.0000
+
+$feathers
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  1.0000 0.0000
+class 3:  0.0476 0.9524
+class 4:  1.0000 0.0000
+class 5:  1.0000 0.0000
+class 6:  1.0000 0.0000
+
+$eggs
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.0714 0.9286
+class 3:  0.0000 1.0000
+class 4:  0.1111 0.8889
+class 5:  0.0000 1.0000
+class 6:  0.0000 1.0000
+
+$milk
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  1.0000 0.0000
+class 3:  1.0000 0.0000
+class 4:  0.8889 0.1111
+class 5:  1.0000 0.0000
+class 6:  1.0000 0.0000
+
+$airborne
+           Pr(1)  Pr(2)
+class 1:  0.9500 0.0500
+class 2:  1.0000 0.0000
+class 3:  0.2381 0.7619
+class 4:  1.0000 0.0000
+class 5:  0.4000 0.6000
+class 6:  1.0000 0.0000
+
+$aquatic
+           Pr(1)  Pr(2)
+class 1:  0.8750 0.1250
+class 2:  0.0000 1.0000
+class 3:  0.7143 0.2857
+class 4:  0.2222 0.7778
+class 5:  1.0000 0.0000
+class 6:  0.4286 0.5714
+
+$predator
+           Pr(1)  Pr(2)
+class 1:  0.4750 0.5250
+class 2:  0.2857 0.7143
+class 3:  0.5714 0.4286
+class 4:  0.0000 1.0000
+class 5:  0.9000 0.1000
+class 6:  0.1429 0.8571
+
+$toothed
+          Pr(1) Pr(2)
+class 1:      0     1
+class 2:      0     1
+class 3:      1     0
+class 4:      1     0
+class 5:      1     0
+class 6:      0     1
+
+$backbone
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.0000 1.0000
+class 3:  0.0000 1.0000
+class 4:  0.8889 0.1111
+class 5:  1.0000 0.0000
+class 6:  0.0000 1.0000
+
+$breathes
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  1.0000 0.0000
+class 3:  0.0000 1.0000
+class 4:  0.7778 0.2222
+class 5:  0.0000 1.0000
+class 6:  0.0000 1.0000
+
+$venomous
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.8571 0.1429
+class 3:  1.0000 0.0000
+class 4:  0.7778 0.2222
+class 5:  0.8000 0.2000
+class 6:  0.7143 0.2857
+
+$fins
+           Pr(1)  Pr(2)
+class 1:  0.9000 0.1000
+class 2:  0.0714 0.9286
+class 3:  1.0000 0.0000
+class 4:  1.0000 0.0000
+class 5:  1.0000 0.0000
+class 6:  1.0000 0.0000
+
+$tail
+           Pr(1)  Pr(2)
+class 1:  0.1500 0.8500
+class 2:  0.0000 1.0000
+class 3:  0.0000 1.0000
+class 4:  0.7778 0.2222
+class 5:  1.0000 0.0000
+class 6:  0.4286 0.5714
+
+$has_legs
+           Pr(1)  Pr(2)
+class 1:  0.0750 0.9250
+class 2:  1.0000 0.0000
+class 3:  0.0000 1.0000
+class 4:  0.2222 0.7778
+class 5:  0.2000 0.8000
+class 6:  0.2857 0.7143
+
+Estimated class population shares 
+ 0.396 0.1386 0.2079 0.0891 0.099 0.0693 
+ 
+Predicted class memberships (by modal posterior prob.) 
+ 0.396 0.1386 0.2079 0.0891 0.099 0.0693 
+ 
+========================================================= 
+Fit for 6 latent classes: 
+========================================================= 
+number of observations: 101 
+number of estimated parameters: 89 
+residual degrees of freedom: 12 
+maximum log-likelihood: -408.1578 
+ 
+AIC(6): 994.3156
+BIC(6): 1227.061
+G^2(6): 170.4467 (Likelihood ratio/deviance statistic) 
+X^2(6): 10311.55 (Chi-square goodness of fit) 
+ </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>lca_bind7 <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, milk, </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>lca_fit7 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind7, <span class="at">data =</span> Zoo, </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">7</span>, <span class="at">graphs =</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Conditional item response (column) probabilities,
+ by outcome variable, for each class (row) 
+ 
+$hair
+           Pr(1)  Pr(2)
+class 1:  0.6000 0.4000
+class 2:  1.0000 0.0000
+class 3:  0.5000 0.5000
+class 4:  0.0000 1.0000
+class 5:  0.8782 0.1218
+class 6:  1.0000 0.0000
+class 7:  1.0000 0.0000
+
+$feathers
+          Pr(1) Pr(2)
+class 1:  1.000 0.000
+class 2:  1.000 0.000
+class 3:  1.000 0.000
+class 4:  1.000 0.000
+class 5:  1.000 0.000
+class 6:  1.000 0.000
+class 7:  0.038 0.962
+
+$eggs
+           Pr(1)  Pr(2)
+class 1:  0.0000 1.0000
+class 2:  0.0714 0.9286
+class 3:  1.0000 0.0000
+class 4:  1.0000 0.0000
+class 5:  0.0000 1.0000
+class 6:  0.1250 0.8750
+class 7:  0.0000 1.0000
+
+$milk
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  1.0000 0.0000
+class 3:  0.0000 1.0000
+class 4:  0.0000 1.0000
+class 5:  0.8782 0.1218
+class 6:  1.0000 0.0000
+class 7:  1.0000 0.0000
+
+$airborne
+           Pr(1)  Pr(2)
+class 1:  0.4000 0.6000
+class 2:  1.0000 0.0000
+class 3:  1.0000 0.0000
+class 4:  0.9444 0.0556
+class 5:  1.0000 0.0000
+class 6:  1.0000 0.0000
+class 7:  0.2304 0.7696
+
+$aquatic
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.0000 1.0000
+class 3:  0.0000 1.0000
+class 4:  0.9722 0.0278
+class 5:  0.3910 0.6090
+class 6:  0.2500 0.7500
+class 7:  0.7114 0.2886
+
+$predator
+           Pr(1)  Pr(2)
+class 1:  0.9000 0.1000
+class 2:  0.2857 0.7143
+class 3:  0.0000 1.0000
+class 4:  0.5278 0.4722
+class 5:  0.1474 0.8526
+class 6:  0.0000 1.0000
+class 7:  0.5671 0.4329
+
+$toothed
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.0000 1.0000
+class 3:  0.0000 1.0000
+class 4:  0.0000 1.0000
+class 5:  0.1474 0.8526
+class 6:  1.0000 0.0000
+class 7:  1.0000 0.0000
+
+$backbone
+          Pr(1) Pr(2)
+class 1:      1     0
+class 2:      0     1
+class 3:      0     1
+class 4:      0     1
+class 5:      0     1
+class 6:      1     0
+class 7:      0     1
+
+$breathes
+          Pr(1) Pr(2)
+class 1:  0.000 1.000
+class 2:  1.000 0.000
+class 3:  0.000 1.000
+class 4:  0.000 1.000
+class 5:  0.000 1.000
+class 6:  0.875 0.125
+class 7:  0.000 1.000
+
+$venomous
+           Pr(1)  Pr(2)
+class 1:  0.8000 0.2000
+class 2:  0.8571 0.1429
+class 3:  1.0000 0.0000
+class 4:  1.0000 0.0000
+class 5:  0.7564 0.2436
+class 6:  0.7500 0.2500
+class 7:  1.0000 0.0000
+
+$fins
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.0714 0.9286
+class 3:  0.0000 1.0000
+class 4:  1.0000 0.0000
+class 5:  1.0000 0.0000
+class 6:  1.0000 0.0000
+class 7:  1.0000 0.0000
+
+$tail
+           Pr(1)  Pr(2)
+class 1:  1.0000 0.0000
+class 2:  0.0000 1.0000
+class 3:  0.2500 0.7500
+class 4:  0.1389 0.8611
+class 5:  0.3654 0.6346
+class 6:  0.8750 0.1250
+class 7:  0.0000 1.0000
+
+$has_legs
+           Pr(1)  Pr(2)
+class 1:  0.2000 0.8000
+class 2:  1.0000 0.0000
+class 3:  0.7500 0.2500
+class 4:  0.0000 1.0000
+class 5:  0.2436 0.7564
+class 6:  0.2500 0.7500
+class 7:  0.0000 1.0000
+
+Estimated class population shares 
+ 0.099 0.1386 0.0396 0.3564 0.0813 0.0792 0.2058 
+ 
+Predicted class memberships (by modal posterior prob.) 
+ 0.099 0.1386 0.0396 0.3564 0.0792 0.0792 0.2079 
+ 
+========================================================= 
+Fit for 7 latent classes: 
+========================================================= 
+number of observations: 101 
+number of estimated parameters: 104 
+residual degrees of freedom: -3 
+maximum log-likelihood: -377.8747 
+ 
+AIC(7): 963.7493
+BIC(7): 1235.722
+G^2(7): 109.8804 (Likelihood ratio/deviance statistic) 
+X^2(7): 1887.254 (Chi-square goodness of fit) 
+ 
+ALERT: number of parameters estimated ( 104 ) exceeds number of observations ( 101 ) 
+ 
+ALERT: negative degrees of freedom; respecify model 
+ </code></pre>
+</div>
+</div>
 </section>
 <section id="conlusion" class="level3">
 <h3 class="anchored" data-anchor-id="conlusion">Conlusion</h3>

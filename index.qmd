@@ -1,6 +1,6 @@
 ---
 title: "Latent Class Analysis"
-author: "Daniel Martin, Kameron Standhaft, Esra Acar"
+author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
 date: '`r Sys.Date()`'
 format:
   html:
@@ -11,15 +11,19 @@ bibliography: references.bib # file contains bibtex for references
 ---
 
 ## Introduction
+
 Latent Class Analysis (LCA) is a statistical modeling method that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population. To identify these unobserved groups, LCA searches for and analyzes
 response patterns that may exist within categorical variables reported in the dataset (Nylund-Gibson & Choi, 2018). Latent Class Analysis is an example of a broader class of models called finite mixture models(FFM) (Grimm et al., 2021) that seek to identify and classify instances of variance within model parameters between groups within the data that have not been explicitly defined as groups by the attributes provided within the dataset itself.
+
 LCA specifically makes the assumption that within the population potentially exists a finite number of unobserved subgroups, or latent classes, and that each individual belongs to only one of these classes (Weller et al., 2020). The overarching goal of LCA is to identify where a specific subset of classes exist within a group and estimate the proportions of those subset classes within the overall population. Additionally, LCA can be used to help determine if any relationships exist between the identified latent classes and any other observed variables within the dataset.
+
 As computational efficiency has improved, Latent Class Analysis has seen an uptick
 in interest for researchers across a variety of fields with applications in
 science, business, and health (Petersen et al., 2019). LCA is often most
 closely associated with identifying patterns of behavior or psychological
 characteristics that prove often otherwise difficult groups to identify(Kaplan et al., 2004).
 
+<<<<<<< HEAD
 ###1.1 LCA Applications
 
 One frequent application of Latent Class Analysis (LCA) has been to utilize it to identify subgroups of individuals within a population that may have similar or associated symptoms or characteristics of a mental health profile (Petersen et al., 2019) or when and which specific barriers may exist to receiving medical care (Thorpe et al., 2011). LCA has also been used to identify when any subgroups of a population exist containing individuals that may have different risk factors or potential outcomes of a particular disease or disease pattern (Petersen et al., 2019). Outside of health field applications, Latent Class Analysis can also be used in business and marketing to assess buying habits and even latent classes for groups with preferences for specific types of products (Kaplan et al., 2004).
@@ -27,14 +31,38 @@ One frequent application of Latent Class Analysis (LCA) has been to utilize it t
 
 ###1.2 Challenges with Implementation and Analysis of Classes using LCA
 
-LCA has the ability to use mixture-modeling to distinguish and label instances of heterogeneity within a population and to identify subgroups of characteristics or individuals that may be more likely to exhibit those characteristics of heterogeneity (Weller et al., 2020). Identifying and labeling subgroups of a population that may not be explicitly obvious based upon its reported attributes has substantial application for helping to identify individuals within that population who may be at greater risk or likelihood for a particular outcome. This application can help drive execution of actions that may require intervention (Petersen et al., 2019).
-Latent class Analysis has application across a variety of fields, but there are also limitations that exist with to its use under certain circumstances that can prove challenging to its implementation. One of the major challenges that exist in any attempted implementation of this method, is being able to determine the appropriate number of latent classes. Doing so can prove time intensive and cumbersome, as the process can be somewhat subjective and often requires using a multi-step process to test multiple models and/or number of classes (Asparouhov & Muthén, 2014). Interpretation of the classes themselves that were generated can also provide some significant challenge as it may require knowledge of not only the implementation methodology of the LCA upon the data but also requires that the analyst have access to background information about the data attributes and context (Weller et al., 2020). Though a class may be correctly identified, if the researcher/analyst does not correctly identify what is heterogenous about that class, it can lead to improper naming and assumptions about the defining characteristics of the members of that class for analysis (Weller et al., 2020).
+=======
+### 1.1 LCA Applications
+One frequent application of Latent Class Analysis (LCA) has been to utilize it to identify subgroups of individuals within a population that may have similar or associated symptoms or characteristics of a mental health profile (Petersen et al., 2019) or when and which specific barriers may exist to receiving medical care (Thorpe et al., 2011). LCA has also been used to identify when any subgroups of a population exist containing individuals that may have different risk factors or potential outcomes of a particular disease or disease pattern (Petersen et al., 2019). Outside of health field applications, Latent Class Analysis can also be used in business and marketing to assess buying habits and even latent classes for groups with preferences for specific types of products (Kaplan et al., 2004).
 
+### 1.2 Challenges with Implementation and Analysis of Classes using LCA
+>>>>>>> 2acb52485b8448d67bb8b073a3e2ae0c48285e44
+
+LCA has the ability to use mixture-modeling to distinguish and label instances of heterogeneity within a population and to identify subgroups of characteristics or individuals that may be more likely to exhibit those characteristics of heterogeneity (Weller et al., 2020). Identifying and labeling subgroups of a population that may not be explicitly obvious based upon its reported attributes has substantial application for helping to identify individuals within that population who may be at greater risk or likelihood for a particular outcome. This application can help drive execution of actions that may require intervention (Petersen et al., 2019).
+
+Latent class Analysis has application across a variety of fields, but there are also limitations that exist with to its use under certain circumstances that can prove challenging to its implementation. One of the major challenges that exist in any attempted implementation of this method, is being able to determine the appropriate number of latent classes. Doing so can prove time intensive and cumbersome, as the process can be somewhat subjective and often requires using a multi-step process to test multiple models and/or number of classes (Asparouhov & Muthén, 2014). Interpretation of the classes themselves that were generated can also provide some significant challenge as it may require knowledge of not only the implementation methodology of the LCA upon the data but also requires that the analyst have access to background information about the data attributes and context (Weller et al., 2020). Though a class may be correctly identified, if the researcher/analyst does not correctly identify what is heterogenous about that class, it can lead to improper naming and assumptions about the defining characteristics of the members of that class for analysis (Weller et al., 2020).
 
 
 ## Methods
 
 The general steps to use latent class analysis are as follows:
+<<<<<<< HEAD
+=======
+
+1.Identify the research question and define the variables
+Define the categorical variables that will be used in the analysis
+
+2. Select the appropriate software: In this project R studio will be used for the LCA
+
+3.Determine the number of latent classes
+
+4.Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation
+
+5.Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC). If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.
+
+6. Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.
+
+>>>>>>> 2acb52485b8448d67bb8b073a3e2ae0c48285e44
 
 1.Identify the research question and define the variables
 Define the categorical variables that will be used in the analysis
@@ -54,7 +82,11 @@ Define the categorical variables that will be used in the analysis
 
 ### 3.1 Data Overview
 
-For the purpose of this paper, we are using a dataset from Kaggle called Zoo Animals (https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals). There are a total of 18 variables in this dataset and they give information on the physical attributes of each animal. Of the 18 variables, 15 of them are binary variables and one of them is discrete. This majority of binary variables is why we chose this dataset for Latent Class Analysis. Since the variables Domestic and Catsize could be seen as subjective, we decided to omit these categories in our analysis. 
+For the purpose of this paper, we are using a dataset from Kaggle called Zoo Animals (https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals). There are 101 entries and a total of 18 variables in this dataset.The variables give information about the physical attributes of each of the animals, such as if they have hair, if they have teeth, if they lay eggs, etc. Of the 18 variables, 15 of them are binary variables and one of them is discrete. This majority of binary variables is why we chose this dataset for Latent Class Analysis. 
+
+The variable that we are concerned with the most is the "type" variable. This variable has 7 categories: mammals, fish, birds, insects, reptiles, invertebrates, amphibians. Of the 101 entries, 42 are mammals (41.58%), 21 are birds (20.79%), 14 are fish (13.86%), 11 are invertebrates (10.89%), 8 are insects (7.92%), 6 are reptiles (5.94%), and 5 are amphibians (4.95%). 
+
+Among other variables, we will be removing the “type” variable from the dataset. Latent Class Analysis will be utilized to ascertain whether the groups identified by this method correspond to the seven animal types. 
 
 
 ### 3.2 Load Data
@@ -64,8 +96,8 @@ When the data is first loaded, with each categorical variable, there is an apost
 ```{r, warning=FALSE, echo=T, message=FALSE}
 # loading packages 
 library(readr)
-Zoo <- read_csv("Zoo.csv")
-head(Zoo)
+Zoo_full <- read_csv("Zoo.csv")
+head(Zoo_full)
 ```
 
 Below is the fixed dataset without the apostrophes or the "b"s.
@@ -73,21 +105,108 @@ Below is the fixed dataset without the apostrophes or the "b"s.
 
 ```{r, warning=FALSE, echo=TRUE}
 # Load Data
-Zoo <- read_csv("Zoo_clean.csv")
-head(Zoo)
+Zoo_full <- read_csv("Zoo_clean.csv")
+head(Zoo_full)
 
 ```
 
-As mentioned above, we will be removing the Domestic and Catsize variables.
+### 3.3 Data Preparation
+
+As mentioned above, we will be removing the “type” variable from the dataset. The identifier variable “animal” will also be removed. Finally, we only want objective variables in our dataset, so we will also be removing “catsize” and “domestic” from the dataset.
 
 ```{r, warning=FALSE, echo=TRUE}
-Zoo <- subset(Zoo, select = -c(domestic, catsize))
-Zoo
+library(tidyverse)
+Zoo <- Zoo_full %>% mutate(animal=NULL, domestic=NULL, catsize=NULL, type=NULL)
+head(Zoo)
 ```
 
+To keep our data uniform, we will transform the discrete variable "legs" into a Boolean variable indicating the presence or absence of legs.
 
+
+```{r, warning=FALSE, echo=TRUE}
+Zoo <- Zoo %>%
+  mutate(has_legs = ifelse(legs == 0, 0, 1))
+
+
+Zoo <- Zoo %>%
+  mutate(legs = NULL)
+
+View(Zoo)
+
+```
+
+To construct the classes, we employed the poLCA function. However, due to the function's constraints, only positive integer values can be used. Therefore, we transformed all TRUE/FALSE values to binary form and then added one to all of them, in order to have all positive integers.
+
+```{r, warning=FALSE, echo=TRUE}
+Zoo <- Zoo %>% mutate_all(~as.integer(.))
+Zoo <- Zoo %>% mutate_all(~. + 1)
+```
 
 ### Statistical Modeling
+
+As mentioned above, we will be using the poLCA function to create our classes. Ideally, we want to construct 7 classes to match the number of types of animals the dataset contains, but we will perform some tests to see which number of classes is best for our dataset.
+
+We will start with 2 classes and then work our way up to 7.
+
+```{r, warning=FALSE, echo=TRUE}
+library("poLCA")
+
+#2 classes
+lca_bind2 <-  cbind(hair, feathers, eggs, milk, 
+                   airborne, aquatic, predator, 
+                   toothed, backbone, breathes, 
+                   venomous, fins, tail, has_legs) ~ 1
+
+
+lca_fit2 <- poLCA(lca_bind2, data = Zoo, 
+                  nclass = 2, graphs = TRUE, na.rm = TRUE)
+
+
+lca_bind3 <-  cbind(hair, feathers, eggs, milk, 
+                   airborne, aquatic, predator, 
+                   toothed, backbone, breathes, 
+                   venomous, fins, tail, has_legs) ~ 1
+
+
+lca_fit3 <- poLCA(lca_bind3, data = Zoo, 
+                  nclass = 3, graphs = TRUE, na.rm = TRUE)
+
+lca_bind4 <-  cbind(hair, feathers, eggs, milk, 
+                   airborne, aquatic, predator, 
+                   toothed, backbone, breathes, 
+                   venomous, fins, tail, has_legs) ~ 1
+
+
+lca_fit4 <- poLCA(lca_bind4, data = Zoo, 
+                  nclass = 4, graphs = TRUE, na.rm = TRUE)
+
+lca_bind5 <-  cbind(hair, feathers, eggs, milk, 
+                   airborne, aquatic, predator, 
+                   toothed, backbone, breathes, 
+                   venomous, fins, tail, has_legs) ~ 1
+
+
+lca_fit5 <- poLCA(lca_bind5, data = Zoo, 
+                  nclass = 5, graphs = TRUE, na.rm = TRUE)
+
+lca_bind6 <-  cbind(hair, feathers, eggs, milk, 
+                   airborne, aquatic, predator, 
+                   toothed, backbone, breathes, 
+                   venomous, fins, tail, has_legs) ~ 1
+
+
+lca_fit6 <- poLCA(lca_bind6, data = Zoo, 
+                  nclass = 6, graphs = TRUE, na.rm = TRUE)
+
+lca_bind7 <-  cbind(hair, feathers, eggs, milk, 
+                   airborne, aquatic, predator, 
+                   toothed, backbone, breathes, 
+                   venomous, fins, tail, has_legs) ~ 1
+
+lca_fit7 <- poLCA(lca_bind7, data = Zoo, 
+                  nclass = 7, graphs = TRUE, na.rm = TRUE)
+
+```
 
 ### Conlusion
 
