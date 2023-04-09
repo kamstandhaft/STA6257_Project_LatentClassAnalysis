@@ -1,6 +1,6 @@
 ---
 title: "Latent Class Analysis"
-author: "Daniel Martin, Kameron Standhaft, Esra Acar"
+author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
 date: '`r Sys.Date()`'
 format:
   html:
