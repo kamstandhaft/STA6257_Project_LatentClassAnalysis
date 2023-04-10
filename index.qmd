@@ -169,7 +169,6 @@ tab_lca_var <- data.frame(var_num = 1:14,
                            'Animal breathes?','Has venom?','Has fins?',
                            'Has a tail?','Has legs?'))
 formattable(tab_lca_var)
-
 ```
 
 **Variables in original dataset, but not used in LCA models:**
