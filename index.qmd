@@ -25,7 +25,7 @@ unobserved groups, LCA searches for and analyzes response patterns that
 may exist within categorical variables reported in the dataset
 ([Nylund-Gibson & Choi, 2018](https://doi.org/10.1037/tps0000176)).
 Latent Class Analysis is an example of a broader class of models called
-finite mixture models(FFM) (Grimm et al., 2021) that seek to identify
+finite mixture models(FFM) ([Grimm et al., 2021](https://doi.org/10.3389/feduc.2021.613645)) that seek to identify
 and classify instances of variance within model parameters between
 groups within the data that have not been explicitly defined as groups
 by the attributes provided within the dataset itself. Ultimately, it is the 
@@ -49,7 +49,7 @@ applications in science, business, and health ([Petersen et al.,
 2019](https://doi.org/10.3389/fpsyg.2019.01214)). LCA is often most
 closely associated with identifying patterns of behavior or
 psychological characteristics that prove often otherwise difficult
-groups to identify(Kaplan et al., 2004).
+groups to identify([Kaplan et al., 2004](#References)).
 
 ### 1.1 LCA Applications
 
@@ -66,7 +66,7 @@ of a particular disease or disease pattern ([Petersen et al.,
 2019](https://doi.org/10.3389/fpsyg.2019.01214)). Outside of health
 field applications, Latent Class Analysis can also be used in business
 and marketing to assess buying habits and even latent classes for groups
-with preferences for specific types of products (Kaplan et al., 2004).
+with preferences for specific types of products ([Kaplan et al., 2004](#References)).
 
 ### 1.2 Challenges with Implementation and Analysis of Classes using LCA
 
@@ -108,34 +108,42 @@ of that class for analysis ([Weller et al.,
 
 The general steps to use latent class analysis are as follows:
 
-1.Identify the research question and define the variables Define the
-categorical variables that will be used in the analysis
+1.    **Identify the research question and define the variables & define the categorical variables that will be used in the analysis**
 
-2.Select the appropriate software: In this project R Studio will be used
-for the LCA
+For this project we will be exploring how well Latent Class Analysis will group our dataset of zoo animals into subgroups based upon unmeasured homogeneity across 14 categorical variables collected for each animal. The Zoo Animals datasets is discussed in detail in Methods Section (Table 3.1.1.)
 
-3.Determine the number of latent classes
+2.    **Select the appropriate software: In this project R Studio will be used for the LCA**
 
-4.Estimate the model: Estimate the model parameters using maximum
-likelihood estimation or Bayesian estimation
+We will be using the poLCA package library, which allows us to specify the number of classes for which we want RStudio to generate an LCA model. This package provides several tools for fitting and assessing LCA models. 
 
-5.Evaluate the model: After estimating the model, evaluate its fit using
-goodness-of-fit statistics such as the likelihood ratio test, Akaike
-Information Criterion (AIC), and Bayesian Information Criterion (BIC).
-If our model fits well, interpret the results and report the estimated
-probabilities of individuals belonging to each class.
+**Options to be utilized:**
 
-6.Conduct sensitivity analysis: Finally, conduct sensitivity analyses to
-test the robustness of the results and evaluate the stability of the
-estimated probabilities across different subgroups or samples.
+  + **na.rm**: allows poLCA to manage any cases where values may be missing within the data.
+  + **graphs**: displays parameter estimates for the model in an easy-to-read prediction of member classification
+  + **nrep**: allows specification of the number of repetitions for poLCA to assess the model for the best BIC value
+  + **verbose**: used to assess individual attribute predictions as well as concisely providing fit statistics
+
+
+3.    **Determine the number of latent classes**
+
+As discussed previously, this is potentially the most difficult decision to make regarding identification of latent classes. This is primarily completed using a series of model fit assessment statistics including the Akaike Information Criterion (AIC), Bayesian Information Criterion(BIC), chi-square Goodness-of-Fit, and entropy. We will be assessing 2,3,4,5,6, and 7 class models.
+
+4.    **Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation**
+
+We will be running each of our 6 models for 100 repetitions. This will allow us to have consistent results for each number of classes per model to report upon without large swings in class sizes and predictions, and will additionally provide a best model for each number of classes.
+
+5.    **Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC). If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.**
+
+In a traditional research environment, these statistics would be likely the best decision criteria we could expect to have for assessing the model. In the case of our data, we have a comparison classification attribute “type” in our dataset that we will withhold from the Latent Class Analysis procedure as a secondary means to assess how well the model classifies the members of the dataset - in this case animals within a zoo. It is possible, however, that the LCA may find latent classes that differ from these defined classifications, which roughly correspond to the Linnaean taxonomic classification of classes within the Kingdom Animalia.
+
+6.    **Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.**
 
 ## 3. Analysis and Results
 
 ### 3.1 Dataset Description
 
 For the purpose of this paper, we are using a dataset from Kaggle called
-Zoo Animals
-(https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals). There
+[Zoo Animals](https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals). There
 are 101 entries and a total of 18 variables in this dataset.The
 variables give information about the physical attributes of each of the
 animals, such as if they have hair, if they have teeth, if they lay
@@ -154,7 +162,8 @@ Among other variables, we will be removing the "type" variable from the
 dataset. Latent Class Analysis will be utilized to ascertain whether the
 groups identified by this method correspond to the seven animal types.
 
-**Variables considered in LCA Analysis:**
+**Table 3.1.1 Variables considered in LCA Analysis:**
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 library(formattable)
@@ -171,7 +180,7 @@ tab_lca_var <- data.frame(var_num = 1:14,
 formattable(tab_lca_var)
 ```
 
-**Variables in original dataset, but not used in LCA models:**
+**Table 3.1.2 Variables in original dataset, but not used in LCA models:**
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 tab_nonlca_var <- data.frame(var_num = 1:4, 
@@ -278,7 +287,7 @@ lca_bind <-  cbind(hair, feathers, eggs, milk,
 
 ### 4.1 Fitting LCA Models with \# of Classes from 2-7
 
-Fitting a 2-class LCA Model
+**Fitting a 2-class LCA Model**
 
 For the 2-class model, we have selected to display the output of the
 poLCA model results using the \[verbose = TRUE\] option.
@@ -289,52 +298,55 @@ models.
 
 We chose to assess up to 7-class models because the original # of classifications was 7 "types".
 
+
 ```{r, warning=FALSE, echo=TRUE}
 # Fitting a 2-class LCA Model
 lca_fit2 <- poLCA(lca_bind, data = new_zoo_int_1, 
-                  nclass = 2, graphs = TRUE, na.rm = TRUE, nrep=100)
+                  nclass = 2, graphs = TRUE, na.rm = TRUE, 
+                  nrep=100, verbose = FALSE)
 ```
++   Figure 4.1.1 - 2-Class Model LCA Class Population Proportions
 
-Fitting a 3-class LCA Model
-
+**Fitting a 3-class LCA Model**
 ```{r, warning=FALSE, echo=TRUE}
 # Fitting a 3-class LCA Model
 lca_fit3 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 3, graphs = TRUE, na.rm = TRUE, 
                   verbose = FALSE, nrep=100)
 ```
++   Figure 4.1.2 - 3-Class Model LCA Class Population Proportions
 
-Fitting a 4-class LCA Model
-
+**Fitting a 4-class LCA Model**
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit4 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 4, graphs = TRUE, na.rm = TRUE, 
                   verbose = FALSE, nrep=100)
 ```
++   Figure 4.1.3 - 4-Class Model LCA Class Population Proportions
 
-Fitting a 5-class LCA Model
-
+**Fitting a 5-class LCA Model**
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit5 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 5, graphs = TRUE, na.rm = TRUE,
                   verbose = FALSE, nrep=100)
 ```
++   Figure 4.1.4 - 5-Class Model LCA Class Population Proportions
 
-Fitting a 6-class LCA Model
-
+**Fitting a 6-class LCA Model**
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit6 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 6, graphs = TRUE, na.rm = TRUE,
                   verbose = FALSE, nrep=100)
 ```
++   Figure 4.1.5 - 6-Class Model LCA Class Population Proportions
 
-Fitting a 7-class LCA Model
-
+**Fitting a 7-class LCA Model**
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit7 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 7, graphs = TRUE, na.rm = TRUE,
                   verbose = FALSE, nrep=100)
 ```
++   Figure 4.1.6 - 7-Class Model LCA Class Population Proportions
 
 ### 4.2 Model Comparison Statistics
 
@@ -371,7 +383,7 @@ is better however than the (X^2) for the 6-class model(2283). Without a
 clearly better model between these two, we can further compare their entropy 
 (see below).
 
-![Model Comparison](index_files/figure-html/Model_comparison.PNG)
+![Figure 4.2.1 Model Comparison](index_files/figure-html/Model_comparison.PNG)
 
 
 The entropy of a model speaks to how well the classes are separated with a 
@@ -465,9 +477,11 @@ this class also contains the invertebrates and insects, which were not present i
 
 ![Figure 4.3.4 Class 5 - 17.09% of the Population](index_files/figure-html/eggs_haslegs.png)
 
-
-
 ### Conclusion
+
+Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes. With the dataset-defined “type” classification as a reference, our 5-class predictive model has shown that LCA as a process can be used to successfully define where relevant classes exist when not otherwise defined from collected data, even with our relatively small dataset (101 points). LCA does have limited scope in that both the indicator(categorical dependent variables) and latent variables must be categorical, where other separate processes such as Latent Profile Analysis (LPA), Latent Trait Analysis (LTA), and Factor Analysis exist for circumstances when one or both of the indicator and latent variables are continuous ([(Law & Harrington, 2016)](https://www.ispor.org/docs/default-source/publications/value-outcomes-spotlight/november-december-2016/vos-primer-on-latent-class-analysis.pdf?sfvrsn=52b359b7_2)).
+
+With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research([Kaplan et al., 2004](#References)). Even highly complex data can potentially become much more meaningful through the use of Latent Class Analysis, but the substantial challenges that exist with determining the fit of the ideal model require consistent acknowledgment of the possibility for error on the part of researcher, and transparency with regard to the processes used within the research([(Law & Harrington, 2016)](https://www.ispor.org/docs/default-source/publications/value-outcomes-spotlight/november-december-2016/vos-primer-on-latent-class-analysis.pdf?sfvrsn=52b359b7_2)).
 
 ## References
 
@@ -475,6 +489,8 @@ Asparouhov, T., & Muthén, B. (2014). Auxiliary variables in mixture
 modeling: Three-step approaches using Mplus. Structural Equation
 Modeling: A Multidisciplinary Journal, 21(3), 329--341.
 <https://doi.org/10.1080/10705511.2014.915181>
+
+Grimm, K. J., Houpt, R., &amp; Rodgers, D. (2021). Model FIT and comparison in finite mixture models: A review and a novel approach. Frontiers in Education, 6. <https://doi.org/10.3389/feduc.2021.613645>
 
 Kaplan, D., Magidson, J., & Vermunt, J. (2004). Chapter 10 Latent Class
 Models. In The sage handbook of quantitative methodology for the Social
