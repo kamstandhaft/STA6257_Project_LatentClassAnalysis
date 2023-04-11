@@ -217,6 +217,8 @@ library(poLCA)
 library(stats)
 library(sjPlot)
 library(knitr)
+library(ggcorrplot)
+library(corrplot)
 ```
 
 ### 3.2 Load Data
@@ -482,6 +484,19 @@ this class also contains the invertebrates and insects, which were not present i
 ![Figure 4.3.4 Class 5 - 17.09% of the Population](index_files/figure-html/eggs_haslegs.png)
 
 ### 4.4 Sensitivity Analysis - Correlation
+
+As seen in the correlation matrix and heatmap milk is highly correlated with both egg and hair.
+
+Correlation matrix for sensitivity analysis
+
+![Correlation matrix](index_files/figure-html/Correlation matrix.png)
+
+Correlation heatmap for sensitivity analysis
+
+```{r}
+ggcorrplot(cor(new_zoo_int_1))
+```
+
 
 **Editing and Update In-Progress**
 
