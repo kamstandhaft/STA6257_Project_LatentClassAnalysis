@@ -126,17 +126,20 @@ We will be using the poLCA package library, which allows us to specify the numbe
 
 3.    **Determine the number of latent classes**
 
-As discussed previously, this is potentially the most difficult decision to make regarding identification of latent classes. This is primarily completed using a series of model fit assessment statistics including the Akaike Information Criterion (AIC), Bayesian Information Criterion(BIC), chi-square Goodness-of-Fit, and entropy. We will be assessing 2,3,4,5,6, and 7 class models.
+As discussed previously, this is potentially the most difficult decision to make regarding identification of latent classes. We will be assessing 2,3,4,5,6, and 7 number of classes in modeling. The model fit assesment is performed in step 5.
 
 4.    **Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation**
 
 We will be running each of our 6 models for 100 repetitions. This will allow us to have consistent results for each number of classes per model to report upon without large swings in class sizes and predictions, and will additionally provide a best model for each number of classes.
 
-5.    **Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC). If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.**
+5.    **Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC), entropy, and chi-square Goodness-of-Fit. If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.**
 
 In a traditional research environment, these statistics would be likely the best decision criteria we could expect to have for assessing the model. In the case of our data, we have a comparison classification attribute “type” in our dataset that we will withhold from the Latent Class Analysis procedure as a secondary means to assess how well the model classifies the members of the dataset - in this case animals within a zoo. It is possible, however, that the LCA may find latent classes that differ from these defined classifications, which roughly correspond to the Linnaean taxonomic classification of classes within the Kingdom Animalia.
 
 6.    **Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.**
+
+Researchers have the ability to modify the model specification by either adding or removing variables or constraints to assess the sensitivity of the results to these changes. For instance, to evaluate the impact of a constraint that limits the relationship between two variables, they can conduct a correlation test of the indicator variables in the complete dataset and within each identified latent class. In the case of high collinearity, where the variables are highly correlated with each other, it may be necessary to remove one or more indicators to avoid redundancy and prevent multicollinearity issues in the analysis.
+In this step, we will generate the correlation matrix and identify the highly correlated variables. We will then test the model by removing these variables and comparing the new model to the previous model which includes these variables. We will evaluate whether the new model is still able to fit the data well and compare its goodness of fit statistics (such as AIC, BIC) to those of the previous model. If the new model shows improvement in goodness of fit, we may consider selecting it as our final model.
 
 ## 3. Analysis and Results
 
