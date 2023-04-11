@@ -129,6 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#fitting-lca-models-with-of-classes-from-2-7" id="toc-fitting-lca-models-with-of-classes-from-2-7" class="nav-link" data-scroll-target="#fitting-lca-models-with-of-classes-from-2-7">4.1 Fitting LCA Models with # of Classes from 2-7</a></li>
   <li><a href="#model-comparison-statistics" id="toc-model-comparison-statistics" class="nav-link" data-scroll-target="#model-comparison-statistics">4.2 Model Comparison Statistics</a></li>
   <li><a href="#chosen-model-discussion-and-assessment" id="toc-chosen-model-discussion-and-assessment" class="nav-link" data-scroll-target="#chosen-model-discussion-and-assessment">4.3 Chosen Model Discussion and Assessment</a></li>
+  <li><a href="#sensitivity-analysis---correlation" id="toc-sensitivity-analysis---correlation" class="nav-link" data-scroll-target="#sensitivity-analysis---correlation">4.4 Sensitivity Analysis - Correlation</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -214,7 +215,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="6" type="1">
 <li><strong>Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.</strong></li>
 </ol>
-<p>Researchers have the ability to modify the model specification by either adding or removing variables or constraints to assess the sensitivity of the results to these changes. For instance, to evaluate the impact of a constraint that limits the relationship between two variables, they can conduct a correlation test of the indicator variables in the complete dataset and within each identified latent class. In the case of high collinearity, where the variables are highly correlated with each other, it may be necessary to remove one or more indicators to avoid redundancy and prevent multicollinearity issues in the analysis. In this step, we will generate the correlation matrix and identify the highly correlated variables. We will then test the model by removing these variables and comparing the new model to the previous model which includes these variables. We will evaluate whether the new model is still able to fit the data well and compare its goodness of fit statistics (such as AIC, BIC) to those of the previous model. If the new model shows improvement in goodness of fit, we may consider selecting it as our final model.</p>
+<p>Researchers have the ability to modify the model specification by either adding or removing variables or constraints to assess the sensitivity of the results to these changes. For instance, to evaluate the impact of a constraint that limits the relationship between two variables, they can conduct a correlation test of the indicator variables in the complete dataset and within each identified latent class. In the case of high collinearity, where the variables are highly correlated with each other, it may be necessary to remove one or more indicators to avoid redundancy and prevent multicollinearity issues in the analysis(<a href="https://doi.org/10.1097/ccm.0000000000004710">(Sinha et al., 2020)</a>).</p>
+<p>In this step, we will generate the correlation matrix and identify the highly correlated variables. We will then test the model by removing these variables and comparing the new model to the previous model which includes these variables. We will evaluate whether the new model is still able to fit the data well and compare its goodness of fit statistics (such as AIC, BIC) to those of the previous model. If the new model shows improvement in goodness of fit, we may consider selecting it as our final model.</p>
 </section>
 <section id="analysis-and-results" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-and-results">3. Analysis and Results</h2>
@@ -740,7 +742,7 @@ Entropy
 6-Class Model
 </td>
 <td style="text-align:right;">
-3.905345
+3.902091
 </td>
 </tr>
 </tbody>
@@ -793,6 +795,10 @@ Entropy
 </figure>
 </div>
 </section>
+<section id="sensitivity-analysis---correlation" class="level3">
+<h3 class="anchored" data-anchor-id="sensitivity-analysis---correlation">4.4 Sensitivity Analysis - Correlation</h3>
+<p><strong>Editing and Update In-Progress</strong></p>
+</section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
 <p>Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes. With the dataset-defined “type” classification as a reference, our 5-class predictive model has shown that LCA as a process can be used to successfully define where relevant classes exist when not otherwise defined from collected data, even with our relatively small dataset (101 points). LCA does have limited scope in that both the indicator(categorical dependent variables) and latent variables must be categorical, where other separate processes such as Latent Profile Analysis (LPA), Latent Trait Analysis (LTA), and Factor Analysis exist for circumstances when one or both of the indicator and latent variables are continuous (<a href="https://www.ispor.org/docs/default-source/publications/value-outcomes-spotlight/november-december-2016/vos-primer-on-latent-class-analysis.pdf?sfvrsn=52b359b7_2">(Law &amp; Harrington, 2016)</a>).</p>
@@ -808,6 +814,7 @@ Entropy
 <p>Martínez Guerrero, M., Ortega Egea, J. M., &amp; Román González, M. V. (2007). Application of the latent class regression methodology to the analysis of internet use for banking transactions in the European Union. Journal of Business Research, 60(2), 137–145. <a href="https://doi.org/10.1016/j.jbusres.2006.10.012" class="uri">https://doi.org/10.1016/j.jbusres.2006.10.012</a></p>
 <p>Nylund-Gibson, Karen &amp; Choi, Andrew. (2018). Ten frequently asked questions about latent class analysis. 4. 440-461. <a href="https://doi.org/10.1037/tps0000176" class="uri">https://doi.org/10.1037/tps0000176</a>.</p>
 <p>Petersen, K. J., Qualter, P., &amp; Humphrey, N. (2019). The application of latent class analysis for investigating Population Child Mental Health: A systematic review. Frontiers in Psychology, 10. <a href="https://doi.org/10.3389/fpsyg.2019.01214" class="uri">https://doi.org/10.3389/fpsyg.2019.01214</a></p>
+<p>Sinha, P., Calfee, C. S., &amp; Delucchi, K. L. (2020). Practitioner’s Guide to Latent Class Analysis: Methodological considerations and common pitfalls. Critical Care Medicine, 49(1). <a href="https://doi.org/10.1097/ccm.0000000000004710" class="uri">https://doi.org/10.1097/ccm.0000000000004710</a></p>
 <p>Thorpe, J. M., Thorpe, C. T., Kennelty, K. A., &amp; Pandhi, N. (2011). Patterns of perceived barriers to medical care in older adults: A latent class analysis. BMC Health Services Research, 11(1). <a href="https://doi.org/10.1186/1472-6963-11-181" class="uri">https://doi.org/10.1186/1472-6963-11-181</a></p>
 <p>Vermunt, J. K. (2010). Latent class modeling with covariates: Two improved three-step approaches. Political Analysis, 18(4), 450–469. <a href="https://doi.org/10.1093/pan/mpq025" class="uri">https://doi.org/10.1093/pan/mpq025</a></p>
 <p>Weller, B. E., Bowen, N. K., &amp; Faubert, S. J. (2020). Latent class analysis: A guide to best practice. Journal of Black Psychology, 46(4), 287–311. <a href="https://doi.org/10.1177/0095798420930932" class="uri">https://doi.org/10.1177/0095798420930932</a></p>

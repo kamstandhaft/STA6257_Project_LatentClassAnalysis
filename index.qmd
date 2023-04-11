@@ -138,7 +138,8 @@ In a traditional research environment, these statistics would be likely the best
 
 6.    **Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.**
 
-Researchers have the ability to modify the model specification by either adding or removing variables or constraints to assess the sensitivity of the results to these changes. For instance, to evaluate the impact of a constraint that limits the relationship between two variables, they can conduct a correlation test of the indicator variables in the complete dataset and within each identified latent class. In the case of high collinearity, where the variables are highly correlated with each other, it may be necessary to remove one or more indicators to avoid redundancy and prevent multicollinearity issues in the analysis.
+Researchers have the ability to modify the model specification by either adding or removing variables or constraints to assess the sensitivity of the results to these changes. For instance, to evaluate the impact of a constraint that limits the relationship between two variables, they can conduct a correlation test of the indicator variables in the complete dataset and within each identified latent class. In the case of high collinearity, where the variables are highly correlated with each other, it may be necessary to remove one or more indicators to avoid redundancy and prevent multicollinearity issues in the analysis([(Sinha et al., 2020)](https://doi.org/10.1097/ccm.0000000000004710)).
+
 In this step, we will generate the correlation matrix and identify the highly correlated variables. We will then test the model by removing these variables and comparing the new model to the previous model which includes these variables. We will evaluate whether the new model is still able to fit the data well and compare its goodness of fit statistics (such as AIC, BIC) to those of the previous model. If the new model shows improvement in goodness of fit, we may consider selecting it as our final model.
 
 ## 3. Analysis and Results
@@ -480,6 +481,10 @@ this class also contains the invertebrates and insects, which were not present i
 
 ![Figure 4.3.4 Class 5 - 17.09% of the Population](index_files/figure-html/eggs_haslegs.png)
 
+### 4.4 Sensitivity Analysis - Correlation
+
+**Editing and Update In-Progress**
+
 ### Conclusion
 
 Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes. With the dataset-defined “type” classification as a reference, our 5-class predictive model has shown that LCA as a process can be used to successfully define where relevant classes exist when not otherwise defined from collected data, even with our relatively small dataset (101 points). LCA does have limited scope in that both the indicator(categorical dependent variables) and latent variables must be categorical, where other separate processes such as Latent Profile Analysis (LPA), Latent Trait Analysis (LTA), and Factor Analysis exist for circumstances when one or both of the indicator and latent variables are continuous ([(Law & Harrington, 2016)](https://www.ispor.org/docs/default-source/publications/value-outcomes-spotlight/november-december-2016/vos-primer-on-latent-class-analysis.pdf?sfvrsn=52b359b7_2)).
@@ -516,6 +521,8 @@ Petersen, K. J., Qualter, P., & Humphrey, N. (2019). The application of
 latent class analysis for investigating Population Child Mental Health:
 A systematic review. Frontiers in Psychology, 10.
 <https://doi.org/10.3389/fpsyg.2019.01214>
+
+Sinha, P., Calfee, C. S., &amp; Delucchi, K. L. (2020). Practitioner’s Guide to Latent Class Analysis: Methodological considerations and common pitfalls. Critical Care Medicine, 49(1). <https://doi.org/10.1097/ccm.0000000000004710>
 
 Thorpe, J. M., Thorpe, C. T., Kennelty, K. A., & Pandhi, N. (2011).
 Patterns of perceived barriers to medical care in older adults: A latent
