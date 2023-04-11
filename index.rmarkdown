@@ -16,6 +16,7 @@ editor:
     wrap: 72
 ---
 
+
 ## 1. Introduction
 
 Latent Class Analysis (LCA) is a statistical modeling method that can be
@@ -169,6 +170,7 @@ groups identified by this method correspond to the seven animal types.
 **Table 3.1.1 Variables considered in LCA Analysis:**
 
 
+
 ```{r, warning=FALSE, echo=T, message=FALSE}
 library(formattable)
 
@@ -184,7 +186,9 @@ tab_lca_var <- data.frame(var_num = 1:14,
 formattable(tab_lca_var)
 ```
 
+
 **Table 3.1.2 Variables in original dataset, but not used in LCA models:**
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 tab_nonlca_var <- data.frame(var_num = 1:4, 
@@ -196,6 +200,7 @@ formattable(tab_nonlca_var)
 
 ```
 
+
 ### 3.2 Load Necessary Packages
 
 When the data is first loaded, with each categorical variable, there is
@@ -204,6 +209,7 @@ apostrophe. The data were cleaned into the file Zoo_clean with these
 extra characters removed leaving only "TRUE" & "FALSE".
 
 **All Necessary Libraries are loaded here:**
+
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 # loading packages 
@@ -221,10 +227,12 @@ library(ggcorrplot)
 library(corrplot)
 ```
 
+
 ### 3.2 Load Data
 
 Below is where we import the cleaned dataset without the apostrophes or
 the "b"s.
+
 
 ```{r, warning=FALSE, echo=TRUE}
 Zoo_clean<- (read.csv("https://raw.githubusercontent.com/kamstandhaft/STA6257_Project_LatentClassAnalysis/main/Zoo_clean.csv"))
@@ -233,6 +241,7 @@ new_zoo <- Zoo_clean %>% mutate(animal=NULL, domestic=NULL, catsize=NULL, type=N
 view(new_zoo)
 
 ```
+
 
 ### 3.3 Data Preparation
 
@@ -251,6 +260,7 @@ transformed our dataset from logical operators TRUE/FALSE to binary
 integers 0/1. But as poLCA function cannot accept "0" as a value, we
 further transformed the data by incrementing all values by 1, wherein
 "FALSE" is represented by "1", and "TRUE" is represented by "2".
+
 
 ```{r, warning=FALSE, echo=TRUE}
 # Adding attribute has_legs to denote whether the animal has a leg count >0
@@ -279,9 +289,11 @@ new_zoo_int <- new_zoo_subset %>% mutate_all(~as.integer(.))
 new_zoo_int_1 <- new_zoo_int %>% mutate_all(~. + 1)
 ```
 
+
 ## 4. Statistical Modeling
 
 Below we use the cbind function used to bind Columns being used in LCA
+
 
 ```{r, warning=FALSE, echo=TRUE}
 # cbind function used to bind Columns being used in LCA
@@ -290,6 +302,7 @@ lca_bind <-  cbind(hair, feathers, eggs, milk,
                    toothed, backbone, breathes, 
                    venomous, fins, tail, has_legs) ~ 1
 ```
+
 
 ### 4.1 Fitting LCA Models with \# of Classes from 2-7
 
@@ -305,53 +318,65 @@ models.
 We chose to assess up to 7-class models because the original # of classifications was 7 "types".
 
 
+
 ```{r, warning=FALSE, echo=TRUE}
 # Fitting a 2-class LCA Model
 lca_fit2 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 2, graphs = TRUE, na.rm = TRUE, 
                   nrep=100, verbose = FALSE)
 ```
+
 +   Figure 4.1.1 - 2-Class Model LCA Class Population Proportions
 
 **Fitting a 3-class LCA Model**
+
 ```{r, warning=FALSE, echo=TRUE}
 # Fitting a 3-class LCA Model
 lca_fit3 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 3, graphs = TRUE, na.rm = TRUE, 
                   verbose = FALSE, nrep=100)
 ```
+
 +   Figure 4.1.2 - 3-Class Model LCA Class Population Proportions
 
 **Fitting a 4-class LCA Model**
+
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit4 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 4, graphs = TRUE, na.rm = TRUE, 
                   verbose = FALSE, nrep=100)
 ```
+
 +   Figure 4.1.3 - 4-Class Model LCA Class Population Proportions
 
 **Fitting a 5-class LCA Model**
+
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit5 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 5, graphs = TRUE, na.rm = TRUE,
                   verbose = FALSE, nrep=100)
 ```
+
 +   Figure 4.1.4 - 5-Class Model LCA Class Population Proportions
 
 **Fitting a 6-class LCA Model**
+
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit6 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 6, graphs = TRUE, na.rm = TRUE,
                   verbose = FALSE, nrep=100)
 ```
+
 +   Figure 4.1.5 - 6-Class Model LCA Class Population Proportions
 
 **Fitting a 7-class LCA Model**
+
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit7 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 7, graphs = TRUE, na.rm = TRUE,
                   verbose = FALSE, nrep=100)
 ```
+
 +   Figure 4.1.6 - 7-Class Model LCA Class Population Proportions
 
 ### 4.2 Model Comparison Statistics
@@ -400,6 +425,7 @@ As we see below, the 5-class model has a slightly higher entropy value than the
 and entropy in favor of the 5-class model, we select this model to use to assess 
 and illustrate the classification schema that LCA uses to classify the dataset.
 
+
 ```{r, warning=FALSE, echo=TRUE}
 library(poLCA)
 library(formattable)
@@ -411,6 +437,7 @@ tab_lca_entropy <- data.frame(var_num = 1:2,
    Entropy = c(lca_fit5.ent,lca_fit6.ent))
 formattable(tab_lca_entropy)
 ```
+
 
 ### 4.3 Chosen Model Discussion and Assessment
 
@@ -549,3 +576,4 @@ Wu, Z., Casciola‐Rosen, L., Rosen, A., & Zeger, S. L. (2020). A bayesian
 approach to restricted latent class models for scientifically structured
 clustering of multivariate binary outcomes. Biometrics, 77(4),
 1431--1444. <https://doi.org/10.1111/biom.13388>
+
