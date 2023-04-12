@@ -531,7 +531,9 @@ Animal Classification
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(poLCA)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -760,7 +762,7 @@ Entropy
 6-Class Model
 </td>
 <td style="text-align:right;">
-3.902091
+3.905345
 </td>
 </tr>
 </tbody>
@@ -815,6 +817,19 @@ Entropy
 </section>
 <section id="sensitivity-analysis---correlation" class="level3">
 <h3 class="anchored" data-anchor-id="sensitivity-analysis---correlation">4.4 Sensitivity Analysis - Correlation</h3>
+<p>As seen in the correlation matrix and heatmap milk is highly correlated with both egg and hair.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/Correlation%20matrix.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Correlation matrix for sensitivity analysis</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/Heatmap.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Correlation heatmap for sensitivity analysis</figcaption><p></p>
+</figure>
+</div>
 <p><strong>Editing and Update In-Progress</strong></p>
 </section>
 <section id="conclusion" class="level3">
