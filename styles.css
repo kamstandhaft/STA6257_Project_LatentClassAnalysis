@@ -32,6 +32,10 @@ img {
   margin: 0 auto;
 }
 
-.cell-output-display {
+thead {
+  height: 50%;
+}
+
+tbody{
   height: 50%;
 }
