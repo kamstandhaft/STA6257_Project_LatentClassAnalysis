@@ -15,3 +15,11 @@ h2 {
 h3 {
   color: #1E6A8C; 
 }
+
+a:link {
+  color: #FFA500;
+}
+
+a:visited {
+  color: #FF69B4;
+}
