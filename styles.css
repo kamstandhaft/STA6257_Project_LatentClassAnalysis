@@ -32,10 +32,6 @@ img {
   margin: 0 auto;
 }
 
-thead {
-  height: 50%;
-}
-
-tbody{
+table {
   height: 50%;
 }
