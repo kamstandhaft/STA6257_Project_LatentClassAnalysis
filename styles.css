@@ -1,0 +1,29 @@
+body {
+  background-color: #F1F1F2;
+  font-family: Georgia, Times, serif;
+  color: #333;
+}
+
+h1 {
+  color: #1E6A8C;
+}
+
+h2 {
+  color: #1E6A8C;
+}
+
+h3 {
+  color: #1E6A8C; 
+}
+
+a:link {
+  color: #008080; 
+}
+
+a:visited {
+  color: #4DB6AC; 
+}
+
+img {
+  border: 2px solid #000000; 
+}
