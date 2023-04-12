@@ -28,4 +28,6 @@ img {
   border: 2px solid #000000; 
    width: 75%; 
   height: auto;
+  display: block;
+  margin: 0 auto;
 }
