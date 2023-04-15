@@ -121,6 +121,7 @@ div.csl-indent {
 <script src="index_files/libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="index_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -138,7 +139,11 @@ div.csl-indent {
   <li><a href="#lca-applications" id="toc-lca-applications" class="nav-link" data-scroll-target="#lca-applications">1.1 LCA Applications</a></li>
   <li><a href="#challenges-with-implementation-and-analysis-of-classes-using-lca" id="toc-challenges-with-implementation-and-analysis-of-classes-using-lca" class="nav-link" data-scroll-target="#challenges-with-implementation-and-analysis-of-classes-using-lca">1.2 Challenges with Implementation and Analysis of Classes using LCA</a></li>
   </ul></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">2. Methods</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">2. Methods</a>
+  <ul class="collapse">
+  <li><a href="#explanation-of-latent-class-analysis-lca" id="toc-explanation-of-latent-class-analysis-lca" class="nav-link" data-scroll-target="#explanation-of-latent-class-analysis-lca">2.1 Explanation of Latent Class Analysis (LCA)</a></li>
+  <li><a href="#general-steps-of-latent-class-analysis-lca" id="toc-general-steps-of-latent-class-analysis-lca" class="nav-link" data-scroll-target="#general-steps-of-latent-class-analysis-lca">2.1 General Steps of Latent Class Analysis (LCA)</a></li>
+  </ul></li>
   <li><a href="#analysis-and-results" id="toc-analysis-and-results" class="nav-link" data-scroll-target="#analysis-and-results">3. Analysis and Results</a>
   <ul class="collapse">
   <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description">3.1 Dataset Description</a></li>
@@ -204,6 +209,16 @@ div.csl-indent {
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">2. Methods</h2>
+<section id="explanation-of-latent-class-analysis-lca" class="level3">
+<h3 class="anchored" data-anchor-id="explanation-of-latent-class-analysis-lca">2.1 Explanation of Latent Class Analysis (LCA)</h3>
+<p>Latent class analysis (LCA) is a statistical method used to identify hidden patterns or clusters within a dataset. This technique groups a set of observations based on several variables into distinct and exclusive categories, where the variables are unrelated within each category but similar across each one. Essentially, LCA is a type of finite mixture model (FMM), also known as unsupervised learning models, which combine different distributions to group similar data based on selected parameters, resulting in data segmentation<span class="citation" data-cites="naldi2020research">(<a href="#ref-naldi2020research" role="doc-biblioref">Naldi and Cazzaniga 2020</a>)</span>.</p>
+<p>In LCA, there are two types of parameters. The first type is the inclusion probabilities, which represent the probability of a random case in a population being assigned to any latent class. The second type is the conditional probabilities, which describe the likelihood of a variable taking a certain value, given that it belongs to a specific class<span class="citation" data-cites="naldi2020research">(<a href="#ref-naldi2020research" role="doc-biblioref">Naldi and Cazzaniga 2020</a>)</span>.</p>
+<p>To determine the parameters of the sub-distributions in LCA, maximum likelihood estimation is often used with the expectation-maximization algorithm. This algorithm is a well-established method for evaluating the goodness of fit of a statistical model. The standard equation <span class="citation" data-cites="naldi2020research">(<a href="#ref-naldi2020research" role="doc-biblioref">Naldi and Cazzaniga 2020</a>)</span> for LCA is:</p>
+<p><span class="math display">\[ p(x_i)=\sum_{k = 1}^{K}{p_k}\prod_{n = 1}^{N}{p_n(x_{in}|k)},\]</span></p>
+<p>where <span class="math inline">\(p(x_i)\)</span> is the probability of observing a particular combination of responses in a group of <span class="math inline">\(N\)</span> variables, <span class="math inline">\(p_k\)</span> is the probability of membership in LC <span class="math inline">\(k\)</span>, and <span class="math inline">\(p_n(x_{in}|k)\)</span> is the probability of response to variable <span class="math inline">\(n\)</span>, conditional on membership in LC <span class="math inline">\(k\)</span>.</p>
+</section>
+<section id="general-steps-of-latent-class-analysis-lca" class="level3">
+<h3 class="anchored" data-anchor-id="general-steps-of-latent-class-analysis-lca">2.1 General Steps of Latent Class Analysis (LCA)</h3>
 <p>The general steps to use latent class analysis are as follows:</p>
 <ol type="1">
 <li><strong>Identify the research question and define the variables &amp; define the categorical variables that will be used in the analysis</strong></li>
@@ -238,6 +253,7 @@ div.csl-indent {
 <p>Researchers have the ability to modify the model specification by either adding or removing variables or constraints to assess the sensitivity of the results to these changes. For instance, to evaluate the impact of a constraint that limits the relationship between two variables, they can conduct a correlation test of the indicator variables in the complete dataset and within each identified latent class. In the case of high collinearity, where the variables are highly correlated with each other, it may be necessary to remove one or more indicators to avoid redundancy and prevent multicollinearity issues in the analysis<span class="citation" data-cites="sinha2021practitioner">(<a href="#ref-sinha2021practitioner" role="doc-biblioref">Sinha, Calfee, and Delucchi 2021</a>)</span>.</p>
 <p>In this step, we will generate the correlation matrix and identify the highly correlated variables. We will then test the model by removing these variables and comparing the new model to the previous model which includes these variables. We will evaluate whether the new model is still able to fit the data well and compare its goodness of fit statistics (such as AIC, BIC) to those of the previous model. If the new model shows improvement in goodness of fit, we may consider selecting it as our final model.</p>
 </section>
+</section>
 <section id="analysis-and-results" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-and-results">3. Analysis and Results</h2>
 <section id="dataset-description" class="level3">
@@ -259,9 +275,7 @@ div.csl-indent {
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(poLCA)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Table 3.1.1 Variables considered in LCA Analysis:</strong></p>
@@ -640,37 +654,37 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 2 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1275.0796 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1350.918 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 21906.5501 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 21906.548 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 3 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1102.0079 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1217.073 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 8660.6195 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 8660.619 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 4 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1010.0118 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1164.304 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 5109.7659 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 5109.766 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1176.912 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1858.3881 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 983.2301 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1176.749 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 2488.471 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 967.7807 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1200.526 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 2492.3994 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 965.9335 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1198.679 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 2283.357 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 7 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 958.0054 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1229.978 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 824.9267 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 958.7507 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1230.723 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1224.750 </td>
   </tr>
 </tbody>
 </table>
@@ -759,11 +773,11 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 4.137245 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 4.136046 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 3.911367 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 3.902091 </td>
   </tr>
 </tbody>
 </table>
@@ -934,16 +948,16 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Original 5-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
-   <td style="text-align:right;"> 1176.912 </td>
-   <td style="text-align:right;"> 1858.388 </td>
-   <td style="text-align:right;"> 4.137245 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 983.2301 </td>
+   <td style="text-align:right;"> 1176.749 </td>
+   <td style="text-align:right;"> 2488.471 </td>
+   <td style="text-align:right;"> 4.136046 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Adjusted 5-Class Model </td>
    <td style="text-align:right;background-color: lavender !important;"> 954.2627 </td>
    <td style="text-align:right;"> 1134.706 </td>
-   <td style="text-align:right;"> 1568.740 </td>
+   <td style="text-align:right;"> 1568.741 </td>
    <td style="text-align:right;"> 4.043642 </td>
   </tr>
 </tbody>
@@ -973,6 +987,9 @@ Kaplan, Magidson, D. 2004. <em>The SAGE Handbook of Quantitative Methodology for
 </div>
 <div id="ref-law2016primer" class="csl-entry" role="doc-biblioentry">
 Law, Ernest H, and Rachel Harrington. 2016. <span>“A Primer on Latent Class Analysis.”</span> <em>Value &amp; Outcomes Spotlight</em> 2 (6): 18–19.
+</div>
+<div id="ref-naldi2020research" class="csl-entry" role="doc-biblioentry">
+Naldi, Luigi, and Simone Cazzaniga. 2020. <span>“Research Techniques Made Simple: Latent Class Analysis.”</span> <em>Journal of Investigative Dermatology</em> 140 (9): 1676–80.
 </div>
 <div id="ref-nylund2018ten" class="csl-entry" role="doc-biblioentry">
 Nylund-Gibson, Karen, and Andrew Young Choi. 2018. <span>“Ten Frequently Asked Questions about Latent Class Analysis.”</span> <em>Translational Issues in Psychological Science</em> 4 (4): 440.
