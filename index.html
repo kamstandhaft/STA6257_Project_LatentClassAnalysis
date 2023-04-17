@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Daniel Martin, Kameron Standhaft, Esra Ari Acar">
-<meta name="dcterms.date" content="2023-04-12">
+<meta name="dcterms.date" content="2023-04-16">
 
 <title>Latent Class Analysis</title>
 <style>
@@ -107,19 +107,19 @@ div.csl-indent {
 </style>
 
 
-<script src="index_files/libs/clipboard/clipboard.min.js"></script>
-<script src="index_files/libs/quarto-html/quarto.js"></script>
-<script src="index_files/libs/quarto-html/popper.min.js"></script>
-<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="index_files/libs/quarto-html/anchor.min.js"></script>
-<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="index6_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index6_files/libs/quarto-html/quarto.js"></script>
+<script src="index6_files/libs/quarto-html/popper.min.js"></script>
+<script src="index6_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index6_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index6_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index6_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index6_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index6_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index6_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
-<script src="index_files/libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="index_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="index6_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="index6_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
@@ -142,17 +142,18 @@ div.csl-indent {
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">2. Methods</a>
   <ul class="collapse">
   <li><a href="#explanation-of-latent-class-analysis-lca" id="toc-explanation-of-latent-class-analysis-lca" class="nav-link" data-scroll-target="#explanation-of-latent-class-analysis-lca">2.1 Explanation of Latent Class Analysis (LCA)</a></li>
-  <li><a href="#general-steps-of-latent-class-analysis-lca" id="toc-general-steps-of-latent-class-analysis-lca" class="nav-link" data-scroll-target="#general-steps-of-latent-class-analysis-lca">2.1 General Steps of Latent Class Analysis (LCA)</a></li>
+  <li><a href="#general-steps-of-latent-class-analysis-lca" id="toc-general-steps-of-latent-class-analysis-lca" class="nav-link" data-scroll-target="#general-steps-of-latent-class-analysis-lca">2.2 General Steps of Latent Class Analysis (LCA)</a></li>
   </ul></li>
   <li><a href="#analysis-and-results" id="toc-analysis-and-results" class="nav-link" data-scroll-target="#analysis-and-results">3. Analysis and Results</a>
   <ul class="collapse">
-  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description">3.1 Dataset Description</a></li>
-  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">3.2 Load Data</a></li>
-  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">3.3 Data Preparation</a></li>
+  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">3.1 Software</a></li>
+  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description">3.2 Dataset Description</a></li>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">3.3 Load Data</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">3.4 Data Preparation</a></li>
   </ul></li>
   <li><a href="#statistical-modeling" id="toc-statistical-modeling" class="nav-link" data-scroll-target="#statistical-modeling">4. Statistical Modeling</a>
   <ul class="collapse">
-  <li><a href="#fitting-lca-models-with-of-classes-from-2-7" id="toc-fitting-lca-models-with-of-classes-from-2-7" class="nav-link" data-scroll-target="#fitting-lca-models-with-of-classes-from-2-7">4.1 Fitting LCA Models with # of Classes from 2-7</a></li>
+  <li><a href="#fitting-lca-models-with-2-7-of-classes" id="toc-fitting-lca-models-with-2-7-of-classes" class="nav-link" data-scroll-target="#fitting-lca-models-with-2-7-of-classes">4.1 Fitting LCA Models with 2-7 # of Classes</a></li>
   <li><a href="#model-comparison-statistics" id="toc-model-comparison-statistics" class="nav-link" data-scroll-target="#model-comparison-statistics">4.2 Model Comparison Statistics</a></li>
   <li><a href="#chosen-model-discussion-and-assessment" id="toc-chosen-model-discussion-and-assessment" class="nav-link" data-scroll-target="#chosen-model-discussion-and-assessment">4.3 Chosen Model Discussion and Assessment</a></li>
   <li><a href="#sensitivity-analysis---correlation" id="toc-sensitivity-analysis---correlation" class="nav-link" data-scroll-target="#sensitivity-analysis---correlation">4.4 Sensitivity Analysis - Correlation</a></li>
@@ -182,7 +183,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 12, 2023</p>
+      <p class="date">April 16, 2023</p>
     </div>
   </div>
     
@@ -193,8 +194,15 @@ div.csl-indent {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">1. Introduction</h2>
-<p>Latent Class Analysis (LCA) is a statistical modeling method that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population. To identify these unobserved groups, LCA searches for and analyzes response patterns that may exist within categorical variables reported in the dataset <span class="citation" data-cites="nylund2018ten">(<a href="#ref-nylund2018ten" role="doc-biblioref">Nylund-Gibson and Choi 2018</a>)</span>. Latent Class Analysis is an example of a broader class of models called finite mixture models(FFM) <span class="citation" data-cites="grimm2021model">(<a href="#ref-grimm2021model" role="doc-biblioref">Grimm, Houpt, and Rodgers 2021</a>)</span> that seek to identify and classify instances of variance within model parameters between groups within the data that have not been explicitly defined as groups by the attributes provided within the dataset itself. Ultimately, it is the “latent class prevalence” which is being estimated through a process in which the LCA function is estimating the probability that every entry being assessed from the dataset belongs within each of the classes generated by the model<span class="citation" data-cites="law2016primer">(<a href="#ref-law2016primer" role="doc-biblioref">Law and Harrington 2016</a>)</span>.</p>
-<p>LCA specifically makes the assumption that within the population potentially exists a finite number of unobserved subgroups, or latent classes, and that each individual belongs to only one of these classes <span class="citation" data-cites="weller2020latent">(<a href="#ref-weller2020latent" role="doc-biblioref">Weller, Bowen, and Faubert 2020</a>)</span>. The overarching goal of LCA is to identify where a specific subset of classes exist within a group and estimate the proportions of those subset classes within the overall population. Additionally, LCA can be used to help determine if any relationships exist between the identified latent classes and any other observed variables within the dataset.</p>
+<p>Latent Class Analysis (LCA) is a statistical modeling method that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population. To identify these unobserved groups, LCA searches for and analyzes response patterns that may exist within categorical variables reported in the dataset <span class="citation" data-cites="nylund2018ten">(<a href="#ref-nylund2018ten" role="doc-biblioref">Nylund-Gibson and Choi 2018</a>)</span> with the ultimate goal of assigning each observation into a class based on the posterior probability of certainty that an observation should belong to a particular class <span class="citation" data-cites="vermunt2010latent">(<a href="#ref-vermunt2010latent" role="doc-biblioref">Vermunt 2010</a>)</span>. Latent Class Analysis is an example of a broader class of models called finite mixture models(FFM) <span class="citation" data-cites="grimm2021model">(<a href="#ref-grimm2021model" role="doc-biblioref">Grimm, Houpt, and Rodgers 2021</a>)</span> that seek to identify and classify instances of variance within model parameters between groups within the data that have not been explicitly defined as groups by the attributes provided within the dataset itself. Ultimately, it is the “latent class prevalence” which is being estimated through a process in which the LCA function is estimating the probability that every entry being assessed from the dataset belongs within each of the classes generated by the model<span class="citation" data-cites="law2016primer">(<a href="#ref-law2016primer" role="doc-biblioref">Law and Harrington 2016</a>)</span>.</p>
+<p>LCA specifically makes the assumption that within the population potentially exists a finite number of unobserved subgroups, or latent classes, and that each individual belongs to only one of these classes <span class="citation" data-cites="weller2020latent">(<a href="#ref-weller2020latent" role="doc-biblioref">Weller, Bowen, and Faubert 2020</a>)</span>. The overarching goal of LCA is to identify where a specific subset of classes exist within a group and estimate the proportions of those subset classes within the overall population. Additionally, as shown in (Figure 1.0.1), LCA can be used to help determine if any relationships exist between the identified latent classes and any other observed variables within the dataset.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/lca_2class_overlap_example.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 1.0.1 - LCA 2-Class Model Representation</figcaption><p></p>
+</figure>
+</div>
+<p><em>The dotted lines show the 2 unobserved latent classes that exist within the overall population distribution.</em><span class="citation" data-cites="sinha2021practitioner">(<a href="#ref-sinha2021practitioner" role="doc-biblioref">Sinha, Calfee, and Delucchi 2021</a>)</span></p>
 <p>As computational efficiency has improved, Latent Class Analysis has seen an uptick in interest for researchers across a variety of fields with applications in science, business, and health <span class="citation" data-cites="petersen2019application">(<a href="#ref-petersen2019application" role="doc-biblioref">Petersen, Qualter, and Humphrey 2019</a>)</span>. LCA is often most closely associated with identifying patterns of behavior or psychological characteristics that prove often otherwise difficult groups to identify<span class="citation" data-cites="kaplan2004sage">(<a href="#ref-kaplan2004sage" role="doc-biblioref">Kaplan 2004</a>)</span>.</p>
 <section id="lca-applications" class="level3">
 <h3 class="anchored" data-anchor-id="lca-applications">1.1 LCA Applications</h3>
@@ -218,16 +226,23 @@ div.csl-indent {
 <p>where <span class="math inline">\(p(x_i)\)</span> is the probability of observing a particular combination of responses in a group of <span class="math inline">\(N\)</span> variables, <span class="math inline">\(p_k\)</span> is the probability of membership in LC <span class="math inline">\(k\)</span>, and <span class="math inline">\(p_n(x_{in}|k)\)</span> is the probability of response to variable <span class="math inline">\(n\)</span>, conditional on membership in LC <span class="math inline">\(k\)</span>.</p>
 </section>
 <section id="general-steps-of-latent-class-analysis-lca" class="level3">
-<h3 class="anchored" data-anchor-id="general-steps-of-latent-class-analysis-lca">2.1 General Steps of Latent Class Analysis (LCA)</h3>
+<h3 class="anchored" data-anchor-id="general-steps-of-latent-class-analysis-lca">2.2 General Steps of Latent Class Analysis (LCA)</h3>
 <p>The general steps to use latent class analysis are as follows:</p>
 <ol type="1">
-<li><strong>Identify the research question and define the variables &amp; define the categorical variables that will be used in the analysis</strong></li>
+<li><p>Identify the research question and define the variables &amp; define the categorical variables that will be used in the analysis</p></li>
+<li><p>Select the appropriate software: In this project R Studio will be used for the LCA</p></li>
+<li><p>Determine the number of latent classes</p></li>
+<li><p>Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation</p></li>
+<li><p>Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC), entropy, and chi-square Goodness-of-Fit. If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.</p></li>
+<li><p>Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.</p></li>
 </ol>
-<p>For this project we will be exploring how well Latent Class Analysis will group our dataset of zoo animals into subgroups based upon unmeasured homogeneity across 14 categorical variables collected for each animal. The Zoo Animals datasets is discussed in detail in Methods Section (Table 3.1.1.)</p>
-<ol start="2" type="1">
-<li><strong>Select the appropriate software: In this project R Studio will be used for the LCA</strong></li>
-</ol>
-<p>We will be using the poLCA package library, which allows us to specify the number of classes for which we want RStudio to generate an LCA model. This package provides several tools for fitting and assessing LCA models.</p>
+</section>
+</section>
+<section id="analysis-and-results" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-and-results">3. Analysis and Results</h2>
+<section id="software" class="level3">
+<h3 class="anchored" data-anchor-id="software">3.1 Software</h3>
+<p>We will be using the RStudio poLCA package library, which allows us to specify the number of classes for which we want RStudio to generate an LCA model. This package provides several tools for fitting and assessing LCA models.</p>
 <p><strong>Options to be utilized:</strong></p>
 <ul>
 <li><strong>na.rm</strong>: allows poLCA to manage any cases where values may be missing within the data.</li>
@@ -235,37 +250,11 @@ div.csl-indent {
 <li><strong>nrep</strong>: allows specification of the number of repetitions for poLCA to assess the model for the best BIC value</li>
 <li><strong>verbose</strong>: used to assess individual attribute predictions as well as concisely providing fit statistics</li>
 </ul>
-<ol start="3" type="1">
-<li><strong>Determine the number of latent classes</strong></li>
-</ol>
-<p>As discussed previously, this is potentially the most difficult decision to make regarding identification of latent classes. We will be assessing 2,3,4,5,6, and 7 number of classes in modeling. The model fit assesment is performed in step 5.</p>
-<ol start="4" type="1">
-<li><strong>Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation</strong></li>
-</ol>
-<p>We will be running each of our 6 models for 100 repetitions. This will allow us to have consistent results for each number of classes per model to report upon without large swings in class sizes and predictions, and will additionally provide a best model for each number of classes.</p>
-<ol start="5" type="1">
-<li><strong>Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC), entropy, and chi-square Goodness-of-Fit. If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.</strong></li>
-</ol>
-<p>In a traditional research environment, these statistics would be likely the best decision criteria we could expect to have for assessing the model. In the case of our data, we have a comparison classification attribute “type” in our dataset that we will withhold from the Latent Class Analysis procedure as a secondary means to assess how well the model classifies the members of the dataset - in this case animals within a zoo. It is possible, however, that the LCA may find latent classes that differ from these defined classifications, which roughly correspond to the Linnaean taxonomic classification of classes within the Kingdom Animalia.</p>
-<ol start="6" type="1">
-<li><strong>Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.</strong></li>
-</ol>
-<p>Researchers have the ability to modify the model specification by either adding or removing variables or constraints to assess the sensitivity of the results to these changes. For instance, to evaluate the impact of a constraint that limits the relationship between two variables, they can conduct a correlation test of the indicator variables in the complete dataset and within each identified latent class. In the case of high collinearity, where the variables are highly correlated with each other, it may be necessary to remove one or more indicators to avoid redundancy and prevent multicollinearity issues in the analysis<span class="citation" data-cites="sinha2021practitioner">(<a href="#ref-sinha2021practitioner" role="doc-biblioref">Sinha, Calfee, and Delucchi 2021</a>)</span>.</p>
-<p>In this step, we will generate the correlation matrix and identify the highly correlated variables. We will then test the model by removing these variables and comparing the new model to the previous model which includes these variables. We will evaluate whether the new model is still able to fit the data well and compare its goodness of fit statistics (such as AIC, BIC) to those of the previous model. If the new model shows improvement in goodness of fit, we may consider selecting it as our final model.</p>
-</section>
-</section>
-<section id="analysis-and-results" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-and-results">3. Analysis and Results</h2>
-<section id="dataset-description" class="level3">
-<h3 class="anchored" data-anchor-id="dataset-description">3.1 Dataset Description</h3>
-<p>For the purpose of this paper, we are using a dataset from Kaggle called <a href="https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals">Zoo Animals</a>. There are 101 entries and a total of 18 variables in this dataset.The variables give information about the physical attributes of each of the animals, such as if they have hair, if they have teeth, if they lay eggs, etc. Of the 18 variables, 15 of them are binary variables and one of them is discrete. This majority of binary variables is why we chose this dataset for Latent Class Analysis.</p>
-<p>The variable that we are concerned with the most is the “type” variable. This variable has 7 categories: mammals, fish, birds, insects, reptiles, invertebrates, amphibians. Of the 101 entries, 42 are mammals (41.58%), 21 are birds (20.79%), 14 are fish (13.86%), 11 are invertebrates (10.89%), 8 are insects (7.92%), 6 are reptiles (5.94%), and 5 are amphibians (4.95%).</p>
-<p>Among other variables, we will be removing the “type” variable from the dataset. Latent Class Analysis will be utilized to ascertain whether the groups identified by this method correspond to the seven animal types.</p>
 <p><strong>All Necessary Libraries are loaded here:</strong></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loading packages </span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#loading packages </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
@@ -275,33 +264,52 @@ div.csl-indent {
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(poLCA)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("FactoMineR")</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("factoextra")</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggalt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><strong>Table 3.1.1 Variables considered in LCA Analysis:</strong></p>
+</section>
+<section id="dataset-description" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-description">3.2 Dataset Description</h3>
+<p>For this project we will be exploring how well Latent Class Analysis will group our dataset of zoo animals from Kaggle called <a href="https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals">Zoo Animals</a> into subgroups based upon unmeasured homogeneity across 14 categorical variables collected for each animal.</p>
+<p>There are 101 entries and a total of 18 variables in this dataset. The variables give information about the physical attributes of each of the animals, such as if they have hair, if they have teeth, if they lay eggs, etc. Of the 18 variables, 15 of them are binary variables and one of them is discrete. This majority of binary variables is why we chose this dataset for Latent Class Analysis.</p>
+<p>The variable that we are concerned with the most is the “type” variable. This variable has 7 categories: mammals, fish, birds, insects, reptiles, invertebrates, amphibians. Of the 101 entries, 42 are mammals (41.58%), 21 are birds (20.79%), 14 are fish (13.86%), 11 are invertebrates (10.89%), 8 are insects (7.92%), 6 are reptiles (5.94%), and 5 are amphibians (4.95%).</p>
+<p>Among other variables, we will be removing the “type” variable from the dataset. Latent Class Analysis will be utilized to ascertain whether the groups identified by this method correspond to the seven animal types.</p>
+<p><strong>Table 3.2.1 Variables considered in LCA Analysis:</strong></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tab_lca_var <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">var_num =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>, </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">Variable_data_type =</span> <span class="fu">c</span>(<span class="st">'logi'</span>, <span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>               <span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>),                       </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">Variable =</span> <span class="fu">c</span>(<span class="st">'hair'</span>, <span class="st">'feathers'</span>,<span class="st">'eggs'</span>,<span class="st">'milk'</span>,<span class="st">'airborne'</span>,<span class="st">'aquatic'</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>               <span class="st">'predator'</span>,<span class="st">'toothed'</span>,<span class="st">'backbone'</span>,<span class="st">'breathes'</span>,<span class="st">'venomous'</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>               <span class="st">'fins'</span>,<span class="st">'tail'</span>,<span class="st">'has_legs'</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">Variable_Description =</span> <span class="fu">c</span>(<span class="st">'Has hair?'</span>,<span class="st">'has feathers?'</span>,<span class="st">'Lays eggs?'</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'Produces milk?'</span>,<span class="st">'Can fly?'</span>,<span class="st">'Can swim?'</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'Is a predator?'</span>,<span class="st">'Has teeth?'</span>,<span class="st">'Has a backbone?'</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'Animal breathes?'</span>,<span class="st">'Has venom?'</span>,<span class="st">'Has fins?'</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'Has a tail?'</span>,<span class="st">'Has legs?'</span>))</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>tab_lca_var_copy <span class="ot">&lt;-</span> tab_lca_var</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab_lca_var_copy) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"# of Variables"</span>, <span class="st">"Data Type"</span>, <span class="st">"Variables"</span>, <span class="st">"Variable Description"</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab_lca_var_copy, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Variables considered in LCA Analysis"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating data frame of variables used and not used for displaying in tables</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tab_lca_var <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">var_num =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">Variable_data_type =</span> <span class="fu">c</span>(<span class="st">'logi'</span>, <span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>               <span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>,<span class="st">'logi'</span>),                       </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">Variable =</span> <span class="fu">c</span>(<span class="st">'hair'</span>, <span class="st">'feathers'</span>,<span class="st">'eggs'</span>,<span class="st">'milk'</span>,<span class="st">'airborne'</span>,<span class="st">'aquatic'</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>               <span class="st">'predator'</span>,<span class="st">'toothed'</span>,<span class="st">'backbone'</span>,<span class="st">'breathes'</span>,<span class="st">'venomous'</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>               <span class="st">'fins'</span>,<span class="st">'tail'</span>,<span class="st">'has_legs'</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">Variable_Description =</span> <span class="fu">c</span>(<span class="st">'Has hair?'</span>,<span class="st">'has feathers?'</span>,<span class="st">'Lays eggs?'</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'Produces milk?'</span>,<span class="st">'Can fly?'</span>,<span class="st">'Can swim?'</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'Is a predator?'</span>,<span class="st">'Has teeth?'</span>,<span class="st">'Has a backbone?'</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'Animal breathes?'</span>,<span class="st">'Has venom?'</span>,<span class="st">'Has fins?'</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'Has a tail?'</span>,<span class="st">'Has legs?'</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>tab_lca_var_copy <span class="ot">&lt;-</span> tab_lca_var</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab_lca_var_copy) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"# of Variables"</span>, <span class="st">"Data Type"</span>, <span class="st">"Variables"</span>, <span class="st">"Variable Description"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Printing a table of variables used in LCA modeling</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab_lca_var_copy, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Variables considered in LCA Analysis"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -405,7 +413,7 @@ div.csl-indent {
 
 </div>
 </div>
-<p><strong>Table 3.1.2 Variables in Original Dataset, but not used in LCA models:</strong> <em>These will be used in our assessment of LCA Model Quality</em></p>
+<p><strong>Table 3.2.2 Variables in Original Dataset, but not used in LCA models:</strong> <em>These will be used in our assessment of LCA Model Quality</em></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -419,11 +427,12 @@ div.csl-indent {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>tab_nonlca_var_copy <span class="ot">&lt;-</span> tab_nonlca_var</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab_nonlca_var_copy) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"# of Variables"</span>, <span class="st">"Data Type"</span>, <span class="st">"Variables"</span>, <span class="st">"Variable Description"</span>)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab_nonlca_var_copy, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Variables in Original Dataset, but not used in LCA models:"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Printing a table of variables not-used in LCA modeling</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab_nonlca_var_copy, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Variables in Original Dataset, but not used in LCA models:"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column_spec</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -469,7 +478,7 @@ div.csl-indent {
 </div>
 </section>
 <section id="load-data" class="level3">
-<h3 class="anchored" data-anchor-id="load-data">3.2 Load Data</h3>
+<h3 class="anchored" data-anchor-id="load-data">3.3 Load Data</h3>
 <p>When the data is first loaded, with each categorical variable, there is an apostrophe and a “b” before each word and at the end, there is an apostrophe. The data were cleaned into the file Zoo_clean with these extra characters removed leaving only “TRUE” &amp; “FALSE”.</p>
 <p>Below is where we import the cleaned dataset without the apostrophes or the “b”s.</p>
 <div class="cell">
@@ -483,36 +492,30 @@ div.csl-indent {
 </div>
 </section>
 <section id="data-preparation" class="level3">
-<h3 class="anchored" data-anchor-id="data-preparation">3.3 Data Preparation</h3>
+<h3 class="anchored" data-anchor-id="data-preparation">3.4 Data Preparation</h3>
 <p>As mentioned above, we will be removing the “type” variable from the dataset with the goal of trying to replicate this level of classification through the latent class detection. The identifier variable “animal” will also be removed. Finally, we only want objective binary variables in our dataset, so we will also be removing “catsize” and “domestic” from the dataset, and transforming legs (denoting the number of legs a creature has) to has_legs (a binary operator indicating whether any legs are present or not).</p>
 <p>We will be using the poLCA function from the poLCA package library, which requires an input of positive integer values &lt;=1. As such, we transformed our dataset from logical operators TRUE/FALSE to binary integers 0/1. But as poLCA function cannot accept “0” as a value, we further transformed the data by incrementing all values by 1, wherein “FALSE” is represented by “1”, and “TRUE” is represented by “2”.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding attribute has_legs to denote whether the animal has a leg count &gt;0</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>new_zoo <span class="ot">&lt;-</span> Zoo_clean <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_legs =</span> <span class="fu">ifelse</span>(legs <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Removing the non-binary integer representing the number of legs an animal has</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>new_zoo <span class="ot">&lt;-</span> new_zoo <span class="sc">%&gt;%</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">legs =</span> <span class="cn">NULL</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Transforming has_legs to a logical operator to match the rest of the dataset </span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#        to be used in assessment</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>new_zoo<span class="sc">$</span>has_legs <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(new_zoo<span class="sc">$</span>has_legs)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a 14-variable subset of the 18-variable dataset with "animal", </span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#       "domestic", "catsize", and "type" removed</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>new_zoo_subset <span class="ot">&lt;-</span> new_zoo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">animal=</span><span class="cn">NULL</span>, <span class="at">domestic=</span><span class="cn">NULL</span>, </span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">catsize=</span><span class="cn">NULL</span>, <span class="at">type=</span><span class="cn">NULL</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a dataset where the binary data is represented by </span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#       integers "0" for "FALSE" or "1" for "TRUE"</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>new_zoo_int <span class="ot">&lt;-</span> new_zoo_subset <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">as.integer</span>(.))</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a dataset where the binary data is represented by </span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#        integers "1" for "FALSE" or "2" for "TRUE"</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>new_zoo_int_1 <span class="ot">&lt;-</span> new_zoo_int <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span>. <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating "has_legs" to denote whether the animal has a leg count &gt;0 from "legs" variable</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>new_zoo <span class="ot">&lt;-</span> Zoo_clean <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">has_legs =</span> <span class="fu">ifelse</span>(legs <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing "legs" since it is continuous and not binary</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>new_zoo <span class="ot">&lt;-</span> new_zoo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">legs =</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Converting has_legs from integer to logical to match the rest of the dataset</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>new_zoo<span class="sc">$</span>has_legs <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(new_zoo<span class="sc">$</span>has_legs)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing "animal","domestic", "catsize", and "type" from 18-variable dataset to make new 14-variable dataset for LCA modeling  </span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>new_zoo_subset <span class="ot">&lt;-</span> new_zoo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">animal=</span><span class="cn">NULL</span>, <span class="at">domestic=</span><span class="cn">NULL</span>, </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">catsize=</span><span class="cn">NULL</span>, <span class="at">type=</span><span class="cn">NULL</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a dataset where the binary data is converted to integers 0/"FALSE" or 1/"TRUE"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>new_zoo_int <span class="ot">&lt;-</span> new_zoo_subset <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">as.integer</span>(.))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Incrementing the binary integers from 0/1 to 1/2 - poLCA() can only accept integers &gt;=1</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>new_zoo_int_1 <span class="ot">&lt;-</span> new_zoo_int <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span>. <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -530,8 +533,10 @@ div.csl-indent {
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="fitting-lca-models-with-of-classes-from-2-7" class="level3">
-<h3 class="anchored" data-anchor-id="fitting-lca-models-with-of-classes-from-2-7">4.1 Fitting LCA Models with # of Classes from 2-7</h3>
+<section id="fitting-lca-models-with-2-7-of-classes" class="level3">
+<h3 class="anchored" data-anchor-id="fitting-lca-models-with-2-7-of-classes">4.1 Fitting LCA Models with 2-7 # of Classes</h3>
+<p>Potentially the most difficult decision to make regarding identification of latent classes is determining the correct number of classes to use in our model. We will be assessing 2,3,4,5,6, and 7 number of classes in modeling.</p>
+<p>We will be running each of our 6 models for 100 repetitions. This will allow us to have consistent results for each number of classes per model to report upon without large swings in class sizes and predictions, and will additionally provide a best model for each number of classes.</p>
 <p><strong>Fitting a 2-class LCA Model</strong></p>
 <p>For the 2-class model, we have selected to display the output of the poLCA model results using the [graph = TRUE] option.</p>
 <p>For each variable, this indicates the percentage of members of the original dataset that have that attribute broken down by which latent class was assigned in the model for that number of classes.</p>
@@ -540,18 +545,24 @@ div.csl-indent {
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lca_fit2 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">2</span>, <span class="at">graphs =</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">2</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/2_class_model.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 4.1.1 - LCA 2-Class Model</figcaption><p></p>
+</figure>
 </div>
-<ul>
-<li>Figure 4.1.1 - 2-Class Model LCA Class Population Proportions</li>
-</ul>
-<p>Figure 4.1.1 shows the graphical output of the poLCA model when 2-Classes are specified. The proportions at the base of the plot (0.3953 &amp; 0.6047) indicate the percentage of the original dataset that the poLCA function has classified into each of the detected latent classes.</p>
-<p>The vertical red bars [Pr(outcome)] denote the percentage of the members of that assigned class have that particular attribute. While the proportions at the base of the plot should always add to 1.0, the member percentage of each assigned class may have any value from 0-1.0 across all classes for that attribute.</p>
+<p>(Figure 4.1.1) shows the graphical output of the poLCA model when 2-Classes are specified. The proportions at the base of the plot (0.3953 &amp; 0.6047) indicate the percentage of the original dataset that the poLCA function has classified into each of the detected latent classes.</p>
+<p>The vertical red bars [Pr(outcome)] denote the percentage of the members of that assigned class have that particular attribute. While the proportions at the base of the plot should always add to 1.0, the member percentage of each assigned class may have any value from 0-1.0 across all classes for that attribute. The poLCA function will additionally output a proportion value between 0 and 1 denoting the likelihood that each attribute will be included within each class generated by the function, as seen in (Figure 4.1.2) below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/2_class_prop_output.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 4.1.2 - LCA 2-Class Proportion Output</figcaption><p></p>
+</figure>
+</div>
 <p><strong>Fitting a 3-class LCA Model</strong></p>
 <div class="cell">
 <details>
@@ -603,8 +614,10 @@ div.csl-indent {
 <p>Arguably the model difficult part of using Latent Class Analysis is determining the correct number of classes to use to properly model the data. There are a number of statistics that help to indicate fit quality for each model, which we go through below to help select the correct number of classes for a good model.</p>
 <p><strong>As a note</strong>: For each of these models, we are running 100 repetitions, and the criteria for which the best model is chosen is using the lowest BIC. The models and fit statistics can vary slightly through each run, even with 100 repetitions.</p>
 <p>To compare these models, we will be primarily looking at the Akaike Information Criterion (AIC), the Bayesian Information Criterion (BIC), and the Chi-square goodness of fit statistic (X^2).</p>
+<p>In a traditional research environment, these statistics would be likely the best decision criteria we could expect to have for assessing the model. In the case of our data, we have a comparison classification attribute “type” in our dataset that we will withhold from the Latent Class Analysis procedure as a secondary means to assess how well the model classifies the members of the dataset - in this case animals within a zoo. It is possible, however, that the LCA may find latent classes that differ from these defined classifications, which roughly correspond to the Linnaean taxonomic classification of classes within the Kingdom Animalia.</p>
 <p>A lower value for the AIC and BIC values as well as the (X^2), indicate that the model is a better fit for the data.</p>
 <p>As illustrated in the figure below,the 5-class, 6-class, and 7-class models all have substantially lower values for these statistical metrics than for the 2-class, 3-class, and 4-class models. It is worth noting however, that the 7-class model posts an alert indicating that the number of parameters estimated exceeds the number of observations, which effectively provides a negative residual Degree of Freedom (DoF). For this reason, we can eliminate the 7-class model.</p>
+<p><strong>Table 4.2.1 Comparison of AIC, BIC, and Goodness of Fit for each # of Classes</strong></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -654,37 +667,37 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 2 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1275.0796 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1350.918 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 21906.548 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 21906.5549 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 3 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1102.0079 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1217.073 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 8660.619 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 8660.6195 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 4 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1010.0118 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1164.304 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 5109.766 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 5109.7659 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 983.2301 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1176.749 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 2488.471 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1176.912 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1858.3882 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6 </td>
    <td style="text-align:right;background-color: lavender !important;"> 965.9335 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1198.679 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 2283.357 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 2283.3574 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 7 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 958.7507 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1230.723 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1224.750 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 958.0054 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1229.978 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 824.9267 </td>
   </tr>
 </tbody>
 </table>
@@ -708,13 +721,14 @@ div.csl-indent {
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="index6_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># + facet_wrap(~ fit_stat, ncol = 1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<p><strong>Figure 4.2.1 - Comparison of AIC and BIC across 2, 3, 4, 5, 6, and 7-Class Models</strong></p>
 <p>We additionally look at the Chi-square goodness of fit statistic (X^2). The GoF(X^2) for the 5-class model(1858) is better however than the (X^2) for the 6-class model(2283).</p>
 <div class="cell">
 <details>
@@ -733,12 +747,14 @@ div.csl-indent {
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="index6_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p><strong>Figure 4.2.2 - Comparison of GoF Values across 2, 3, 4, 5, 6, and 7-Class Models</strong></p>
 <p>Without a clearly better model between these two, we can further compare their entropy (see below).</p>
 <p>The entropy of a model speaks to how well the classes are separated with a higher entropy value indicating a likely increase in the separation of classes.</p>
 <p>As we see below, the 5-class model has a slightly higher entropy value than the 6-class model implying a slightly higher separability of classes. With AIC, GoF, and entropy in favor of the 5-class model, we select this model to use to assess and illustrate the classification schema that LCA uses to classify the dataset.</p>
+<p><strong>Table 4.2.3 Comparison of Entropy Values for the 5-Class and 6-Class Models</strong></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -773,7 +789,7 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 4.136046 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 4.137245 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6-Class Model </td>
@@ -788,25 +804,37 @@ div.csl-indent {
 <section id="chosen-model-discussion-and-assessment" class="level3">
 <h3 class="anchored" data-anchor-id="chosen-model-discussion-and-assessment">4.3 Chosen Model Discussion and Assessment</h3>
 <p>With the better AIC, GoF(X^2), and Entropy value, we selected the 5-Class model as our preferred model.</p>
-<p>The graph below shows along the x-axis, the proportions of the total dataset population that were classified into each of the 5-class of these model.</p>
+<p>The 5-class population proportion graph shown below (Figure 4.3.1) displays along the x-axis, the proportions of the total dataset population that were classified into each of the 5-class of these model.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/5_class_Model.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure 4.3.1 5-Class Model</figcaption><p></p>
+<p><img src="index_files/figure-html/5_class_model_graph.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 4.3.1 - 5-Class Model</figcaption><p></p>
 </figure>
 </div>
+<p>Under a normal research environment, we would not likely have the true classifications to compare these classes to against their predicted counterparts. But as we chose a dataset for which we could remove classification values and have the LCA models assess the attributes of the members, we designed the experiment to illustrate how Latent Class Analysis predicts which class a member should belong to, and can compare these to against a real classification schema.</p>
+<p>For the purposes of these figures, we filtered selections based on whether the attributes had above ~70% likelihood of being members in the class according to the model. By doing so, there is the potential for overlap with certain member showing in more than one class, but with that in mind, this approach has the benefit of showing how potentially effective LCA can be at detecting these latent groups.</p>
+<p><strong>Table 4.3.1 Comparison of AIC, BIC, and Goodness of Fit for each # of Classes</strong></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>orig_classes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">Class =</span> <span class="fu">c</span>(<span class="st">'Class 1'</span>, <span class="st">'Class 2'</span>, <span class="st">'Class 3'</span>, <span class="st">'Class 4'</span>, <span class="st">'Class 5'</span>),</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">Percentage =</span> <span class="fu">c</span>(<span class="st">'12.85%'</span>, <span class="st">'20.78%'</span>, <span class="st">'35.46%'</span>, <span class="st">'13.09%'</span>, <span class="st">'17.82%'</span>))</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(orig_classes, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Population Percentages of each Class in the 5-Class Model"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reordering the Model output graph to display in order from highest to lowest proportion for easier comparison and labeling</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>probs.start.new <span class="ot">&lt;-</span> <span class="fu">poLCA.reorder</span>(lca_fit5<span class="sc">$</span>probs.start,<span class="fu">order</span>(lca_fit5<span class="sc">$</span>P,<span class="at">decreasing=</span><span class="cn">TRUE</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>lca_fit5 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1,<span class="at">nclass=</span><span class="dv">5</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">graphs =</span> <span class="cn">FALSE</span>,<span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">probs.start=</span>probs.start.new)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>orig_classes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>   <span class="at">Class =</span> <span class="fu">c</span>(<span class="st">'Class 1'</span>, <span class="st">'Class 2'</span>, <span class="st">'Class 3'</span>, <span class="st">'Class 4'</span>, <span class="st">'Class 5'</span>),</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>   <span class="at">Percentage =</span> <span class="fu">c</span>(<span class="st">'35.46%'</span>, <span class="st">'20.78%'</span>,<span class="st">'17.82%'</span>,<span class="st">'13.09%'</span>,<span class="st">'12.85%'</span>))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(orig_classes, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Population Percentages of each Class in the 5-Class Model"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -821,7 +849,7 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Class 1 </td>
-   <td style="text-align:left;background-color: lavender !important;"> 12.85% </td>
+   <td style="text-align:left;background-color: lavender !important;"> 35.46% </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Class 2 </td>
@@ -829,7 +857,7 @@ div.csl-indent {
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Class 3 </td>
-   <td style="text-align:left;background-color: lavender !important;"> 35.46% </td>
+   <td style="text-align:left;background-color: lavender !important;"> 17.82% </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Class 4 </td>
@@ -837,100 +865,146 @@ div.csl-indent {
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Class 5 </td>
-   <td style="text-align:left;background-color: lavender !important;"> 17.82% </td>
+   <td style="text-align:left;background-color: lavender !important;"> 12.85% </td>
   </tr>
 </tbody>
 </table>
 
 </div>
 </div>
-<p>Under a normal research environment, we would not have the true classifications to compare these classes to against their predicted counterparts. But as we chose a dataset for which we could remove classification values and have the LCA models assess the attributes of the members, we designed the experiment to illustrate how Latent Class Analysis predicts which class a member should belong to, and can compare these to against a real classification schema.</p>
-<p>For the purposes of these figures, we filtered selections based on whether the attributes had above ~70% likelihood of being members in the class according to the model. By doing so, there is the potential for overlap with certain member showing in more than one class, but with that in mind, this approach has the benefit of showing how potentially effective LCA can be at detecting these latent groups.</p>
-<p>Class 1 which is estimated to contain ~12.85% of the population predicts its members to have eggs, aquatic, toothed, backbone, fins, tail. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type “fish” in the original dataset.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/fish.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure 4.3.2 Class 1 - 12.85% of the Population</figcaption><p></p>
-</figure>
-</div>
-<p>Class 2 which is estimated to contain ~20.78% of the population predicts its members to have feathers, eggs, backbone, breathes, tail, has_legs. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type “bird” in the original dataset.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/bird.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure 4.3.3 Class 2 - 20.78% of the Population</figcaption><p></p>
-</figure>
-</div>
-<p>Class 3 which. as the largest class, is estimated to contain ~35.46% of the population predicts its members to have hair, toothed, backbone, breathes, tail, has_legs. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type “mammal” in the original dataset. (There are additional members not pictures in the screenshot due to the size of the class).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/mammal.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure 4.3.4 Class 3 - 35.46% of the Population</figcaption><p></p>
-</figure>
-</div>
-<p>Class 4 which is estimated to contain ~13.09% of the population becomes less homogenous. The original classification schema of “type” had 7 unique values, which implies that with a 5-class model, overlap is inevitable. This is only visible due to the fact that we have the original data for “type” for illustration purposes, which is unlikely to be the case in research data.This class’ members ar predicted to have aquatic, predator, toothed, backbone, breathes, tail. We filtered the cleaned new_zoo dataset for these attributes. The resulting filter only yielded 5 members, which are mostly aquatic mammals and a single amphibian.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/aquatic_mammal.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure 4.3.5 Class 4 - 13.09% of the Population</figcaption><p></p>
-</figure>
-</div>
-<p>Class 5 was our final class, and estimated to contain 17.09% of the population. This class is the least homogenous, and it should be noted that it has two attributes (breathes and predator) which were both over 50% shown on the graoh, but as we excluded our filtering to ~80% and above, these are not selected in the filter.</p>
+<p><strong>Class 1</strong> which, as the largest class, is estimated to contain ~35.46% of the population predicts its members to have hair, toothed, backbone, breathes, tail, has_legs. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type “mammal” in the original dataset.</p>
+<p><strong>Class 2</strong> which is estimated to contain ~20.78% of the population predicts its members to have feathers, eggs, backbone, breathes, tail, has_legs. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type “bird” in the original dataset.</p>
+<p><strong>Class 3</strong> is estimated to contain ~17.09% of the population. This class is the least homogenous, and it should be noted that it has two attributes (breathes and predator) which were both over 50% shown on the graph, but as we excluded our filtering to ~80% and above, these are not selected in the filter.</p>
 <p>These class members are predicted to have eggs and has_legs. While this limited selection duplicates a few of the previous members that were selected for other classes, this class also contains the invertebrates and insects, which were not present in the other classes.</p>
+<p><strong>Class 4</strong> which is estimated to contain ~13.09% of the population is less homogenous than Classes 1 &amp; 2, but not as heterogenous as Class 3. The original classification schema of “type” had 7 unique values, which implies that with a 5-class model, overlap is inevitable. This is only visible due to the fact that we have the original data for “type” for illustration purposes, which is unlikely to be the case in research data.This class’ members ar predicted to have aquatic, predator, toothed, backbone, breathes, tail. We filtered the cleaned new_zoo dataset for these attributes. The resulting filter only yielded 5 members, which are mostly aquatic mammals and a single amphibian.</p>
+<p><strong>Class 5</strong> which is the smallest class, estimated to contain ~12.85% of the population predicts its members to have eggs, aquatic, toothed, backbone, fins, tail. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type “fish” in the original dataset.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Here we are converting the new_zoo_int_2 into a factor so it can be used with MCA() function</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>new_zoo_int_1_factor <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">lapply</span>(new_zoo_int_1, factor))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Saving the result of MCA function applied to new_zoo_int_2_factor into mca_outcome</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Made invisible so the output does not print instead of image with label</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>mca_outcome <span class="ot">&lt;-</span> <span class="fu">invisible</span>(<span class="fu">MCA</span>(new_zoo_int_1_factor, <span class="at">graph =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting the # of dimension in the biplot to 2 (just x and y axis)</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>n_dimensions <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating the MCA biplot from mca_outcome</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>mca_biplot <span class="ot">&lt;-</span> <span class="fu">fviz_mca_biplot</span>(</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  mca_outcome,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="co"># we are only displaying axes 1(Dim1)&amp; 2(Dim2)</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"MCA Biplot (Dimensions:"</span>, n_dimensions, <span class="st">")"</span>))</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Printing the MCA biplot</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co">#mca_biplot</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co">#----</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Extract the class membership probabilities and convert to dataframe</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>class_probability <span class="ot">&lt;-</span> lca_fit5<span class="sc">$</span>posterior</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>class_probability_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(class_probability)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="co">#Build a matrix from the dataframe and assign each observation to the LCA class with the highest probability</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>class_probability_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(class_probability_df)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>lca_result_classes <span class="ot">&lt;-</span> <span class="fu">max.col</span>(class_probability_matrix, <span class="at">ties.method =</span> <span class="st">"random"</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Turn lca_result_classes into a factor for MCA input</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>lca_result_class_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(lca_result_classes, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Class 1"</span>, <span class="st">"Class 2"</span>, <span class="st">"Class 3"</span>, <span class="st">"Class 4"</span>, <span class="st">"Class 5"</span>))</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="co">#Find the coordinate points generated by the Multiple Correspondence Analysis (MCA) function</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>coord_pts <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mca_outcome<span class="sc">$</span>ind<span class="sc">$</span>coord)</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="co">#Adding the LCA class labels to the dataframe with the coordinates</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>coord_pts<span class="sc">$</span>lca_result_class_factor <span class="ot">&lt;-</span> lca_result_class_factor</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the LCA classes as ellipses over the MCA plot of plots and save as LCA_MCA_biplot</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>LCA_MCA_biplot <span class="ot">&lt;-</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(coord_pts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Dim 1</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Dim 2</span><span class="st">`</span>, <span class="at">color =</span> lca_result_class_factor)) <span class="sc">+</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Dim 1</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Dim 2</span><span class="st">`</span>, <span class="at">color =</span> lca_result_class_factor), <span class="at">type =</span> <span class="st">"norm"</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="sc">+</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">rownames</span>(coord_pts)), <span class="at">nudge_x =</span> <span class="fl">0.02</span>, <span class="at">nudge_y =</span> <span class="fl">0.02</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"MCA Biplot with LCA Classes"</span>,</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Dimension 1 (31.2% Variance Explained by this Dimension)"</span>,</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Dimension 2 (25.3% Variance Explained by this Dimension)"</span>,</span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"LCA Class"</span>)</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a><span class="co">#LCA_MCA_biplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/eggs_haslegs.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure 4.3.4 Class 5 - 17.09% of the Population</figcaption><p></p>
+<p><img src="index_files/figure-html/mca_biplot_lca.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 4.3.2 - MCA Biplot with 5 Class LCA Model Classes Overlain</figcaption><p></p>
 </figure>
 </div>
 </section>
 <section id="sensitivity-analysis---correlation" class="level3">
 <h3 class="anchored" data-anchor-id="sensitivity-analysis---correlation">4.4 Sensitivity Analysis - Correlation</h3>
-<p>As seen in the correlation matrix and heatmap milk is highly correlated with both egg and hair.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/Correlation%20matrix.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Correlation matrix for sensitivity analysis</figcaption><p></p>
-</figure>
-</div>
+<p>Researchers have the ability to modify the model specification by either adding or removing variables or constraints to assess the sensitivity of the results to these changes. One of the major assumptions when performing Latent Class Analysis (LCA) is is an independence of the variables within a given class detected; variable redundancy and multicollinearity therefore becomes an important factor to consider, particularly when correlation coefficients for specific variables are greater than 0.50 <span class="citation" data-cites="sinha2021practitioner">(<a href="#ref-sinha2021practitioner" role="doc-biblioref">Sinha, Calfee, and Delucchi 2021</a>)</span>. To analyse and assess the extent of this risk, we generated a correlation matrix and heatmap to assess the presence of multicollinearity, with a focus particularly on positively correlated variables that are present within the same classes, since by virtue of the underlying function of LCA, negatively correlated variables are less likely to appear within the same class.</p>
+<p>We then test the model by removing these variables and comparing the new model to the previous model which includes these variables. We will evaluate whether the new model is still able to fit the data well and compare its goodness of fit statistics (such as AIC, BIC) to those of the previous model. If the new model shows improvement in goodness of fit, we may consider selecting it as our final model.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="index_files/figure-html/Heatmap.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Correlation heatmap for sensitivity analysis</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure 4.4.1 - Correlation heatmap for sensitivity analysis</figcaption><p></p>
 </figure>
 </div>
+<p>As seen in the correlation heatmap (Figure 4.4.1), milk is highly correlated with both hair(0.88)and egg(-0.94). We decided to remove milk as an attribute, and re-consider our LCA model to see if it improves without this highly collinear variables included.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>new_zoo_int_2 <span class="ot">&lt;-</span> new_zoo_int_1  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">milk=</span><span class="cn">NULL</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>lca_bind_corr <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind_corr, <span class="at">data =</span> new_zoo_int_2, </span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">5</span>, <span class="at">graphs =</span> <span class="cn">TRUE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a dataset without 'milk' - 13-variables</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>new_zoo_int_2 <span class="ot">&lt;-</span> new_zoo_int_1  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">milk=</span><span class="cn">NULL</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Binding 13-variables into columns for modified LCA model without 'milk'</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>lca_bind_corr <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind_corr, <span class="at">data =</span> new_zoo_int_2, </span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">5</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Reordering the Model output graph to display in order from highest to lowest proprtion for easier comparison and labeling</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>probs.start.new2 <span class="ot">&lt;-</span> <span class="fu">poLCA.reorder</span>(lca_fit5_corr<span class="sc">$</span>probs.start,<span class="fu">order</span>(lca_fit5_corr<span class="sc">$</span>P,<span class="at">decreasing=</span><span class="cn">TRUE</span>))</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind_corr, <span class="at">data =</span> new_zoo_int_2,<span class="at">nclass=</span><span class="dv">5</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">graphs =</span> <span class="cn">FALSE</span>,<span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>,</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">probs.start=</span>probs.start.new2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/lca_fit5_corr_graph.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 4.4.2 - 5-Class LCA Model Population Percentages without ‘milk’</figcaption><p></p>
+</figure>
+</div>
+<p>With the ‘milk’ variable removed from our LCA models due to high correlation values with 2 other attributes, our 5-Class models exhibited substantial improvement in AIC, BIC, and GoF, and slightly worse values for entropy. As a result, we find the adjusted 5-class model, with 13 attributes assessed to be our best final model.</p>
+<p><strong>Table 4.4.1 Comparison Statistics for Original and Modified 5-Class Models</strong></p>
+<div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit5_corr)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>class5_compare <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">'Original 5-Class Model'</span>, <span class="st">'Adjusted 5-Class Model'</span>),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">AIC =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>aic, lca_fit5_corr<span class="sc">$</span>aic),</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">BIC =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>bic, lca_fit5_corr<span class="sc">$</span>bic),</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">GoF =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>Chisq, lca_fit5_corr<span class="sc">$</span>Chisq),</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">entropy =</span> <span class="fu">c</span>(lca_fit5.ent, lca_fit5_corr.ent))</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(class5_compare, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Comparison Statistics for Original and Modified 5-Class Models"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit5_corr)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating data frame of AIC, BIC, GoF, and Entropy of both original and modified 5-Class Models</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>class5_compare <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">'Original 5-Class Model'</span>, <span class="st">'Adjusted 5-Class Model'</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">AIC =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>aic, lca_fit5_corr<span class="sc">$</span>aic),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">BIC =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>bic, lca_fit5_corr<span class="sc">$</span>bic),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">GoF =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>Chisq, lca_fit5_corr<span class="sc">$</span>Chisq),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>   <span class="at">entropy =</span> <span class="fu">c</span>(lca_fit5.ent, lca_fit5_corr.ent))</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Printing table comparing original and modified 5-class stats</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(class5_compare, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Comparison Statistics for Original and Modified 5-Class Models"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -948,10 +1022,10 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Original 5-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 983.2301 </td>
-   <td style="text-align:right;"> 1176.749 </td>
-   <td style="text-align:right;"> 2488.471 </td>
-   <td style="text-align:right;"> 4.136046 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
+   <td style="text-align:right;"> 1176.912 </td>
+   <td style="text-align:right;"> 1858.388 </td>
+   <td style="text-align:right;"> 4.137245 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Adjusted 5-Class Model </td>
@@ -965,7 +1039,6 @@ div.csl-indent {
 
 </div>
 </div>
-<p>With the ‘milk’ variable removed from our LCA models due to high correlation values with 2 other attributes, we reran our 5-Class models and found substantial improvement in AIC, BIC, and GoF, and slightly worse values for entropy. As a result, we find the adjusted 5-class model, with 13 attributes assessed to be our best final model.</p>
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
@@ -1002,6 +1075,9 @@ Sinha, Pratik, Carolyn S Calfee, and Kevin L Delucchi. 2021. <span>“Practition
 </div>
 <div id="ref-thorpe2011patterns" class="csl-entry" role="doc-biblioentry">
 Thorpe, Joshua M, Carolyn T Thorpe, Korey A Kennelty, and Nancy Pandhi. 2011. <span>“Patterns of Perceived Barriers to Medical Care in Older Adults: A Latent Class Analysis.”</span> <em>BMC Health Services Research</em> 11: 1–12.
+</div>
+<div id="ref-vermunt2010latent" class="csl-entry" role="doc-biblioentry">
+Vermunt, Jeroen K. 2010. <span>“Latent Class Modeling with Covariates: Two Improved Three-Step Approaches.”</span> <em>Political Analysis</em> 18 (4): 450–69.
 </div>
 <div id="ref-weller2020latent" class="csl-entry" role="doc-biblioentry">
 Weller, Bridget E, Natasha K Bowen, and Sarah J Faubert. 2020. <span>“Latent Class Analysis: A Guide to Best Practice.”</span> <em>Journal of Black Psychology</em> 46 (4): 287–311.

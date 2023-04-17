@@ -23,7 +23,7 @@ utilized when it is believed that there may be unobserved subgroups
 (classes) among the individuals within a population. To identify these
 unobserved groups, LCA searches for and analyzes response patterns that
 may exist within categorical variables reported in the dataset
-[@nylund2018ten]. Latent Class Analysis is an example of a broader class
+[@nylund2018ten] with the ultimate goal of assigning each observation into a class based on the posterior probability of certainty that an observation should belong to a particular class [@vermunt2010latent]. Latent Class Analysis is an example of a broader class
 of models called finite mixture models(FFM) [@grimm2021model] that seek
 to identify and classify instances of variance within model parameters
 between groups within the data that have not been explicitly defined as
@@ -39,9 +39,14 @@ classes, and that each individual belongs to only one of these classes
 [@weller2020latent]. The overarching goal of LCA is to identify where a
 specific subset of classes exist within a group and estimate the
 proportions of those subset classes within the overall population.
-Additionally, LCA can be used to help determine if any relationships
-exist between the identified latent classes and any other observed
+Additionally, as shown in (Figure 1.0.1), LCA can be used to help determine if any relationships exist between the identified latent classes and any other observed
 variables within the dataset.
+
+![Figure 1.0.1 - LCA 2-Class Model Representation](index_files/figure-html/lca_2class_overlap_example.jpg)
+
+
+*The dotted lines show the 2 unobserved latent classes that exist within
+the overall population distribution.*[@sinha2021practitioner]
 
 As computational efficiency has improved, Latent Class Analysis has seen
 an uptick in interest for researchers across a variety of fields with
@@ -131,24 +136,30 @@ of responses in a group of $N$ variables, $p_k$ is the probability of
 membership in LC $k$, and $p_n(x_{in}|k)$ is the probability of response
 to variable $n$, conditional on membership in LC $k$.
 
-### 2.1 General Steps of Latent Class Analysis (LCA)
+### 2.2 General Steps of Latent Class Analysis (LCA)
 
 The general steps to use latent class analysis are as follows:
 
-1.  **Identify the research question and define the variables & define
-    the categorical variables that will be used in the analysis**
+1.  Identify the research question and define the variables & define the categorical variables that will be used in the analysis
 
-For this project we will be exploring how well Latent Class Analysis
-will group our dataset of zoo animals into subgroups based upon
-unmeasured homogeneity across 14 categorical variables collected for
-each animal. The Zoo Animals datasets is discussed in detail in Methods
-Section (Table 3.1.1.)
+2.  Select the appropriate software: In this project R Studio will be used for the LCA
 
-2.  **Select the appropriate software: In this project R Studio will be
-    used for the LCA**
+3.  Determine the number of latent classes
 
-We will be using the poLCA package library, which allows us to specify
-the number of classes for which we want RStudio to generate an LCA
+4.  Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation
+
+5.  Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC), entropy, and chi-square Goodness-of-Fit. If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.
+
+6.  Conduct sensitivity analysis: Finally, conduct sensitivity
+    analyses to test the robustness of the results and evaluate the
+    stability of the estimated probabilities across different subgroups
+    or samples.
+
+## 3. Analysis and Results
+
+### 3.1 Software
+
+We will be using the RStudio poLCA package library, which allows us to specify the number of classes for which we want RStudio to generate an LCA
 model. This package provides several tools for fitting and assessing LCA
 models.
 
@@ -163,72 +174,42 @@ models.
 -   **verbose**: used to assess individual attribute predictions as well
     as concisely providing fit statistics
 
-3.  **Determine the number of latent classes**
 
-As discussed previously, this is potentially the most difficult decision
-to make regarding identification of latent classes. We will be assessing
-2,3,4,5,6, and 7 number of classes in modeling. The model fit assesment
-is performed in step 5.
+**All Necessary Libraries are loaded here:**
 
-4.  **Estimate the model: Estimate the model parameters using maximum
-    likelihood estimation or Bayesian estimation**
+```{r, warning=FALSE, echo=T, message=FALSE}
+#loading packages 
+library(tidyverse)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+library(ggthemes)
+library(ggrepel)
+library(dslabs)
+library(poLCA)
+library(stats)
+library(sjPlot)
+library(ggcorrplot)
+library(corrplot)
+library(ggrepel)
 
-We will be running each of our 6 models for 100 repetitions. This will
-allow us to have consistent results for each number of classes per model
-to report upon without large swings in class sizes and predictions, and
-will additionally provide a best model for each number of classes.
+#install.packages("FactoMineR")
+#install.packages("factoextra")
 
-5.  **Evaluate the model: After estimating the model, evaluate its fit
-    using goodness-of-fit statistics such as the likelihood ratio test,
-    Akaike Information Criterion (AIC), and Bayesian Information
-    Criterion (BIC), entropy, and chi-square Goodness-of-Fit. If our
-    model fits well, interpret the results and report the estimated
-    probabilities of individuals belonging to each class.**
+library(FactoMineR)
+library(factoextra)
+library(ggalt)
 
-In a traditional research environment, these statistics would be likely
-the best decision criteria we could expect to have for assessing the
-model. In the case of our data, we have a comparison classification
-attribute "type" in our dataset that we will withhold from the Latent
-Class Analysis procedure as a secondary means to assess how well the
-model classifies the members of the dataset - in this case animals
-within a zoo. It is possible, however, that the LCA may find latent
-classes that differ from these defined classifications, which roughly
-correspond to the Linnaean taxonomic classification of classes within
-the Kingdom Animalia.
+```
 
-6.  **Conduct sensitivity analysis: Finally, conduct sensitivity
-    analyses to test the robustness of the results and evaluate the
-    stability of the estimated probabilities across different subgroups
-    or samples.**
 
-Researchers have the ability to modify the model specification by either
-adding or removing variables or constraints to assess the sensitivity of
-the results to these changes. For instance, to evaluate the impact of a
-constraint that limits the relationship between two variables, they can
-conduct a correlation test of the indicator variables in the complete
-dataset and within each identified latent class. In the case of high
-collinearity, where the variables are highly correlated with each other,
-it may be necessary to remove one or more indicators to avoid redundancy
-and prevent multicollinearity issues in the
-analysis[@sinha2021practitioner].
+### 3.2 Dataset Description
 
-In this step, we will generate the correlation matrix and identify the
-highly correlated variables. We will then test the model by removing
-these variables and comparing the new model to the previous model which
-includes these variables. We will evaluate whether the new model is
-still able to fit the data well and compare its goodness of fit
-statistics (such as AIC, BIC) to those of the previous model. If the new
-model shows improvement in goodness of fit, we may consider selecting it
-as our final model.
+For this project we will be exploring how well Latent Class Analysis
+will group our dataset of zoo animals from Kaggle called [Zoo
+Animals](https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals) into subgroups based upon unmeasured homogeneity across 14 categorical variables collected for each animal.
 
-## 3. Analysis and Results
-
-### 3.1 Dataset Description
-
-For the purpose of this paper, we are using a dataset from Kaggle called
-[Zoo
-Animals](https://www.kaggle.com/datasets/ulrikthygepedersen/zoo-animals).
-There are 101 entries and a total of 18 variables in this dataset.The
+There are 101 entries and a total of 18 variables in this dataset. The
 variables give information about the physical attributes of each of the
 animals, such as if they have hair, if they have teeth, if they lay
 eggs, etc. Of the 18 variables, 15 of them are binary variables and one
@@ -246,26 +227,12 @@ Among other variables, we will be removing the "type" variable from the
 dataset. Latent Class Analysis will be utilized to ascertain whether the
 groups identified by this method correspond to the seven animal types.
 
-**All Necessary Libraries are loaded here:**
 
-```{r, warning=FALSE, echo=T, message=FALSE}
-# loading packages 
-library(tidyverse)
-library(dplyr)
-library(knitr)
-library(kableExtra)
-library(ggthemes)
-library(ggrepel)
-library(dslabs)
-library(poLCA)
-library(stats)
-library(sjPlot)
-```
-
-**Table 3.1.1 Variables considered in LCA Analysis:**
+**Table 3.2.1 Variables considered in LCA Analysis:**
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 
+#Creating data frame of variables used and not used for displaying in tables
 tab_lca_var <- data.frame(var_num = 1:14, 
    Variable_data_type = c('logi', 'logi','logi','logi','logi','logi',
                'logi','logi','logi','logi','logi','logi','logi','logi'),                       
@@ -281,6 +248,7 @@ tab_lca_var <- data.frame(var_num = 1:14,
 tab_lca_var_copy <- tab_lca_var
 colnames(tab_lca_var_copy) <- c("# of Variables", "Data Type", "Variables", "Variable Description")
 
+#Printing a table of variables used in LCA modeling
 kable(tab_lca_var_copy, format = "html", caption = "Variables considered in LCA Analysis") %>%
     kable_styling(bootstrap_options = c("striped", "hover")) %>%
     column_spec(1, bold = TRUE, color = "white", background = "steelblue") %>%
@@ -288,8 +256,9 @@ kable(tab_lca_var_copy, format = "html", caption = "Variables considered in LCA 
     row_spec(0, bold = TRUE, color = "white", background = "darkblue")
 ```
 
-**Table 3.1.2 Variables in Original Dataset, but not used in LCA
-models:** *These will be used in our assessment of LCA Model Quality*
+
+
+**Table 3.2.2 Variables in Original Dataset, but not used in LCA models:** *These will be used in our assessment of LCA Model Quality*
 
 ```{r, warning=FALSE, echo=T, message=FALSE}
 tab_nonlca_var <- data.frame(var_num = 1:4, 
@@ -302,6 +271,7 @@ tab_nonlca_var <- data.frame(var_num = 1:4,
 tab_nonlca_var_copy <- tab_nonlca_var
 colnames(tab_nonlca_var_copy) <- c("# of Variables", "Data Type", "Variables", "Variable Description")
 
+#Printing a table of variables not-used in LCA modeling
 kable(tab_nonlca_var_copy, format = "html", caption = "Variables in Original Dataset, but not used in LCA models:") %>%
     kable_styling(bootstrap_options = c("striped", "hover")) %>%
     column_spec(1, bold = TRUE, color = "white", background = "steelblue") %>%
@@ -309,7 +279,7 @@ kable(tab_nonlca_var_copy, format = "html", caption = "Variables in Original Dat
     row_spec(0, bold = TRUE, color = "white", background = "darkblue")
 ```
 
-### 3.2 Load Data
+### 3.3 Load Data
 
 When the data is first loaded, with each categorical variable, there is
 an apostrophe and a "b" before each word and at the end, there is an
@@ -327,7 +297,7 @@ view(new_zoo)
 
 ```
 
-### 3.3 Data Preparation
+### 3.4 Data Preparation
 
 As mentioned above, we will be removing the "type" variable from the
 dataset with the goal of trying to replicate this level of
@@ -346,29 +316,23 @@ further transformed the data by incrementing all values by 1, wherein
 "FALSE" is represented by "1", and "TRUE" is represented by "2".
 
 ```{r, warning=FALSE, echo=TRUE}
-# Adding attribute has_legs to denote whether the animal has a leg count >0
-new_zoo <- Zoo_clean %>%
-  mutate(has_legs = ifelse(legs == 0, 0, 1))
+#Creating "has_legs" to denote whether the animal has a leg count >0 from "legs" variable
+new_zoo <- Zoo_clean %>% mutate(has_legs = ifelse(legs == 0, 0, 1))
 
-# Removing the non-binary integer representing the number of legs an animal has
-new_zoo <- new_zoo %>%
-  mutate(legs = NULL)
+#Removing "legs" since it is continuous and not binary
+new_zoo <- new_zoo %>% mutate(legs = NULL)
 
-# Transforming has_legs to a logical operator to match the rest of the dataset 
-#        to be used in assessment
+#Converting has_legs from integer to logical to match the rest of the dataset
 new_zoo$has_legs <- as.logical(new_zoo$has_legs)
 
-# Creating a 14-variable subset of the 18-variable dataset with "animal", 
-#       "domestic", "catsize", and "type" removed
+#Removing "animal","domestic", "catsize", and "type" from 18-variable dataset to make new 14-variable dataset for LCA modeling  
 new_zoo_subset <- new_zoo %>% mutate(animal=NULL, domestic=NULL, 
                                      catsize=NULL, type=NULL)
 
-# Creating a dataset where the binary data is represented by 
-#       integers "0" for "FALSE" or "1" for "TRUE"
+#Creating a dataset where the binary data is converted to integers 0/"FALSE" or 1/"TRUE"
 new_zoo_int <- new_zoo_subset %>% mutate_all(~as.integer(.))
 
-# Creating a dataset where the binary data is represented by 
-#        integers "1" for "FALSE" or "2" for "TRUE"
+#Incrementing the binary integers from 0/1 to 1/2 - poLCA() can only accept integers >=1
 new_zoo_int_1 <- new_zoo_int %>% mutate_all(~. + 1)
 ```
 
@@ -384,7 +348,14 @@ lca_bind <-  cbind(hair, feathers, eggs, milk,
                    venomous, fins, tail, has_legs) ~ 1
 ```
 
-### 4.1 Fitting LCA Models with \# of Classes from 2-7
+### 4.1 Fitting LCA Models with 2-7 \# of Classes
+
+Potentially the most difficult decision to make regarding identification of latent classes is determining the correct number of classes to use in our model. We will be assessing 2,3,4,5,6, and 7 number of classes in modeling. 
+
+We will be running each of our 6 models for 100 repetitions. This will
+allow us to have consistent results for each number of classes per model
+to report upon without large swings in class sizes and predictions, and
+will additionally provide a best model for each number of classes.
 
 **Fitting a 2-class LCA Model**
 
@@ -400,13 +371,13 @@ classifications was 7 "types".
 
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit2 <- poLCA(lca_bind, data = new_zoo_int_1, 
-                  nclass = 2, graphs = TRUE, na.rm = TRUE, 
+                  nclass = 2, graphs = FALSE, na.rm = TRUE, 
                   nrep=100, verbose = FALSE)
 ```
 
--   Figure 4.1.1 - 2-Class Model LCA Class Population Proportions
+![Figure 4.1.1 - LCA 2-Class Model](index_files/figure-html/2_class_model.png)
 
-Figure 4.1.1 shows the graphical output of the poLCA model when
+(Figure 4.1.1) shows the graphical output of the poLCA model when
 2-Classes are specified. The proportions at the base of the plot (0.3953
 & 0.6047) indicate the percentage of the original dataset that the poLCA
 function has classified into each of the detected latent classes.
@@ -415,7 +386,9 @@ The vertical red bars \[Pr(outcome)\] denote the percentage of the
 members of that assigned class have that particular attribute. While the
 proportions at the base of the plot should always add to 1.0, the member
 percentage of each assigned class may have any value from 0-1.0 across
-all classes for that attribute.
+all classes for that attribute. The poLCA function will additionally output a proportion value  between 0 and 1 denoting the likelihood that each attribute will be included within each class generated by the function, as seen in (Figure 4.1.2) below.
+
+![Figure 4.1.2 - LCA 2-Class Proportion Output](index_files/figure-html/2_class_prop_output.png)
 
 **Fitting a 3-class LCA Model**
 
@@ -474,6 +447,17 @@ To compare these models, we will be primarily looking at the Akaike
 Information Criterion (AIC), the Bayesian Information Criterion (BIC),
 and the Chi-square goodness of fit statistic (X\^2).
 
+In a traditional research environment, these statistics would be likely
+the best decision criteria we could expect to have for assessing the
+model. In the case of our data, we have a comparison classification
+attribute "type" in our dataset that we will withhold from the Latent
+Class Analysis procedure as a secondary means to assess how well the
+model classifies the members of the dataset - in this case animals
+within a zoo. It is possible, however, that the LCA may find latent
+classes that differ from these defined classifications, which roughly
+correspond to the Linnaean taxonomic classification of classes within
+the Kingdom Animalia.
+
 A lower value for the AIC and BIC values as well as the (X\^2), indicate
 that the model is a better fit for the data.
 
@@ -485,6 +469,7 @@ number of parameters estimated exceeds the number of observations, which
 effectively provides a negative residual Degree of Freedom (DoF). For
 this reason, we can eliminate the 7-class model.
 
+**Table 4.2.1 Comparison of AIC, BIC, and Goodness of Fit for each # of Classes**
 ```{r, warning=FALSE, echo=TRUE}
 # Load Data
 #![Figure 4.2.1 Model Comparison](index_files/figure-html/Model_comparison.PNG)
@@ -536,6 +521,7 @@ ggplot(data = fit_stats_long, aes(x = class_count, y = fit_stat_value, color = f
 # + facet_wrap(~ fit_stat, ncol = 1)
 
 ```
+**Figure 4.2.1 - Comparison of AIC and BIC across 2, 3, 4, 5, 6, and 7-Class Models**
 
 We additionally look at the Chi-square goodness of fit statistic (X\^2).
 The GoF(X\^2) for the 5-class model(1858) is better however than the
@@ -555,6 +541,7 @@ ggplot(data = fit_GoF_stat, aes(x = class_count, y = fit_GoF)) +
     y = "Goodness of Fit Statistic Value") +
   theme(plot.title = element_text(hjust = 0.5))
 ```
+**Figure 4.2.2 - Comparison of GoF Values across 2, 3, 4, 5, 6, and 7-Class Models**
 
 Without a clearly better model between these two, we can further compare
 their entropy (see below).
@@ -569,6 +556,7 @@ classes. With AIC, GoF, and entropy in favor of the 5-class model, we
 select this model to use to assess and illustrate the classification
 schema that LCA uses to classify the dataset.
 
+**Table 4.2.3 Comparison of Entropy Values for the 5-Class and 6-Class Models**
 ```{r, warning=FALSE, echo=TRUE}
 
 lca_fit5.ent <- poLCA.entropy(lca_fit5)
@@ -596,25 +584,11 @@ kable(tab_lca_entropy_copy, format = "html", caption = "Entropy Comparison of 5-
 With the better AIC, GoF(X\^2), and Entropy value, we selected the
 5-Class model as our preferred model.
 
-The graph below shows along the x-axis, the proportions of the total
-dataset population that were classified into each of the 5-class of
-these model.
+The 5-class population proportion graph shown below (Figure 4.3.1) displays along the x-axis, the proportions of the total dataset population that were classified into each of the 5-class of these model.
 
-![Figure 4.3.1 5-Class Model](index_files/figure-html/5_class_Model.png)
+![Figure 4.3.1 - 5-Class Model](index_files/figure-html/5_class_model_graph.png)
 
-```{r, warning=FALSE, echo=TRUE}
-orig_classes <- data.frame( 
-   Class = c('Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5'),
-   Percentage = c('12.85%', '20.78%', '35.46%', '13.09%', '17.82%'))
-
-kable(orig_classes, format = "html", caption = "Population Percentages of each Class in the 5-Class Model") %>%
-  kable_styling(bootstrap_options = c("striped", "hover")) %>%
-  column_spec(1, bold = TRUE, color = "white", background = "steelblue") %>%
-  column_spec(2, background = "lavender") %>%
-  row_spec(0, bold = TRUE, color = "white", background = "darkblue")
-```
-
-Under a normal research environment, we would not have the true
+Under a normal research environment, we would not likely have the true
 classifications to compare these classes to against their predicted
 counterparts. But as we chose a dataset for which we could remove
 classification values and have the LCA models assess the attributes of
@@ -629,88 +603,174 @@ for overlap with certain member showing in more than one class, but with
 that in mind, this approach has the benefit of showing how potentially
 effective LCA can be at detecting these latent groups.
 
-Class 1 which is estimated to contain \~12.85% of the population
-predicts its members to have eggs, aquatic, toothed, backbone, fins,
-tail. We filtered the cleaned new_zoo dataset for these attributes, and
-noted that all members were classified as type "fish" in the original
-dataset.
+**Table 4.3.1 Comparison of AIC, BIC, and Goodness of Fit for each # of Classes**
+```{r, warning=FALSE, echo=TRUE}
 
-![Figure 4.3.2 Class 1 - 12.85% of the
-Population](index_files/figure-html/fish.png)
+#Reordering the Model output graph to display in order from highest to lowest proportion for easier comparison and labeling
+probs.start.new <- poLCA.reorder(lca_fit5$probs.start,order(lca_fit5$P,decreasing=TRUE))
 
-Class 2 which is estimated to contain \~20.78% of the population
+lca_fit5 <- poLCA(lca_bind, data = new_zoo_int_1,nclass=5,
+                  graphs = FALSE,na.rm = TRUE,
+                  verbose = FALSE, nrep=100,
+                  probs.start=probs.start.new)
+
+
+orig_classes <- data.frame( 
+   Class = c('Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5'),
+   Percentage = c('35.46%', '20.78%','17.82%','13.09%','12.85%'))
+
+kable(orig_classes, format = "html", caption = "Population Percentages of each Class in the 5-Class Model") %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  column_spec(1, bold = TRUE, color = "white", background = "steelblue") %>%
+  column_spec(2, background = "lavender") %>%
+  row_spec(0, bold = TRUE, color = "white", background = "darkblue")
+```
+
+**Class 1** which, as the largest class, is estimated to contain
+\~35.46% of the population predicts its members to have hair, toothed,
+backbone, breathes, tail, has_legs. We filtered the cleaned new_zoo
+dataset for these attributes, and noted that all members were classified
+as type "mammal" in the original dataset.
+
+**Class 2** which is estimated to contain \~20.78% of the population
 predicts its members to have feathers, eggs, backbone, breathes, tail,
 has_legs. We filtered the cleaned new_zoo dataset for these attributes,
 and noted that all members were classified as type "bird" in the
 original dataset.
 
-![Figure 4.3.3 Class 2 - 20.78% of the
-Population](index_files/figure-html/bird.png)
-
-Class 3 which. as the largest class, is estimated to contain \~35.46% of
-the population predicts its members to have hair, toothed, backbone,
-breathes, tail, has_legs. We filtered the cleaned new_zoo dataset for
-these attributes, and noted that all members were classified as type
-"mammal" in the original dataset. (There are additional members not
-pictures in the screenshot due to the size of the class).
-
-![Figure 4.3.4 Class 3 - 35.46% of the
-Population](index_files/figure-html/mammal.png)
-
-Class 4 which is estimated to contain \~13.09% of the population becomes
-less homogenous. The original classification schema of "type" had 7
-unique values, which implies that with a 5-class model, overlap is
-inevitable. This is only visible due to the fact that we have the
-original data for "type" for illustration purposes, which is unlikely to
-be the case in research data.This class' members ar predicted to have
-aquatic, predator, toothed, backbone, breathes, tail. We filtered the
-cleaned new_zoo dataset for these attributes. The resulting filter only
-yielded 5 members, which are mostly aquatic mammals and a single
-amphibian.
-
-![Figure 4.3.5 Class 4 - 13.09% of the
-Population](index_files/figure-html/aquatic_mammal.png)
-
-Class 5 was our final class, and estimated to contain 17.09% of the
-population. This class is the least homogenous, and it should be noted
-that it has two attributes (breathes and predator) which were both over
-50% shown on the graoh, but as we excluded our filtering to \~80% and
-above, these are not selected in the filter.
+**Class 3** is estimated to contain ~17.09% of the population. This class
+is the least homogenous, and it should be noted that it has two
+attributes (breathes and predator) which were both over 50% shown on the
+graph, but as we excluded our filtering to \~80% and above, these are
+not selected in the filter.
 
 These class members are predicted to have eggs and has_legs. While this
 limited selection duplicates a few of the previous members that were
 selected for other classes, this class also contains the invertebrates
 and insects, which were not present in the other classes.
 
-![Figure 4.3.4 Class 5 - 17.09% of the
-Population](index_files/figure-html/eggs_haslegs.png)
+**Class 4** which is estimated to contain \~13.09% of the population is
+less homogenous than Classes 1 & 2, but not as heterogenous as Class 3.
+The original classification schema of "type" had 7 unique values, which
+implies that with a 5-class model, overlap is inevitable. This is only
+visible due to the fact that we have the original data for "type" for
+illustration purposes, which is unlikely to be the case in research
+data.This class' members ar predicted to have aquatic, predator,
+toothed, backbone, breathes, tail. We filtered the cleaned new_zoo
+dataset for these attributes. The resulting filter only yielded 5
+members, which are mostly aquatic mammals and a single amphibian.
 
-### 4.4 Sensitivity Analysis - Correlation
-
-As seen in the correlation matrix and heatmap milk is highly correlated
-with both egg and hair.
-
-![Correlation matrix for sensitivity
-analysis](index_files/figure-html/Correlation%20matrix.png)
-
-![Correlation heatmap for sensitivity
-analysis](index_files/figure-html/Heatmap.png)
+**Class 5** which is the smallest class, estimated to contain \~12.85%
+of the population predicts its members to have eggs, aquatic, toothed,
+backbone, fins, tail. We filtered the cleaned new_zoo dataset for these
+attributes, and noted that all members were classified as type "fish" in
+the original dataset.
 
 ```{r, warning=FALSE, echo=TRUE}
 
+#Here we are converting the new_zoo_int_2 into a factor so it can be used with MCA() function
+new_zoo_int_1_factor <- as.data.frame(lapply(new_zoo_int_1, factor))
+
+#Saving the result of MCA function applied to new_zoo_int_2_factor into mca_outcome
+#Made invisible so the output does not print instead of image with label
+mca_outcome <- invisible(MCA(new_zoo_int_1_factor, graph = FALSE))
+
+#Setting the # of dimension in the biplot to 2 (just x and y axis)
+n_dimensions <- 2
+
+#Creating the MCA biplot from mca_outcome
+mca_biplot <- fviz_mca_biplot(
+  mca_outcome,
+  repel = TRUE,
+  axes = c(1, 2), # we are only displaying axes 1(Dim1)& 2(Dim2)
+  title = paste("MCA Biplot (Dimensions:", n_dimensions, ")"))
+
+#Printing the MCA biplot
+#mca_biplot
+
+#----
+
+#Extract the class membership probabilities and convert to dataframe
+class_probability <- lca_fit5$posterior
+class_probability_df <- as.data.frame(class_probability)
+
+#Build a matrix from the dataframe and assign each observation to the LCA class with the highest probability
+class_probability_matrix <- as.matrix(class_probability_df)
+lca_result_classes <- max.col(class_probability_matrix, ties.method = "random")
+
+#Turn lca_result_classes into a factor for MCA input
+lca_result_class_factor <- factor(lca_result_classes, levels = 1:5, labels = c("Class 1", "Class 2", "Class 3", "Class 4", "Class 5"))
+
+#Find the coordinate points generated by the Multiple Correspondence Analysis (MCA) function
+coord_pts <- as.data.frame(mca_outcome$ind$coord)
+
+#Adding the LCA class labels to the dataframe with the coordinates
+coord_pts$lca_result_class_factor <- lca_result_class_factor
+
+#Plot the LCA classes as ellipses over the MCA plot of plots and save as LCA_MCA_biplot
+LCA_MCA_biplot <-
+  ggplot(coord_pts, aes(x = `Dim 1`, y = `Dim 2`, color = lca_result_class_factor)) +
+  geom_point(size = 3, alpha = 0.8) +
+  stat_ellipse(aes(x = `Dim 1`, y = `Dim 2`, color = lca_result_class_factor), type = "norm", level = 0.95) +
+  geom_text(aes(label = rownames(coord_pts)), nudge_x = 0.02, nudge_y = 0.02, size = 3, check_overlap = TRUE, color = "black") +
+  labs(
+    title = "MCA Biplot with LCA Classes",
+    x = "Dimension 1 (31.2% Variance Explained by this Dimension)",
+    y = "Dimension 2 (25.3% Variance Explained by this Dimension)",
+    color = "LCA Class")
+
+#LCA_MCA_biplot
+
+```
+
+![Figure 4.3.2 - MCA Biplot with 5 Class LCA Model Classes Overlain](index_files/figure-html/mca_biplot_lca.png)
+
+
+### 4.4 Sensitivity Analysis - Correlation
+
+Researchers have the ability to modify the model specification by either adding or removing variables or constraints to assess the sensitivity of the results to these changes. One of the major assumptions when performing Latent Class Analysis (LCA) is is an independence of the variables within a given class detected; variable redundancy and multicollinearity therefore becomes an important factor to consider, particularly when correlation coefficients for specific variables are greater than 0.50 [@sinha2021practitioner]. To analyse and assess the extent of this risk, we generated a correlation matrix and heatmap to assess the presence of multicollinearity, with a focus particularly on positively correlated variables that are present within the same classes, since by virtue of the underlying function of LCA, negatively correlated variables are less likely to appear within the same class.
+
+We then test the model by removing these variables and comparing the new model to the previous model which includes these variables. We will evaluate whether the new model is still able to fit the data well and compare its goodness of fit statistics (such as AIC, BIC) to those of the previous model. If the new model shows improvement in goodness of fit, we may consider selecting it as our final model.
+
+![Figure 4.4.1 - Correlation heatmap for sensitivity analysis](index_files/figure-html/Heatmap.png)
+
+As seen in the correlation heatmap (Figure 4.4.1), milk is highly correlated with both hair(0.88)and egg(-0.94). We decided to remove milk as an attribute, and re-consider our LCA model to see if it improves without this highly collinear variables included.
+
+```{r, warning=FALSE, echo=TRUE}
+
+#Creating a dataset without 'milk' - 13-variables
 new_zoo_int_2 <- new_zoo_int_1  %>% mutate(milk=NULL)
 
+#Binding 13-variables into columns for modified LCA model without 'milk'
 lca_bind_corr <-  cbind(hair, feathers, eggs, 
                    airborne, aquatic, predator, 
                    toothed, backbone, breathes, 
                    venomous, fins, tail, has_legs) ~ 1
 
 lca_fit5_corr <- poLCA(lca_bind_corr, data = new_zoo_int_2, 
-                  nclass = 5, graphs = TRUE, na.rm = TRUE,
+                  nclass = 5, graphs = FALSE, na.rm = TRUE,
                   verbose = FALSE, nrep=100)
 
+#Reordering the Model output graph to display in order from highest to lowest proprtion for easier comparison and labeling
+probs.start.new2 <- poLCA.reorder(lca_fit5_corr$probs.start,order(lca_fit5_corr$P,decreasing=TRUE))
+
+lca_fit5_corr <- poLCA(lca_bind_corr, data = new_zoo_int_2,nclass=5,
+                  graphs = FALSE,na.rm = TRUE,
+                  verbose = FALSE, nrep=100,
+                  probs.start=probs.start.new2)
+
+```
+
+![Figure 4.4.2 - 5-Class LCA Model Population Percentages without 'milk'](index_files/figure-html/lca_fit5_corr_graph.png)
+
+
+With the 'milk' variable removed from our LCA models due to high correlation values with 2 other attributes, our 5-Class models exhibited substantial improvement in AIC, BIC, and GoF, and slightly worse values for entropy. As a result, we find the adjusted 5-class model, with 13 attributes assessed to be our best final model.
+
+**Table 4.4.1 Comparison Statistics for Original and Modified 5-Class Models**
+```{r, warning=FALSE, echo=TRUE}
 lca_fit5_corr.ent <- poLCA.entropy(lca_fit5_corr)
 
+#Creating data frame of AIC, BIC, GoF, and Entropy of both original and modified 5-Class Models
 class5_compare <- data.frame( 
    Model = c('Original 5-Class Model', 'Adjusted 5-Class Model'),
    AIC = c(lca_fit5$aic, lca_fit5_corr$aic),
@@ -718,6 +778,7 @@ class5_compare <- data.frame(
    GoF = c(lca_fit5$Chisq, lca_fit5_corr$Chisq),
    entropy = c(lca_fit5.ent, lca_fit5_corr.ent))
 
+#Printing table comparing original and modified 5-class stats
 kable(class5_compare, format = "html", caption = "Comparison Statistics for Original and Modified 5-Class Models") %>%
   kable_styling(bootstrap_options = c("striped", "hover")) %>%
   column_spec(1, bold = TRUE, color = "white", background = "steelblue") %>%
@@ -726,11 +787,6 @@ kable(class5_compare, format = "html", caption = "Comparison Statistics for Orig
 
 ```
 
-With the 'milk' variable removed from our LCA models due to high
-correlation values with 2 other attributes, we reran our 5-Class models
-and found substantial improvement in AIC, BIC, and GoF, and slightly
-worse values for entropy. As a result, we find the adjusted 5-class
-model, with 13 attributes assessed to be our best final model.
 
 ### Conclusion
 
