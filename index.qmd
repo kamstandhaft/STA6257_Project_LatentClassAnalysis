@@ -23,10 +23,10 @@ utilized when it is believed that there may be unobserved subgroups
 (classes) among the individuals within a population. To identify these
 unobserved groups, LCA searches for and analyzes response patterns that
 may exist within categorical variables reported in the dataset
-[@nylund2018ten] with the ultimate goal of assigning each observation into a class based on the posterior probability of certainty that an observation should belong to a particular class [@vermunt2010latent]. Latent Class Analysis is an example of a broader class
+[@nylund2018ten] with the goal of assigning each observation into a class based on the posterior probability of certainty that an observation should belong to a particular class [@vermunt2010latent]. Latent Class Analysis is an example of a broader class
 of models called finite mixture models(FFM) [@grimm2021model] that seek
 to identify and classify instances of variance within model parameters
-between groups within the data that have not been explicitly defined as
+between unobserved groups within the data that have not been explicitly defined as
 groups by the attributes provided within the dataset itself. Ultimately,
 it is the "latent class prevalence" which is being estimated through a
 process in which the LCA function is estimating the probability that
@@ -60,7 +60,7 @@ prove often otherwise difficult groups to identify[@kaplan2004sage].
 One frequent application of Latent Class Analysis (LCA) has been to
 utilize it to identify subgroups of individuals within a population that
 may have similar or associated symptoms or characteristics of a mental
-health profile [@petersen2019application] or when and which specific
+health profile [@petersen2019application] or when and for which specific
 barriers may exist to receiving medical care [@thorpe2011patterns]. LCA
 has also been used to identify when any subgroups of a population exist
 containing individuals that may have different risk factors or potential
@@ -75,7 +75,7 @@ specific types of products [@kaplan2004sage].
 LCA has the ability to use mixture-modeling to distinguish and label
 instances of heterogeneity within a population and to identify subgroups
 of characteristics or individuals that may be more likely to exhibit
-those characteristics of heterogeneity [@weller2020latent] Identifying
+those characteristics of heterogeneity [@weller2020latent]. Identifying
 and labeling subgroups of a population that may not be explicitly
 obvious based upon its reported attributes has substantial application
 for helping to identify individuals within that population who may be at
@@ -83,25 +83,25 @@ greater risk or likelihood for a particular outcome. This application
 can help drive execution of actions that may require intervention
 [@petersen2019application].
 
-Latent class Analysis has application across a variety of fields, but
+Latent Class Analysis has application across a variety of fields, but
 there are also limitations that exist with to its use under certain
 circumstances that can prove challenging to its implementation. One of
 the major challenges that exist in any attempted implementation of this
 method, is being able to determine the appropriate number of latent
-classes. Doing so can prove time intensive and cumbersome, as the
+classes to choose for modeling the dataset. Doing so can prove time intensive and cumbersome, as the
 process can be somewhat subjective and often requires using a multi-step
 process to test multiple models and/or number of classes
 [@asparouhov2014auxiliary].
 
 Interpretation of the classes themselves that were generated can also
-provide some significant challenge as it may require knowledge of not
+provide some challenge as it may require knowledge of not
 only the implementation methodology of the LCA upon the data but also
 requires that the analyst have access to background information about
 the data attributes and context [@weller2020latent]. Though a class may
 be correctly identified, if the researcher/analyst does not correctly
 identify what is heterogenous about that class, it can lead to improper
 naming and assumptions about the defining characteristics of the members
-of that class for analysis [@weller2020latent].
+of that class for analysis and application [@weller2020latent].
 
 ## 2. Methods
 
@@ -111,9 +111,9 @@ Latent class analysis (LCA) is a statistical method used to identify
 hidden patterns or clusters within a dataset. This technique groups a
 set of observations based on several variables into distinct and
 exclusive categories, where the variables are unrelated within each
-category but similar across each one. Essentially, LCA is a type of
+category but similar across each one. Essentially, LCA as a type of
 finite mixture model (FMM), also known as unsupervised learning models,
-which combine different distributions to group similar data based on
+combines different distributions to group similar data based on
 selected parameters, resulting in data segmentation[@naldi2020research].
 
 In LCA, there are two types of parameters. The first type is the
@@ -140,15 +140,15 @@ to variable $n$, conditional on membership in LC $k$.
 
 The general steps to use latent class analysis are as follows:
 
-1.  Identify the research question and define the variables & define the categorical variables that will be used in the analysis
+1.  Identify the research question and define the variables, specifically the categorical variables that will be used in the analysis
 
 2.  Select the appropriate software: In this project R Studio will be used for the LCA
 
-3.  Determine the number of latent classes
+3.  Determine the number of latent classes to assess for ideal model
 
 4.  Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation
 
-5.  Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC), entropy, and chi-square Goodness-of-Fit. If our model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.
+5.  Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC), entropy, and chi-square Goodness-of-Fit (X^2). If the model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.
 
 6.  Conduct sensitivity analysis: Finally, conduct sensitivity
     analyses to test the robustness of the results and evaluate the
@@ -165,14 +165,12 @@ models.
 
 **Options to be utilized:**
 
--   **na.rm**: allows poLCA to manage any cases where values may be
-    missing within the data.
--   **graphs**: displays parameter estimates for the model in an
-    easy-to-read prediction of member classification
--   **nrep**: allows specification of the number of repetitions for
-    poLCA to assess the model for the best BIC value
+-   **na.rm**: allows the poLCA to function to account for any circumstances in which values may be missing within the data fields.
+-   **graphs**: displays parameter estimates as a proportion from 0.0 to 1.0, for the attributes within the model
+-   **nrep**: allows specification of the number of random starting values used by the poLCA function to assess the model for the best BIC value
 -   **verbose**: used to assess individual attribute predictions as well
     as concisely providing fit statistics
+-   **maxiter**: assigns the maximum number of iterations that can be used per run (**nrep**) to achieve convergence of the poLCA estimation algorithm
 
 
 **All Necessary Libraries are loaded here:**
@@ -216,16 +214,11 @@ eggs, etc. Of the 18 variables, 15 of them are binary variables and one
 of them is discrete. This majority of binary variables is why we chose
 this dataset for Latent Class Analysis.
 
-The variable that we are concerned with the most is the "type" variable.
-This variable has 7 categories: mammals, fish, birds, insects, reptiles,
-invertebrates, amphibians. Of the 101 entries, 42 are mammals (41.58%),
-21 are birds (20.79%), 14 are fish (13.86%), 11 are invertebrates
-(10.89%), 8 are insects (7.92%), 6 are reptiles (5.94%), and 5 are
-amphibians (4.95%).
+As a comparison metric for assessing the quality of the LCA models generated, the variable that we are concerned with the most is the "type" variable. This variable has 7 categories: mammals, fish, birds, insects, reptiles, invertebrates, amphibians. Of the 101 entries, 42 are mammals (41.58%), 21 are birds (20.79%), 14 are fish (13.86%), 11 are invertebrates (10.89%), 8 are insects (7.92%), 6 are reptiles (5.94%), and 5 are amphibians (4.95%).
 
 Among other variables, we will be removing the "type" variable from the
 dataset. Latent Class Analysis will be utilized to ascertain whether the
-groups identified by this method correspond to the seven animal types.
+groups identified by this method correspond to the seven animal types or if there is a different set of subclasses identified by the best LCA model as assessed by the convential LCA model assessment criteria.
 
 
 **Table 3.2.1 Variables considered in LCA Analysis:**
@@ -281,7 +274,7 @@ kable(tab_nonlca_var_copy, format = "html", caption = "Variables in Original Dat
 
 ### 3.3 Load Data
 
-When the data is first loaded, with each categorical variable, there is
+In the original raw dataset, within each categorical variable text, there is
 an apostrophe and a "b" before each word and at the end, there is an
 apostrophe. The data were cleaned into the file Zoo_clean with these
 extra characters removed leaving only "TRUE" & "FALSE".
@@ -309,7 +302,7 @@ number of legs a creature has) to has_legs (a binary operator indicating
 whether any legs are present or not).
 
 We will be using the poLCA function from the poLCA package library,
-which requires an input of positive integer values \<=1. As such, we
+which requires an input of positive integer values >=1. As such, we
 transformed our dataset from logical operators TRUE/FALSE to binary
 integers 0/1. But as poLCA function cannot accept "0" as a value, we
 further transformed the data by incrementing all values by 1, wherein
@@ -338,7 +331,9 @@ new_zoo_int_1 <- new_zoo_int %>% mutate_all(~. + 1)
 
 ## 4. Statistical Modeling
 
-Below we use the cbind function used to bind Columns being used in LCA
+Potentially the most difficult decision to make regarding identification of latent classes is determining the correct number of classes to use in our model. We will be assessing 2,3,4,5,6, and 7 number of classes in modeling. 
+
+Below we begin preparing to build our models by using the cbind function used to bind Columns being used in LCA.
 
 ```{r, warning=FALSE, echo=TRUE}
 # cbind function used to bind Columns being used in LCA
@@ -350,12 +345,7 @@ lca_bind <-  cbind(hair, feathers, eggs, milk,
 
 ### 4.1 Fitting LCA Models with 2-7 \# of Classes
 
-Potentially the most difficult decision to make regarding identification of latent classes is determining the correct number of classes to use in our model. We will be assessing 2,3,4,5,6, and 7 number of classes in modeling. 
-
-We will be running each of our 6 models for 100 repetitions. This will
-allow us to have consistent results for each number of classes per model
-to report upon without large swings in class sizes and predictions, and
-will additionally provide a best model for each number of classes.
+We will be running each of our 6 models 100 times(100 random starting values) each with 100 iterations. This will allow us to have consistent results for each number of classes per model to report upon without large swings in class sizes and predictions, and will additionally provide a best model for each number of classes.
 
 **Fitting a 2-class LCA Model**
 
@@ -432,20 +422,13 @@ lca_fit7 <- poLCA(lca_bind, data = new_zoo_int_1,
 
 ### 4.2 Model Comparison Statistics
 
-Arguably the model difficult part of using Latent Class Analysis is
-determining the correct number of classes to use to properly model the
-data. There are a number of statistics that help to indicate fit quality
-for each model, which we go through below to help select the correct
-number of classes for a good model.
+As determining the correct number of classes to use to properly model the data can often prove challenging, we will use a number of statistics to help indicate fit quality for each model, which we go through below to help select the correct number of classes for a good model.
 
-**As a note**: For each of these models, we are running 100 repetitions,
-and the criteria for which the best model is chosen is using the lowest
-BIC. The models and fit statistics can vary slightly through each run,
-even with 100 repetitions.
+**Note**: For each of these 6 models, we are running 100 repetitions random starting value, each with 100 iterations to help achieve convergence of the models for comparison. The criteria for which the best model is chosen by the poLCA function is the lowest BIC value. Without increasing the number of runs and iterations, the model and fit statistics can be inconsistent.
 
 To compare these models, we will be primarily looking at the Akaike
 Information Criterion (AIC), the Bayesian Information Criterion (BIC),
-and the Chi-square goodness of fit statistic (X\^2).
+and the Chi-square goodness of fit statistic (X^2).
 
 In a traditional research environment, these statistics would be likely
 the best decision criteria we could expect to have for assessing the
@@ -458,7 +441,7 @@ classes that differ from these defined classifications, which roughly
 correspond to the Linnaean taxonomic classification of classes within
 the Kingdom Animalia.
 
-A lower value for the AIC and BIC values as well as the (X\^2), indicate
+A lower value for the AIC and BIC values as well as the (X^2), indicate
 that the model is a better fit for the data.
 
 As illustrated in the figure below,the 5-class, 6-class, and 7-class
@@ -523,9 +506,9 @@ ggplot(data = fit_stats_long, aes(x = class_count, y = fit_stat_value, color = f
 ```
 **Figure 4.2.1 - Comparison of AIC and BIC across 2, 3, 4, 5, 6, and 7-Class Models**
 
-We additionally look at the Chi-square goodness of fit statistic (X\^2).
-The GoF(X\^2) for the 5-class model(1858) is better however than the
-(X\^2) for the 6-class model(2283).
+We additionally look at the Chi-square goodness of fit statistic (X^2).
+The GoF(X^2) for the 5-class model(1858) is better however than the
+(X^2) for the 6-class model(2283).
 
 ```{r, warning=FALSE, echo=TRUE}
 # Goodness of Fit
@@ -581,7 +564,7 @@ kable(tab_lca_entropy_copy, format = "html", caption = "Entropy Comparison of 5-
 
 ### 4.3 Chosen Model Discussion and Assessment
 
-With the better AIC, GoF(X\^2), and Entropy value, we selected the
+With the better AIC, GoF(X^2), and Entropy value, we selected the
 5-Class model as our preferred model.
 
 The 5-class population proportion graph shown below (Figure 4.3.1) displays along the x-axis, the proportions of the total dataset population that were classified into each of the 5-class of these model.
@@ -627,27 +610,26 @@ kable(orig_classes, format = "html", caption = "Population Percentages of each C
 ```
 
 **Class 1** which, as the largest class, is estimated to contain
-\~35.46% of the population predicts its members to have hair, toothed,
-backbone, breathes, tail, has_legs. We filtered the cleaned new_zoo
+\~35.46% of the population predicts its members to have 'hair', 'toothed',
+'backbone', 'breathes', 'tail', 'has_legs'. We filtered the cleaned new_zoo
 dataset for these attributes, and noted that all members were classified
-as type "mammal" in the original dataset.
+as type 'mammal' in the original dataset.
 
 **Class 2** which is estimated to contain \~20.78% of the population
-predicts its members to have feathers, eggs, backbone, breathes, tail,
-has_legs. We filtered the cleaned new_zoo dataset for these attributes,
-and noted that all members were classified as type "bird" in the
+predicts its members to have 'feathers', 'eggs', 'backbone', 'breathes', 'tail',
+'has_legs'. We filtered the cleaned new_zoo dataset for these attributes,
+and noted that all members were classified as type 'bird' in the
 original dataset.
 
-**Class 3** is estimated to contain ~17.09% of the population. This class
-is the least homogenous, and it should be noted that it has two
-attributes (breathes and predator) which were both over 50% shown on the
-graph, but as we excluded our filtering to \~80% and above, these are
+**Class 3** is estimated to contain ~17.09% of the population. It should be noted that it has two
+attributes ('breathes' and 'predator') which were both over 50% shown on the
+graph, but as we excluded our initial filtering assessment to \~80% and above, these are
 not selected in the filter.
 
-These class members are predicted to have eggs and has_legs. While this
+These class members are predicted to have 'eggs' and 'has_legs'. While this
 limited selection duplicates a few of the previous members that were
 selected for other classes, this class also contains the invertebrates
-and insects, which were not present in the other classes.
+and insects, which were not present in the other classes. Based solely upon outside comparison to the type attribute in the original dataset, this class appears to be the least homogenous.
 
 **Class 4** which is estimated to contain \~13.09% of the population is
 less homogenous than Classes 1 & 2, but not as heterogenous as Class 3.
@@ -655,15 +637,15 @@ The original classification schema of "type" had 7 unique values, which
 implies that with a 5-class model, overlap is inevitable. This is only
 visible due to the fact that we have the original data for "type" for
 illustration purposes, which is unlikely to be the case in research
-data.This class' members ar predicted to have aquatic, predator,
-toothed, backbone, breathes, tail. We filtered the cleaned new_zoo
+data.This class' members ar predicted to have 'aquatic', 'predator',
+'toothed', 'backbone', 'breathes', 'tail'. We filtered the cleaned new_zoo
 dataset for these attributes. The resulting filter only yielded 5
 members, which are mostly aquatic mammals and a single amphibian.
 
 **Class 5** which is the smallest class, estimated to contain \~12.85%
-of the population predicts its members to have eggs, aquatic, toothed,
-backbone, fins, tail. We filtered the cleaned new_zoo dataset for these
-attributes, and noted that all members were classified as type "fish" in
+of the population predicts its members to have 'eggs', 'aquatic', 'toothed',
+'backbone', 'fins', 'tail'. We filtered the cleaned new_zoo dataset for these
+attributes, and noted that all members were classified as type 'fish' in
 the original dataset.
 
 ```{r, warning=FALSE, echo=TRUE}
