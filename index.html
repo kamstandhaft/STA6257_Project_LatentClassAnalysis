@@ -546,7 +546,7 @@ div.csl-indent {
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lca_fit2 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">2</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -569,7 +569,7 @@ div.csl-indent {
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lca_fit3 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">3</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Fitting a 4-class LCA Model</strong></p>
@@ -578,7 +578,7 @@ div.csl-indent {
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lca_fit4 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">4</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Fitting a 5-class LCA Model</strong></p>
@@ -587,7 +587,7 @@ div.csl-indent {
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lca_fit5 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">5</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Fitting a 6-class LCA Model</strong></p>
@@ -596,7 +596,7 @@ div.csl-indent {
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lca_fit6 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">6</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Fitting a 7-class LCA Model</strong></p>
@@ -605,7 +605,7 @@ div.csl-indent {
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lca_fit7 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">7</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -667,37 +667,37 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 2 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1275.0796 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1350.918 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 21906.547 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 21906.5549 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 3 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1102.0079 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1217.073 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 8660.619 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 8660.6195 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 4 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1010.0118 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1164.304 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 5109.766 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 5109.7659 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5 </td>
    <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1176.912 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1858.388 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1858.3882 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6 </td>
    <td style="text-align:right;background-color: lavender !important;"> 965.9335 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1198.679 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 2283.357 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 2283.3574 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 7 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 958.7507 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1230.723 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1224.750 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 958.0054 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1229.978 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 824.9267 </td>
   </tr>
 </tbody>
 </table>
@@ -822,7 +822,7 @@ div.csl-indent {
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>lca_fit5 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1,<span class="at">nclass=</span><span class="dv">5</span>,</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">graphs =</span> <span class="cn">FALSE</span>,<span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>,</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">probs.start=</span>probs.start.new)</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
@@ -967,7 +967,7 @@ div.csl-indent {
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind_corr, <span class="at">data =</span> new_zoo_int_2, </span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">5</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Reordering the Model output graph to display in order from highest to lowest proprtion for easier comparison and labeling</span></span>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>probs.start.new2 <span class="ot">&lt;-</span> <span class="fu">poLCA.reorder</span>(lca_fit5_corr<span class="sc">$</span>probs.start,<span class="fu">order</span>(lca_fit5_corr<span class="sc">$</span>P,<span class="at">decreasing=</span><span class="cn">TRUE</span>))</span>
@@ -1022,16 +1022,16 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Original 5-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 983.2301 </td>
-   <td style="text-align:right;"> 1176.749 </td>
-   <td style="text-align:right;"> 2488.471 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
+   <td style="text-align:right;"> 1176.912 </td>
+   <td style="text-align:right;"> 1858.388 </td>
    <td style="text-align:right;"> 4.137245 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Adjusted 5-Class Model </td>
    <td style="text-align:right;background-color: lavender !important;"> 954.2627 </td>
    <td style="text-align:right;"> 1134.706 </td>
-   <td style="text-align:right;"> 1568.740 </td>
+   <td style="text-align:right;"> 1568.741 </td>
    <td style="text-align:right;"> 4.043642 </td>
   </tr>
 </tbody>

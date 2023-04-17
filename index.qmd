@@ -372,7 +372,7 @@ classifications was 7 "types".
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit2 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 2, graphs = FALSE, na.rm = TRUE, 
-                  nrep=100, verbose = FALSE)
+                  nrep=100, maxiter=100, verbose = FALSE)
 ```
 
 ![Figure 4.1.1 - LCA 2-Class Model](index_files/figure-html/2_class_model.png)
@@ -395,7 +395,7 @@ all classes for that attribute. The poLCA function will additionally output a pr
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit3 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 3, graphs = FALSE, na.rm = TRUE, 
-                  verbose = FALSE, nrep=100)
+                  verbose = FALSE, nrep=100, maxiter=100)
 ```
 
 **Fitting a 4-class LCA Model**
@@ -403,7 +403,7 @@ lca_fit3 <- poLCA(lca_bind, data = new_zoo_int_1,
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit4 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 4, graphs = FALSE, na.rm = TRUE, 
-                  verbose = FALSE, nrep=100)
+                  verbose = FALSE, nrep=100, maxiter=100)
 ```
 
 **Fitting a 5-class LCA Model**
@@ -411,7 +411,7 @@ lca_fit4 <- poLCA(lca_bind, data = new_zoo_int_1,
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit5 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 5, graphs = FALSE, na.rm = TRUE,
-                  verbose = FALSE, nrep=100)
+                  verbose = FALSE, nrep=100, maxiter=100)
 ```
 
 **Fitting a 6-class LCA Model**
@@ -419,7 +419,7 @@ lca_fit5 <- poLCA(lca_bind, data = new_zoo_int_1,
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit6 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 6, graphs = FALSE, na.rm = TRUE,
-                  verbose = FALSE, nrep=100)
+                  verbose = FALSE, nrep=100, maxiter=100)
 ```
 
 **Fitting a 7-class LCA Model**
@@ -427,7 +427,7 @@ lca_fit6 <- poLCA(lca_bind, data = new_zoo_int_1,
 ```{r, warning=FALSE, echo=TRUE}
 lca_fit7 <- poLCA(lca_bind, data = new_zoo_int_1, 
                   nclass = 7, graphs = FALSE, na.rm = TRUE,
-                  verbose = FALSE, nrep=100)
+                  verbose = FALSE, nrep=100, maxiter=100)
 ```
 
 ### 4.2 Model Comparison Statistics
@@ -611,7 +611,7 @@ probs.start.new <- poLCA.reorder(lca_fit5$probs.start,order(lca_fit5$P,decreasin
 
 lca_fit5 <- poLCA(lca_bind, data = new_zoo_int_1,nclass=5,
                   graphs = FALSE,na.rm = TRUE,
-                  verbose = FALSE, nrep=100,
+                  verbose = FALSE, nrep=100, maxiter=100,
                   probs.start=probs.start.new)
 
 
@@ -749,7 +749,7 @@ lca_bind_corr <-  cbind(hair, feathers, eggs,
 
 lca_fit5_corr <- poLCA(lca_bind_corr, data = new_zoo_int_2, 
                   nclass = 5, graphs = FALSE, na.rm = TRUE,
-                  verbose = FALSE, nrep=100)
+                  verbose = FALSE, nrep=100, maxiter=100)
 
 #Reordering the Model output graph to display in order from highest to lowest proprtion for easier comparison and labeling
 probs.start.new2 <- poLCA.reorder(lca_fit5_corr$probs.start,order(lca_fit5_corr$P,decreasing=TRUE))
