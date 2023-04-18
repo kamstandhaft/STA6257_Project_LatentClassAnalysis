@@ -247,7 +247,7 @@ div.csl-indent {
 <ul>
 <li><strong>na.rm</strong>: allows the poLCA to function to account for any circumstances in which values may be missing within the data fields.</li>
 <li><strong>graphs</strong>: displays parameter estimates as a proportion from 0.0 to 1.0, for the attributes within the model</li>
-<li><strong>nrep</strong>: allows specification of the number of random starting values used by the poLCA function to assess the model for the best BIC value</li>
+<li><strong>nrep</strong>: allows specification of the number of random starting values used by the poLCA function to assess the model for the best <span class="math inline">\((BIC)\)</span> value</li>
 <li><strong>verbose</strong>: used to assess individual attribute predictions as well as concisely providing fit statistics</li>
 <li><strong>maxiter</strong>: assigns the maximum number of iterations that can be used per run (<strong>nrep</strong>) to achieve convergence of the poLCA estimation algorithm</li>
 </ul>
@@ -613,10 +613,10 @@ div.csl-indent {
 <section id="model-comparison-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="model-comparison-statistics">4.2 Model Comparison Statistics</h3>
 <p>As determining the correct number of classes to use to properly model the data can often prove challenging, we will use a number of statistics to help indicate fit quality for each model, which we go through below to help select the correct number of classes for a good model.</p>
-<p><strong>Note</strong>: For each of these 6 models, we are running 100 repetitions random starting value, each with 100 iterations to help achieve convergence of the models for comparison. The criteria for which the best model is chosen by the poLCA function is the lowest BIC value. Without increasing the number of runs and iterations, the model and fit statistics can be inconsistent.</p>
-<p>To compare these models, we will be primarily looking at the Akaike Information Criterion (AIC), the Bayesian Information Criterion (BIC), and the Chi-square goodness of fit statistic (X^2).</p>
+<p><strong>Note</strong>: For each of these 6 models, we are running 100 repetitions random starting value, each with 100 iterations to help achieve convergence of the models for comparison. The criteria for which the best model is chosen by the poLCA function is the lowest <span class="math inline">\((BIC)\)</span> value. Without increasing the number of runs and iterations, the model and fit statistics can be inconsistent.</p>
+<p>To compare these models, we will be primarily looking at the Akaike Information Criterion <span class="math inline">\((AIC)\)</span>, the Bayesian Information Criterion <span class="math inline">\((BIC)\)</span>, and the Chi-square goodness of fit statistic <span class="math inline">\((\chi^2)\)</span>.</p>
 <p>In a traditional research environment, these statistics would be likely the best decision criteria we could expect to have for assessing the model. In the case of our data, we have a comparison classification attribute “type” in our dataset that we will withhold from the Latent Class Analysis procedure as a secondary means to assess how well the model classifies the members of the dataset - in this case animals within a zoo. It is possible, however, that the LCA may find latent classes that differ from these defined classifications, which roughly correspond to the Linnaean taxonomic classification of classes within the Kingdom Animalia.</p>
-<p>A lower value for the AIC and BIC values as well as the (X^2), indicate that the model is a better fit for the data.</p>
+<p>A lower value for the <span class="math inline">\((AIC)\)</span> and <span class="math inline">\((BIC)\)</span> values as well as the <span class="math inline">\((\chi^2)\)</span>, indicate that the model is a better fit for the data.</p>
 <p>As illustrated in the figure below,the 5-class, 6-class, and 7-class models all have substantially lower values for these statistical metrics than for the 2-class, 3-class, and 4-class models. It is worth noting however, that the 7-class model posts an alert indicating that the number of parameters estimated exceeds the number of observations, which effectively provides a negative residual Degree of Freedom (DoF). For this reason, we can eliminate the 7-class model.</p>
 <p><strong>Table 4.2.1 Comparison of AIC, BIC, and Goodness of Fit for each # of Classes</strong></p>
 <div class="cell">
@@ -668,44 +668,44 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 2 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1275.0796 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1350.918 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 21906.549 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 21906.5554 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 3 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1102.0079 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1217.073 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 8660.619 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 8660.6195 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 4 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1010.0118 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1164.304 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 5109.766 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 5109.7659 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 983.2301 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1176.749 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 2488.471 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1176.912 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1858.3882 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6 </td>
    <td style="text-align:right;background-color: lavender !important;"> 965.9335 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1198.679 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 2283.357 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 2283.3573 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 7 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 958.7507 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1230.723 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1224.750 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 958.0054 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1229.978 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 824.9267 </td>
   </tr>
 </tbody>
 </table>
 
 </div>
 </div>
-<p>The 5-class model has a better fit according to the BIC(1177) values compared to the 6-class model BIC(1199), but the AIC for the 6-class model (966) is slightly better than the 5-class model AIC(983).</p>
+<p>The 5-class model has a better fit according to the <span class="math inline">\((BIC)\)</span>(1177) values compared to the 6-class model <span class="math inline">\((BIC)\)</span>(1199), but the <span class="math inline">\((AIC)\)</span> for the 6-class model (966) is slightly better than the 5-class model <span class="math inline">\((AIC)\)</span>(983).</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -730,7 +730,7 @@ div.csl-indent {
 </details>
 </div>
 <p><strong>Figure 4.2.1 - Comparison of AIC and BIC across 2, 3, 4, 5, 6, and 7-Class Models</strong></p>
-<p>We additionally look at the Chi-square goodness of fit statistic (X^2). The GoF(X^2) for the 5-class model(1858) is better however than the (X^2) for the 6-class model(2283).</p>
+<p>We additionally look at the Chi-square goodness of fit statistic <span class="math inline">\((\chi^2)\)</span>. The GoF<span class="math inline">\((\chi^2)\)</span> for the 5-class model(1858) is better however than the <span class="math inline">\((\chi^2)\)</span> for the 6-class model(2283).</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -754,7 +754,7 @@ div.csl-indent {
 <p><strong>Figure 4.2.2 - Comparison of GoF Values across 2, 3, 4, 5, 6, and 7-Class Models</strong></p>
 <p>Without a clearly better model between these two, we can further compare their entropy (see below).</p>
 <p>The entropy of a model speaks to how well the classes are separated with a higher entropy value indicating a likely increase in the separation of classes.</p>
-<p>As we see below, the 5-class model has a slightly higher entropy value than the 6-class model implying a slightly higher separability of classes. With BIC, GoF, and entropy in favor of the 5-class model, we select this model to use to assess and illustrate the classification schema that LCA uses to classify the dataset.</p>
+<p>As we see below, the 5-class model has a slightly higher entropy value than the 6-class model implying a slightly higher separability of classes. With <span class="math inline">\((BIC)\)</span>, GoF, and entropy in favor of the 5-class model, we select this model to use to assess and illustrate the classification schema that LCA uses to classify the dataset.</p>
 <p><strong>Table 4.2.3 Comparison of Entropy Values for the 5-Class and 6-Class Models</strong></p>
 <div class="cell">
 <details>
@@ -790,7 +790,7 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 4.136046 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 4.137245 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6-Class Model </td>
@@ -804,7 +804,7 @@ div.csl-indent {
 </section>
 <section id="chosen-model-discussion-and-assessment" class="level3">
 <h3 class="anchored" data-anchor-id="chosen-model-discussion-and-assessment">4.3 Chosen Model Discussion and Assessment</h3>
-<p>With the better AIC, GoF(X^2), and Entropy value, we selected the 5-Class model as our preferred model.</p>
+<p>With the better <span class="math inline">\((AIC)\)</span>, GoF<span class="math inline">\((\chi^2)\)</span>, and Entropy value, we selected the 5-Class model as our preferred model.</p>
 <p>The 5-class population proportion graph shown below (Figure 4.3.1) displays along the x-axis, the proportions of the total dataset population that were classified into each of the 5-class of these model.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -985,7 +985,7 @@ div.csl-indent {
 <p></p><figcaption class="figure-caption">Figure 4.4.2 - 5-Class LCA Model Population Percentages without ‘milk’</figcaption><p></p>
 </figure>
 </div>
-<p>With the ‘milk’ variable removed from our LCA models due to high correlation values with 2 other attributes, our 5-Class models exhibited substantial improvement in AIC, BIC, and GoF, and slightly worse values for entropy. As a result, we find the adjusted 5-class model, with 13 attributes assessed to be our best final model.</p>
+<p>With the ‘milk’ variable removed from our LCA models due to high correlation values with 2 other attributes, our 5-Class models exhibited substantial improvement in <span class="math inline">\((AIC)\)</span>, <span class="math inline">\((BIC)\)</span>, and GoF, and slightly worse values for entropy. As a result, we find the adjusted 5-class model, with 13 attributes assessed to be our best final model.</p>
 <p><strong>Table 4.4.1 Comparison Statistics for Original and Modified 5-Class Models</strong></p>
 <div class="cell">
 <details>
@@ -1026,7 +1026,7 @@ div.csl-indent {
    <td style="text-align:right;background-color: lavender !important;"> 983.2301 </td>
    <td style="text-align:right;"> 1176.749 </td>
    <td style="text-align:right;"> 2488.471 </td>
-   <td style="text-align:right;"> 4.136046 </td>
+   <td style="text-align:right;"> 4.137245 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Adjusted 5-Class Model </td>
