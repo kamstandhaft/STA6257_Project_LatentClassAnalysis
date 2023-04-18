@@ -299,11 +299,11 @@ number of legs a creature has) to has_legs (a binary operator indicating
 whether any legs are present or not).
 
 We will be using the poLCA function from the poLCA package library,
-which requires an input of positive integer values >=1. As such, we
+which requires an input of positive integer values $\ge 1$. As such, we
 transformed our dataset from logical operators TRUE/FALSE to binary
-integers 0/1. But as poLCA function cannot accept "0" as a value, we
-further transformed the data by incrementing all values by 1, wherein
-"FALSE" is represented by "1", and "TRUE" is represented by "2".
+integers 0/1. But as poLCA function cannot accept "$0$" as a value, we
+further transformed the data by incrementing all values by $1$, wherein
+"FALSE" is represented by "$1$", and "TRUE" is represented by "$2$".
 
 ```{r, warning=FALSE, echo=TRUE}
 #Creating "has_legs" to denote whether the animal has a leg count >0 from "legs" variable
@@ -424,8 +424,8 @@ As determining the correct number of classes to use to properly model the data c
 **Note**: For each of these 6 models, we are running 100 repetitions random starting value, each with 100 iterations to help achieve convergence of the models for comparison. The criteria for which the best model is chosen by the poLCA function is the lowest BIC value. Without increasing the number of runs and iterations, the model and fit statistics can be inconsistent.
 
 To compare these models, we will be primarily looking at the Akaike
-Information Criterion (AIC), the Bayesian Information Criterion (BIC),
-and the Chi-square goodness of fit statistic (X^2).
+Information Criterion $(AIC)$, the Bayesian Information Criterion $(BIC)$,
+and the Chi-square goodness of fit statistic $(\chi^2)$.
 
 In a traditional research environment, these statistics would be likely
 the best decision criteria we could expect to have for assessing the
@@ -438,7 +438,7 @@ classes that differ from these defined classifications, which roughly
 correspond to the Linnaean taxonomic classification of classes within
 the Kingdom Animalia.
 
-A lower value for the AIC and BIC values as well as the (X^2), indicate
+A lower value for the AIC and BIC values as well as the $(\chi^2)$, indicate
 that the model is a better fit for the data.
 
 As illustrated in the figure below,the 5-class, 6-class, and 7-class
@@ -503,9 +503,9 @@ ggplot(data = fit_stats_long, aes(x = class_count, y = fit_stat_value, color = f
 ```
 **Figure 4.2.1 - Comparison of AIC and BIC across 2, 3, 4, 5, 6, and 7-Class Models**
 
-We additionally look at the Chi-square goodness of fit statistic (X^2).
-The GoF(X^2) for the 5-class model(1858) is better however than the
-(X^2) for the 6-class model(2283).
+We additionally look at the Chi-square goodness of fit statistic $(\chi^2)$.
+The GoF $(\chi^2)$ for the 5-class model(1858) is better however than the
+$(\chi^2)$ for the 6-class model(2283).
 
 ```{r, warning=FALSE, echo=TRUE}
 # Goodness of Fit
@@ -561,7 +561,7 @@ kable(tab_lca_entropy_copy, format = "html", caption = "Entropy Comparison of 5-
 
 ### 4.3 Chosen Model Discussion and Assessment
 
-With the better AIC, GoF(X^2), and Entropy value, we selected the
+With the better AIC, GoF $(\chi^2)$, and Entropy value, we selected the
 5-Class model as our preferred model.
 
 The 5-class population proportion graph shown below (Figure 4.3.1) displays along the x-axis, the proportions of the total dataset population that were classified into each of the 5-class of these model.

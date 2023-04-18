@@ -495,7 +495,7 @@ div.csl-indent {
 <section id="data-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="data-preparation">3.4 Data Preparation</h3>
 <p>As mentioned above, we will be removing the “type” variable from the dataset with the goal of trying to replicate this level of classification through the latent class detection. The identifier variable “animal” will also be removed. Finally, we only want objective binary variables in our dataset, so we will also be removing “catsize” and “domestic” from the dataset, and transforming legs (denoting the number of legs a creature has) to has_legs (a binary operator indicating whether any legs are present or not).</p>
-<p>We will be using the poLCA function from the poLCA package library, which requires an input of positive integer values &gt;=1. As such, we transformed our dataset from logical operators TRUE/FALSE to binary integers 0/1. But as poLCA function cannot accept “0” as a value, we further transformed the data by incrementing all values by 1, wherein “FALSE” is represented by “1”, and “TRUE” is represented by “2”.</p>
+<p>We will be using the poLCA function from the poLCA package library, which requires an input of positive integer values <span class="math inline">\(\ge 1\)</span>. As such, we transformed our dataset from logical operators TRUE/FALSE to binary integers 0/1. But as poLCA function cannot accept “<span class="math inline">\(0\)</span>” as a value, we further transformed the data by incrementing all values by <span class="math inline">\(1\)</span>, wherein “FALSE” is represented by “<span class="math inline">\(1\)</span>”, and “TRUE” is represented by “<span class="math inline">\(2\)</span>”.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -614,9 +614,9 @@ div.csl-indent {
 <h3 class="anchored" data-anchor-id="model-comparison-statistics">4.2 Model Comparison Statistics</h3>
 <p>As determining the correct number of classes to use to properly model the data can often prove challenging, we will use a number of statistics to help indicate fit quality for each model, which we go through below to help select the correct number of classes for a good model.</p>
 <p><strong>Note</strong>: For each of these 6 models, we are running 100 repetitions random starting value, each with 100 iterations to help achieve convergence of the models for comparison. The criteria for which the best model is chosen by the poLCA function is the lowest BIC value. Without increasing the number of runs and iterations, the model and fit statistics can be inconsistent.</p>
-<p>To compare these models, we will be primarily looking at the Akaike Information Criterion (AIC), the Bayesian Information Criterion (BIC), and the Chi-square goodness of fit statistic (X^2).</p>
+<p>To compare these models, we will be primarily looking at the Akaike Information Criterion <span class="math inline">\((AIC)\)</span>, the Bayesian Information Criterion <span class="math inline">\((BIC)\)</span>, and the Chi-square goodness of fit statistic <span class="math inline">\((\chi^2)\)</span>.</p>
 <p>In a traditional research environment, these statistics would be likely the best decision criteria we could expect to have for assessing the model. In the case of our data, we have a comparison classification attribute “type” in our dataset that we will withhold from the Latent Class Analysis procedure as a secondary means to assess how well the model classifies the members of the dataset - in this case animals within a zoo. It is possible, however, that the LCA may find latent classes that differ from these defined classifications, which roughly correspond to the Linnaean taxonomic classification of classes within the Kingdom Animalia.</p>
-<p>A lower value for the AIC and BIC values as well as the (X^2), indicate that the model is a better fit for the data.</p>
+<p>A lower value for the AIC and BIC values as well as the <span class="math inline">\((\chi^2)\)</span>, indicate that the model is a better fit for the data.</p>
 <p>As illustrated in the figure below,the 5-class, 6-class, and 7-class models all have substantially lower values for these statistical metrics than for the 2-class, 3-class, and 4-class models. It is worth noting however, that the 7-class model posts an alert indicating that the number of parameters estimated exceeds the number of observations, which effectively provides a negative residual Degree of Freedom (DoF). For this reason, we can eliminate the 7-class model.</p>
 <p><strong>Table 4.2.1 Comparison of AIC, BIC, and Goodness of Fit for each # of Classes</strong></p>
 <div class="cell">
@@ -668,7 +668,7 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 2 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1275.0796 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1350.918 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 21906.549 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 21906.555 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 3 </td>
@@ -678,9 +678,9 @@ div.csl-indent {
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 4 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1010.0118 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1164.304 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 5109.766 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1010.4760 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1164.768 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 5444.249 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5 </td>
@@ -730,7 +730,7 @@ div.csl-indent {
 </details>
 </div>
 <p><strong>Figure 4.2.1 - Comparison of AIC and BIC across 2, 3, 4, 5, 6, and 7-Class Models</strong></p>
-<p>We additionally look at the Chi-square goodness of fit statistic (X^2). The GoF(X^2) for the 5-class model(1858) is better however than the (X^2) for the 6-class model(2283).</p>
+<p>We additionally look at the Chi-square goodness of fit statistic <span class="math inline">\((\chi^2)\)</span>. The GoF <span class="math inline">\((\chi^2)\)</span> for the 5-class model(1858) is better however than the <span class="math inline">\((\chi^2)\)</span> for the 6-class model(2283).</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -804,7 +804,7 @@ div.csl-indent {
 </section>
 <section id="chosen-model-discussion-and-assessment" class="level3">
 <h3 class="anchored" data-anchor-id="chosen-model-discussion-and-assessment">4.3 Chosen Model Discussion and Assessment</h3>
-<p>With the better AIC, GoF(X^2), and Entropy value, we selected the 5-Class model as our preferred model.</p>
+<p>With the better AIC, GoF <span class="math inline">\((\chi^2)\)</span>, and Entropy value, we selected the 5-Class model as our preferred model.</p>
 <p>The 5-class population proportion graph shown below (Figure 4.3.1) displays along the x-axis, the proportions of the total dataset population that were classified into each of the 5-class of these model.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1032,7 +1032,7 @@ div.csl-indent {
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Adjusted 5-Class Model </td>
    <td style="text-align:right;background-color: lavender !important;"> 954.2627 </td>
    <td style="text-align:right;"> 1134.706 </td>
-   <td style="text-align:right;"> 1568.740 </td>
+   <td style="text-align:right;"> 1568.741 </td>
    <td style="text-align:right;"> 4.043642 </td>
   </tr>
 </tbody>
