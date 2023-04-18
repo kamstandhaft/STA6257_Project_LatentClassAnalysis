@@ -140,20 +140,17 @@ to variable $n$, conditional on membership in LC $k$.
 
 The general steps to use latent class analysis are as follows:
 
-1.  Identify the research question and define the variables, specifically the categorical variables that will be used in the analysis
+- Identify the research question and define the variables, specifically the categorical variables that will be used in the analysis
 
-2.  Select the appropriate software: In this project R Studio will be used for the LCA
+- Select the appropriate software: In this project R Studio will be used for the LCA
 
-3.  Determine the number of latent classes to assess for ideal model
+- Determine the number of latent classes to assess for ideal model
 
-4.  Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation
+- Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation
 
-5.  Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion (AIC), and Bayesian Information Criterion (BIC), entropy, and chi-square Goodness-of-Fit (X^2). If the model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.
+- Evaluate the model: After estimating the model, evaluate its fit using goodness-of-fit statistics such as the likelihood ratio test, Akaike Information Criterion $(AIC)$, and Bayesian Information Criterion $(BIC)$, entropy, and chi-square Goodness-of-Fit $(\chi^2)$. If the model fits well, interpret the results and report the estimated probabilities of individuals belonging to each class.
 
-6.  Conduct sensitivity analysis: Finally, conduct sensitivity
-    analyses to test the robustness of the results and evaluate the
-    stability of the estimated probabilities across different subgroups
-    or samples.
+- Conduct sensitivity analysis: Finally, conduct sensitivity analyses to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.
 
 ## 3. Analysis and Results
 
