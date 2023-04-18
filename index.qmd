@@ -535,7 +535,7 @@ classes.
 
 As we see below, the 5-class model has a slightly higher entropy value
 than the 6-class model implying a slightly higher separability of
-classes. With AIC, GoF, and entropy in favor of the 5-class model, we
+classes. With BIC, GoF, and entropy in favor of the 5-class model, we
 select this model to use to assess and illustrate the classification
 schema that LCA uses to classify the dataset.
 
@@ -569,7 +569,7 @@ With the better AIC, GoF(X^2), and Entropy value, we selected the
 
 The 5-class population proportion graph shown below (Figure 4.3.1) displays along the x-axis, the proportions of the total dataset population that were classified into each of the 5-class of these model.
 
-![Figure 4.3.1 - 5-Class Model](index_files/figure-html/5_class_model_graph.png)
+![Figure 4.3.1 - 5-Class Model](index_files/figure-html/5_class_ordered.png)
 
 Under a normal research environment, we would not likely have the true
 classifications to compare these classes to against their predicted
@@ -621,7 +621,7 @@ predicts its members to have 'feathers', 'eggs', 'backbone', 'breathes', 'tail',
 and noted that all members were classified as type 'bird' in the
 original dataset.
 
-**Class 3** is estimated to contain ~17.09% of the population. It should be noted that it has two
+**Class 3** is estimated to contain ~17.82% of the population. It should be noted that it has two
 attributes ('breathes' and 'predator') which were both over 50% shown on the
 graph, but as we excluded our initial filtering assessment to \~80% and above, these are
 not selected in the filter.

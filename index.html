@@ -668,37 +668,37 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 2 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1275.0796 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1350.918 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 21906.557 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 21906.5494 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 3 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1103.9653 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1219.031 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 9052.214 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1102.0079 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1217.073 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 8660.6195 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 4 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1010.0118 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1164.304 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 5109.766 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 5109.7659 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5 </td>
    <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1176.912 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1858.388 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1858.3881 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6 </td>
    <td style="text-align:right;background-color: lavender !important;"> 965.9335 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1198.679 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 2283.357 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 2283.3574 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 7 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 958.7507 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1230.723 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1224.750 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 958.0058 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1229.978 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 825.0432 </td>
   </tr>
 </tbody>
 </table>
@@ -754,7 +754,7 @@ div.csl-indent {
 <p><strong>Figure 4.2.2 - Comparison of GoF Values across 2, 3, 4, 5, 6, and 7-Class Models</strong></p>
 <p>Without a clearly better model between these two, we can further compare their entropy (see below).</p>
 <p>The entropy of a model speaks to how well the classes are separated with a higher entropy value indicating a likely increase in the separation of classes.</p>
-<p>As we see below, the 5-class model has a slightly higher entropy value than the 6-class model implying a slightly higher separability of classes. With AIC, GoF, and entropy in favor of the 5-class model, we select this model to use to assess and illustrate the classification schema that LCA uses to classify the dataset.</p>
+<p>As we see below, the 5-class model has a slightly higher entropy value than the 6-class model implying a slightly higher separability of classes. With BIC, GoF, and entropy in favor of the 5-class model, we select this model to use to assess and illustrate the classification schema that LCA uses to classify the dataset.</p>
 <p><strong>Table 4.2.3 Comparison of Entropy Values for the 5-Class and 6-Class Models</strong></p>
 <div class="cell">
 <details>
@@ -808,7 +808,7 @@ div.csl-indent {
 <p>The 5-class population proportion graph shown below (Figure 4.3.1) displays along the x-axis, the proportions of the total dataset population that were classified into each of the 5-class of these model.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/5_class_model_graph.png" class="img-fluid figure-img"></p>
+<p><img src="index_files/figure-html/5_class_ordered.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure 4.3.1 - 5-Class Model</figcaption><p></p>
 </figure>
 </div>
@@ -875,7 +875,7 @@ div.csl-indent {
 </div>
 <p><strong>Class 1</strong> which, as the largest class, is estimated to contain ~35.46% of the population predicts its members to have ‘hair’, ‘toothed’, ‘backbone’, ‘breathes’, ‘tail’, ‘has_legs’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘mammal’ in the original dataset.</p>
 <p><strong>Class 2</strong> which is estimated to contain ~20.78% of the population predicts its members to have ‘feathers’, ‘eggs’, ‘backbone’, ‘breathes’, ‘tail’, ‘has_legs’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘bird’ in the original dataset.</p>
-<p><strong>Class 3</strong> is estimated to contain ~17.09% of the population. It should be noted that it has two attributes (‘breathes’ and ‘predator’) which were both over 50% shown on the graph, but as we excluded our initial filtering assessment to ~80% and above, these are not selected in the filter.</p>
+<p><strong>Class 3</strong> is estimated to contain ~17.82% of the population. It should be noted that it has two attributes (‘breathes’ and ‘predator’) which were both over 50% shown on the graph, but as we excluded our initial filtering assessment to ~80% and above, these are not selected in the filter.</p>
 <p>These class members are predicted to have ‘eggs’ and ‘has_legs’. While this limited selection duplicates a few of the previous members that were selected for other classes, this class also contains the invertebrates and insects, which were not present in the other classes. Based solely upon outside comparison to the type attribute in the original dataset, this class appears to be the least homogenous.</p>
 <p><strong>Class 4</strong> which is estimated to contain ~13.09% of the population is less homogenous than Classes 1 &amp; 2, but not as heterogenous as Class 3. The original classification schema of “type” had 7 unique values, which implies that with a 5-class model, overlap is inevitable. This is only visible due to the fact that we have the original data for “type” for illustration purposes, which is unlikely to be the case in research data.This class’ members ar predicted to have ‘aquatic’, ‘predator’, ‘toothed’, ‘backbone’, ‘breathes’, ‘tail’. We filtered the cleaned new_zoo dataset for these attributes. The resulting filter only yielded 5 members, which are mostly aquatic mammals and a single amphibian.</p>
 <p><strong>Class 5</strong> which is the smallest class, estimated to contain ~12.85% of the population predicts its members to have ‘eggs’, ‘aquatic’, ‘toothed’, ‘backbone’, ‘fins’, ‘tail’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘fish’ in the original dataset.</p>
@@ -1032,7 +1032,7 @@ div.csl-indent {
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Adjusted 5-Class Model </td>
    <td style="text-align:right;background-color: lavender !important;"> 954.2627 </td>
    <td style="text-align:right;"> 1134.706 </td>
-   <td style="text-align:right;"> 1568.740 </td>
+   <td style="text-align:right;"> 1568.741 </td>
    <td style="text-align:right;"> 4.043642 </td>
   </tr>
 </tbody>
