@@ -1,24 +1,54 @@
 ---
-title: "Slides"
+title: "Latent Class Analysis"
 format: revealjs
 editor: visual
+author: "Daniel Martin, Kameron Standhaft, Esra Acar"
 ---
 
-## 
+## Overview
+-  What is Latent Class Analysis (LCA)?
+-  Usage of LCA
+-  Methods
+-  Our dataset
+-  Our goal
+-  Best number of classes
+-  Analyze class attributes
+-  Correlation
+-  Conclusion
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+## What is Latent Class Analysis (LCA)?
 
-## Bullets
 
-When you click the **Render** button a document will be generated that includes:
 
--   Content authored with markdown
--   Output from executable code
+## Usage of LCA
 
-## Code
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+## Methods
+
+
+## Our dataset
+
+
 
 ```{r}
-1 + 1
+library(readr)
+Zoo_clean <- read_csv("Zoo_clean.csv")
+View(Zoo_clean)
 ```
+
+## Our goal
+
+
+## Best number of classes
+
+
+## Analyze class attributes
+
+
+## Correlation
+
+
+## Conclusion
+
+
