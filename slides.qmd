@@ -1,7 +1,8 @@
 ---
 title: "Latent Class Analysis"
 format: 
-  revealjs
+  revealjs:
+    theme: styles.scss
 editor: visual
 author: "Daniel Martin, Kameron Standhaft, Esra Acar"
 ---

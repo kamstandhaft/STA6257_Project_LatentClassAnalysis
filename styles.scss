@@ -1,35 +1,9 @@
-$primary-color: #1E6A8C;
-$link-color: #008080;
-$visited-link-color: #4DB6AC;
+/*-- scss:defaults --*/
 
-body {
-  background-color: #F1F1F2;
-  font-family: Georgia, Times, serif;
-  color: #333;
-  
-  h1,
-  h2,
-  h3 {
-    color: $primary-color;
-  }
+$font-family-sans-serif: "Palatino Linotype", "Book Antiqua", Palatino,
+  FreeSerif, serif !default;
 
-  a:link {
-    color: $link-color;
-  }
+$body-color: #1E6A8C !default;
+$link-color: #008080 !default;
+$visited-link-color: #4DB6AC !default;
 
-  a:visited {
-    color: $visited-link-color;
-  }
-
-  img {
-    border: 2px solid #000000;
-    width: 75%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-
-  tr {
-    height: 50%;
-  }
-}
