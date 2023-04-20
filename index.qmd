@@ -710,7 +710,7 @@ We then test the model by removing these variables and comparing the new model t
 
 ![Figure 4.4.1 - Correlation heatmap for sensitivity analysis](index_files/figure-html/Heatmap.png)
 
-As seen in the correlation heatmap (Figure 4.4.1), milk is highly correlated with both hair(0.88)and egg(-0.94). We decided to remove milk as an attribute, and re-consider our LCA model to see if it improves without this highly collinear variables included.
+As seen in the correlation heatmap (Figure 4.4.1), 'milk' is highly correlated with both hair(0.88)and egg(-0.94). We decided to remove 'milk' as an attribute, and re-consider our LCA model to see if it improves without this highly collinear variables included.
 
 ```{r, warning=FALSE, echo=TRUE}
 

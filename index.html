@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -149,7 +149,6 @@ div.csl-indent {
   <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">3.1 Software</a></li>
   <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description">3.2 Dataset Description</a></li>
   <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">3.3 Load Data</a></li>
-  <li><a href="#load-data-1" id="toc-load-data-1" class="nav-link" data-scroll-target="#load-data-1">3.2.2 Load Data</a></li>
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">3.4 Data Preparation</a></li>
   </ul></li>
   <li><a href="#statistical-modeling" id="toc-statistical-modeling" class="nav-link" data-scroll-target="#statistical-modeling">4. Statistical Modeling</a>
@@ -187,7 +186,6 @@ div.csl-indent {
       <p class="date">April 20, 2023</p>
     </div>
   </div>
-  
     
   </div>
   
@@ -483,36 +481,14 @@ div.csl-indent {
 <section id="load-data" class="level3">
 <h3 class="anchored" data-anchor-id="load-data">3.3 Load Data</h3>
 <p>In the original raw dataset, within each categorical variable text, there is an apostrophe and a “b” before each word and at the end, there is an apostrophe. The data were cleaned into the file Zoo_clean with these extra characters removed leaving only “TRUE” &amp; “FALSE”.</p>
-<p><strong>All Necessary Libraries are loaded here:</strong></p>
+<p>Below is where we import the cleaned dataset without the apostrophes or the “b”s.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loading packages </span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Zoo_clean<span class="ot">&lt;-</span> (<span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/kamstandhaft/STA6257_Project_LatentClassAnalysis/main/Zoo_clean.csv"</span>))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(poLCA)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stats)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</section>
-<section id="load-data-1" class="level3">
-<h3 class="anchored" data-anchor-id="load-data-1">3.2.2 Load Data</h3>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Zoo_clean<span class="ot">&lt;-</span> (<span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/kamstandhaft/STA6257_Project_LatentClassAnalysis/main/Zoo_clean.csv"</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>new_zoo <span class="ot">&lt;-</span> Zoo_clean <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">animal=</span><span class="cn">NULL</span>, <span class="at">domestic=</span><span class="cn">NULL</span>, <span class="at">catsize=</span><span class="cn">NULL</span>, <span class="at">type=</span><span class="cn">NULL</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(new_zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>new_zoo <span class="ot">&lt;-</span> Zoo_clean <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">animal=</span><span class="cn">NULL</span>, <span class="at">domestic=</span><span class="cn">NULL</span>, <span class="at">catsize=</span><span class="cn">NULL</span>, <span class="at">type=</span><span class="cn">NULL</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(new_zoo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -523,24 +499,24 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating "has_legs" to denote whether the animal has a leg count &gt;0 from "legs" variable</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>new_zoo <span class="ot">&lt;-</span> Zoo_clean <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">has_legs =</span> <span class="fu">ifelse</span>(legs <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing "legs" since it is continuous and not binary</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>new_zoo <span class="ot">&lt;-</span> new_zoo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">legs =</span> <span class="cn">NULL</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Converting has_legs from integer to logical to match the rest of the dataset</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>new_zoo<span class="sc">$</span>has_legs <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(new_zoo<span class="sc">$</span>has_legs)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing "animal","domestic", "catsize", and "type" from 18-variable dataset to make new 14-variable dataset for LCA modeling  </span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>new_zoo_subset <span class="ot">&lt;-</span> new_zoo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">animal=</span><span class="cn">NULL</span>, <span class="at">domestic=</span><span class="cn">NULL</span>, </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">catsize=</span><span class="cn">NULL</span>, <span class="at">type=</span><span class="cn">NULL</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a dataset where the binary data is converted to integers 0/"FALSE" or 1/"TRUE"</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>new_zoo_int <span class="ot">&lt;-</span> new_zoo_subset <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">as.integer</span>(.))</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Incrementing the binary integers from 0/1 to 1/2 - poLCA() can only accept integers &gt;=1</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>new_zoo_int_1 <span class="ot">&lt;-</span> new_zoo_int <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span>. <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating "has_legs" to denote whether the animal has a leg count &gt;0 from "legs" variable</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>new_zoo <span class="ot">&lt;-</span> Zoo_clean <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">has_legs =</span> <span class="fu">ifelse</span>(legs <span class="sc">==</span> <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing "legs" since it is continuous and not binary</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>new_zoo <span class="ot">&lt;-</span> new_zoo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">legs =</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Converting has_legs from integer to logical to match the rest of the dataset</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>new_zoo<span class="sc">$</span>has_legs <span class="ot">&lt;-</span> <span class="fu">as.logical</span>(new_zoo<span class="sc">$</span>has_legs)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing "animal","domestic", "catsize", and "type" from 18-variable dataset to make new 14-variable dataset for LCA modeling  </span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>new_zoo_subset <span class="ot">&lt;-</span> new_zoo <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">animal=</span><span class="cn">NULL</span>, <span class="at">domestic=</span><span class="cn">NULL</span>, </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">catsize=</span><span class="cn">NULL</span>, <span class="at">type=</span><span class="cn">NULL</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a dataset where the binary data is converted to integers 0/"FALSE" or 1/"TRUE"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>new_zoo_int <span class="ot">&lt;-</span> new_zoo_subset <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">as.integer</span>(.))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Incrementing the binary integers from 0/1 to 1/2 - poLCA() can only accept integers &gt;=1</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>new_zoo_int_1 <span class="ot">&lt;-</span> new_zoo_int <span class="sc">%&gt;%</span> <span class="fu">mutate_all</span>(<span class="sc">~</span>. <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -552,11 +528,11 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cbind function used to bind Columns being used in LCA</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lca_bind <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, milk, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cbind function used to bind Columns being used in LCA</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lca_bind <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, milk, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="fitting-lca-models-with-2-7-of-classes" class="level3">
@@ -569,9 +545,9 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lca_fit2 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">2</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lca_fit2 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">2</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -592,45 +568,45 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lca_fit3 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">3</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lca_fit3 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">3</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Fitting a 4-class LCA Model</strong></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lca_fit4 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">4</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lca_fit4 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">4</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Fitting a 5-class LCA Model</strong></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lca_fit5 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">5</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lca_fit5 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">5</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Fitting a 6-class LCA Model</strong></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lca_fit6 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">6</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lca_fit6 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">6</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Fitting a 7-class LCA Model</strong></p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lca_fit7 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">7</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lca_fit7 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">7</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -646,34 +622,34 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Data</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#![Figure 4.2.1 Model Comparison](index_files/figure-html/Model_comparison.PNG)</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>class_count <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>fit_stats_long <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">class_count =</span> <span class="fu">rep</span>(class_count, <span class="dv">2</span>),</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit_stat =</span>       <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"AIC"</span>, <span class="fu">length</span>(class_count)), <span class="fu">rep</span>(<span class="st">"BIC"</span>, <span class="fu">length</span>(class_count))),</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit_stat_value =</span> <span class="fu">c</span>(lca_fit2<span class="sc">$</span>aic, lca_fit3<span class="sc">$</span>aic, lca_fit4<span class="sc">$</span>aic, lca_fit5<span class="sc">$</span>aic, lca_fit6<span class="sc">$</span>aic, lca_fit7<span class="sc">$</span>aic,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                   lca_fit2<span class="sc">$</span>bic, lca_fit3<span class="sc">$</span>bic, lca_fit4<span class="sc">$</span>bic, lca_fit5<span class="sc">$</span>bic, lca_fit6<span class="sc">$</span>bic, lca_fit7<span class="sc">$</span>bic))</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>fit_AIC <span class="ot">&lt;-</span> <span class="fu">c</span>(lca_fit2<span class="sc">$</span>aic, lca_fit3<span class="sc">$</span>aic, lca_fit4<span class="sc">$</span>aic, lca_fit5<span class="sc">$</span>aic, lca_fit6<span class="sc">$</span>aic, lca_fit7<span class="sc">$</span>aic)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>fit_BIC <span class="ot">&lt;-</span> <span class="fu">c</span>(lca_fit2<span class="sc">$</span>bic, lca_fit3<span class="sc">$</span>bic, lca_fit4<span class="sc">$</span>bic, lca_fit5<span class="sc">$</span>bic, lca_fit6<span class="sc">$</span>bic, lca_fit7<span class="sc">$</span>bic)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>fit_GoF <span class="ot">&lt;-</span> <span class="fu">c</span>(lca_fit2<span class="sc">$</span>Chisq, lca_fit3<span class="sc">$</span>Chisq, lca_fit4<span class="sc">$</span>Chisq, lca_fit5<span class="sc">$</span>Chisq, lca_fit6<span class="sc">$</span>Chisq, lca_fit7<span class="sc">$</span>Chisq)</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>fit_stats <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(class_count, fit_AIC, fit_BIC, fit_GoF)</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a copy with easier to read column names</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>fit_stats_copy <span class="ot">&lt;-</span> fit_stats</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fit_stats_copy) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Class Count"</span>, <span class="st">"AIC"</span>, <span class="st">"BIC"</span>, <span class="st">"Goodness of Fit"</span>)</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the knitr library</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(fit_stats_copy, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Fit Statistics Table"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Data</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#![Figure 4.2.1 Model Comparison](index_files/figure-html/Model_comparison.PNG)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>class_count <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>fit_stats_long <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">class_count =</span> <span class="fu">rep</span>(class_count, <span class="dv">2</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit_stat =</span>       <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"AIC"</span>, <span class="fu">length</span>(class_count)), <span class="fu">rep</span>(<span class="st">"BIC"</span>, <span class="fu">length</span>(class_count))),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit_stat_value =</span> <span class="fu">c</span>(lca_fit2<span class="sc">$</span>aic, lca_fit3<span class="sc">$</span>aic, lca_fit4<span class="sc">$</span>aic, lca_fit5<span class="sc">$</span>aic, lca_fit6<span class="sc">$</span>aic, lca_fit7<span class="sc">$</span>aic,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                   lca_fit2<span class="sc">$</span>bic, lca_fit3<span class="sc">$</span>bic, lca_fit4<span class="sc">$</span>bic, lca_fit5<span class="sc">$</span>bic, lca_fit6<span class="sc">$</span>bic, lca_fit7<span class="sc">$</span>bic))</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>fit_AIC <span class="ot">&lt;-</span> <span class="fu">c</span>(lca_fit2<span class="sc">$</span>aic, lca_fit3<span class="sc">$</span>aic, lca_fit4<span class="sc">$</span>aic, lca_fit5<span class="sc">$</span>aic, lca_fit6<span class="sc">$</span>aic, lca_fit7<span class="sc">$</span>aic)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>fit_BIC <span class="ot">&lt;-</span> <span class="fu">c</span>(lca_fit2<span class="sc">$</span>bic, lca_fit3<span class="sc">$</span>bic, lca_fit4<span class="sc">$</span>bic, lca_fit5<span class="sc">$</span>bic, lca_fit6<span class="sc">$</span>bic, lca_fit7<span class="sc">$</span>bic)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>fit_GoF <span class="ot">&lt;-</span> <span class="fu">c</span>(lca_fit2<span class="sc">$</span>Chisq, lca_fit3<span class="sc">$</span>Chisq, lca_fit4<span class="sc">$</span>Chisq, lca_fit5<span class="sc">$</span>Chisq, lca_fit6<span class="sc">$</span>Chisq, lca_fit7<span class="sc">$</span>Chisq)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>fit_stats <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(class_count, fit_AIC, fit_BIC, fit_GoF)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a copy with easier to read column names</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>fit_stats_copy <span class="ot">&lt;-</span> fit_stats</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fit_stats_copy) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Class Count"</span>, <span class="st">"AIC"</span>, <span class="st">"BIC"</span>, <span class="st">"Goodness of Fit"</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the knitr library</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(fit_stats_copy, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Fit Statistics Table"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -692,7 +668,7 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 2 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1275.0796 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1350.918 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 21906.5552 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 21906.5500 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 3 </td>
@@ -714,15 +690,15 @@ div.csl-indent {
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 966.5493 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1199.295 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1598.4462 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 965.9335 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1198.679 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 2283.3574 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 7 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 958.0080 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1229.980 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 825.6778 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 958.0054 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1229.978 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 824.9272 </td>
   </tr>
 </tbody>
 </table>
@@ -733,24 +709,24 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fit_stats_long, <span class="fu">aes</span>(<span class="at">x =</span> class_count, <span class="at">y =</span> fit_stat_value, <span class="at">color =</span> fit_stat)) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">'black'</span>) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"AIC and BIC Comparison"</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of Classes"</span>,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Fit Statistics Value"</span>,</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Fit Statistics"</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"AIC"</span>, <span class="st">"BIC"</span>)) <span class="sc">+</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fit_stats_long, <span class="fu">aes</span>(<span class="at">x =</span> class_count, <span class="at">y =</span> fit_stat_value, <span class="at">color =</span> fit_stat)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">'black'</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"AIC and BIC Comparison"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of Classes"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Fit Statistics Value"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Fit Statistics"</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"AIC"</span>, <span class="st">"BIC"</span>)) <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># + facet_wrap(~ fit_stat, ncol = 1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># + facet_wrap(~ fit_stat, ncol = 1)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Figure 4.2.1 - Comparison of AIC and BIC across 2, 3, 4, 5, 6, and 7-Class Models</strong></p>
@@ -758,21 +734,21 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Goodness of Fit</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>fit_GoF_stat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(class_count, fit_GoF)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fit_GoF_stat, <span class="fu">aes</span>(<span class="at">x =</span> class_count, <span class="at">y =</span> fit_GoF)) <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">'green'</span>) <span class="sc">+</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Goodness of Fit"</span>,</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of Classes"</span>,</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Goodness of Fit Statistic Value"</span>) <span class="sc">+</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Goodness of Fit</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>fit_GoF_stat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(class_count, fit_GoF)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> fit_GoF_stat, <span class="fu">aes</span>(<span class="at">x =</span> class_count, <span class="at">y =</span> fit_GoF)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">'green'</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Goodness of Fit"</span>,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of Classes"</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Goodness of Fit Statistic Value"</span>) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><strong>Figure 4.2.2 - Comparison of GoF Values across 2, 3, 4, 5, 6, and 7-Class Models</strong></p>
@@ -783,23 +759,23 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>lca_fit5.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit5)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>lca_fit6.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit6)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>tab_lca_entropy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">Model_Class_Number =</span> <span class="fu">c</span>(<span class="st">'5-Class Model'</span>, <span class="st">'6-Class Model'</span>),</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">Entropy =</span> <span class="fu">c</span>(lca_fit5.ent,lca_fit6.ent))</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>tab_lca_entropy_copy <span class="ot">&lt;-</span> tab_lca_entropy</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab_lca_entropy_copy) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Model Classes"</span>, <span class="st">"Entropy Value"</span>)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the knitr library</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab_lca_entropy_copy, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Entropy Comparison of 5-Class and 6-Class Models"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lca_fit5.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit5)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>lca_fit6.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit6)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>tab_lca_entropy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">Model_Class_Number =</span> <span class="fu">c</span>(<span class="st">'5-Class Model'</span>, <span class="st">'6-Class Model'</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">Entropy =</span> <span class="fu">c</span>(lca_fit5.ent,lca_fit6.ent))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>tab_lca_entropy_copy <span class="ot">&lt;-</span> tab_lca_entropy</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tab_lca_entropy_copy) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Model Classes"</span>, <span class="st">"Entropy Value"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the knitr library</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab_lca_entropy_copy, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Entropy Comparison of 5-Class and 6-Class Models"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -818,7 +794,7 @@ div.csl-indent {
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 3.905344 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 3.902091 </td>
   </tr>
 </tbody>
 </table>
@@ -842,24 +818,24 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reordering the Model output graph to display in order from highest to lowest proportion for easier comparison and labeling</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>probs.start.new <span class="ot">&lt;-</span> <span class="fu">poLCA.reorder</span>(lca_fit5<span class="sc">$</span>probs.start,<span class="fu">order</span>(lca_fit5<span class="sc">$</span>P,<span class="at">decreasing=</span><span class="cn">TRUE</span>))</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>lca_fit5 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1,<span class="at">nclass=</span><span class="dv">5</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">graphs =</span> <span class="cn">FALSE</span>,<span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">probs.start=</span>probs.start.new)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>orig_classes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>   <span class="at">Class =</span> <span class="fu">c</span>(<span class="st">'Class 1'</span>, <span class="st">'Class 2'</span>, <span class="st">'Class 3'</span>, <span class="st">'Class 4'</span>, <span class="st">'Class 5'</span>),</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>   <span class="at">Percentage =</span> <span class="fu">c</span>(<span class="st">'35.46%'</span>, <span class="st">'20.78%'</span>,<span class="st">'17.82%'</span>,<span class="st">'13.09%'</span>,<span class="st">'12.85%'</span>))</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(orig_classes, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Population Percentages of each Class in the 5-Class Model"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reordering the Model output graph to display in order from highest to lowest proportion for easier comparison and labeling</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>probs.start.new <span class="ot">&lt;-</span> <span class="fu">poLCA.reorder</span>(lca_fit5<span class="sc">$</span>probs.start,<span class="fu">order</span>(lca_fit5<span class="sc">$</span>P,<span class="at">decreasing=</span><span class="cn">TRUE</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>lca_fit5 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1,<span class="at">nclass=</span><span class="dv">5</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">graphs =</span> <span class="cn">FALSE</span>,<span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">probs.start=</span>probs.start.new)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>orig_classes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>   <span class="at">Class =</span> <span class="fu">c</span>(<span class="st">'Class 1'</span>, <span class="st">'Class 2'</span>, <span class="st">'Class 3'</span>, <span class="st">'Class 4'</span>, <span class="st">'Class 5'</span>),</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>   <span class="at">Percentage =</span> <span class="fu">c</span>(<span class="st">'35.46%'</span>, <span class="st">'20.78%'</span>,<span class="st">'17.82%'</span>,<span class="st">'13.09%'</span>,<span class="st">'12.85%'</span>))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(orig_classes, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Population Percentages of each Class in the 5-Class Model"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -906,58 +882,58 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Here we are converting the new_zoo_int_2 into a factor so it can be used with MCA() function</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>new_zoo_int_1_factor <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">lapply</span>(new_zoo_int_1, factor))</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Saving the result of MCA function applied to new_zoo_int_2_factor into mca_outcome</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Made invisible so the output does not print instead of image with label</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>mca_outcome <span class="ot">&lt;-</span> <span class="fu">invisible</span>(<span class="fu">MCA</span>(new_zoo_int_1_factor, <span class="at">graph =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting the # of dimension in the biplot to 2 (just x and y axis)</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>n_dimensions <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating the MCA biplot from mca_outcome</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>mca_biplot <span class="ot">&lt;-</span> <span class="fu">fviz_mca_biplot</span>(</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  mca_outcome,</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="co"># we are only displaying axes 1(Dim1)&amp; 2(Dim2)</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"MCA Biplot (Dimensions:"</span>, n_dimensions, <span class="st">")"</span>))</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Printing the MCA biplot</span></span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">#mca_biplot</span></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">#----</span></span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Extract the class membership probabilities and convert to dataframe</span></span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>class_probability <span class="ot">&lt;-</span> lca_fit5<span class="sc">$</span>posterior</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>class_probability_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(class_probability)</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="co">#Build a matrix from the dataframe and assign each observation to the LCA class with the highest probability</span></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>class_probability_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(class_probability_df)</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>lca_result_classes <span class="ot">&lt;-</span> <span class="fu">max.col</span>(class_probability_matrix, <span class="at">ties.method =</span> <span class="st">"random"</span>)</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Turn lca_result_classes into a factor for MCA input</span></span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>lca_result_class_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(lca_result_classes, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Class 1"</span>, <span class="st">"Class 2"</span>, <span class="st">"Class 3"</span>, <span class="st">"Class 4"</span>, <span class="st">"Class 5"</span>))</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="co">#Find the coordinate points generated by the Multiple Correspondence Analysis (MCA) function</span></span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>coord_pts <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mca_outcome<span class="sc">$</span>ind<span class="sc">$</span>coord)</span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="co">#Adding the LCA class labels to the dataframe with the coordinates</span></span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>coord_pts<span class="sc">$</span>lca_result_class_factor <span class="ot">&lt;-</span> lca_result_class_factor</span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the LCA classes as ellipses over the MCA plot of plots and save as LCA_MCA_biplot</span></span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>LCA_MCA_biplot <span class="ot">&lt;-</span></span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(coord_pts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Dim 1</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Dim 2</span><span class="st">`</span>, <span class="at">color =</span> lca_result_class_factor)) <span class="sc">+</span></span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Dim 1</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Dim 2</span><span class="st">`</span>, <span class="at">color =</span> lca_result_class_factor), <span class="at">type =</span> <span class="st">"norm"</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="sc">+</span></span>
-<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">rownames</span>(coord_pts)), <span class="at">nudge_x =</span> <span class="fl">0.02</span>, <span class="at">nudge_y =</span> <span class="fl">0.02</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"MCA Biplot with LCA Classes"</span>,</span>
-<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Dimension 1 (31.2% Variance Explained by this Dimension)"</span>,</span>
-<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Dimension 2 (25.3% Variance Explained by this Dimension)"</span>,</span>
-<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"LCA Class"</span>)</span>
-<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a><span class="co">#LCA_MCA_biplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Here we are converting the new_zoo_int_2 into a factor so it can be used with MCA() function</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>new_zoo_int_1_factor <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">lapply</span>(new_zoo_int_1, factor))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Saving the result of MCA function applied to new_zoo_int_2_factor into mca_outcome</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Made invisible so the output does not print instead of image with label</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>mca_outcome <span class="ot">&lt;-</span> <span class="fu">invisible</span>(<span class="fu">MCA</span>(new_zoo_int_1_factor, <span class="at">graph =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Setting the # of dimension in the biplot to 2 (just x and y axis)</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>n_dimensions <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating the MCA biplot from mca_outcome</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>mca_biplot <span class="ot">&lt;-</span> <span class="fu">fviz_mca_biplot</span>(</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  mca_outcome,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="co"># we are only displaying axes 1(Dim1)&amp; 2(Dim2)</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"MCA Biplot (Dimensions:"</span>, n_dimensions, <span class="st">")"</span>))</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Printing the MCA biplot</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co">#mca_biplot</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co">#----</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Extract the class membership probabilities and convert to dataframe</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>class_probability <span class="ot">&lt;-</span> lca_fit5<span class="sc">$</span>posterior</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>class_probability_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(class_probability)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="co">#Build a matrix from the dataframe and assign each observation to the LCA class with the highest probability</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>class_probability_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(class_probability_df)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>lca_result_classes <span class="ot">&lt;-</span> <span class="fu">max.col</span>(class_probability_matrix, <span class="at">ties.method =</span> <span class="st">"random"</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Turn lca_result_classes into a factor for MCA input</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>lca_result_class_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(lca_result_classes, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Class 1"</span>, <span class="st">"Class 2"</span>, <span class="st">"Class 3"</span>, <span class="st">"Class 4"</span>, <span class="st">"Class 5"</span>))</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="co">#Find the coordinate points generated by the Multiple Correspondence Analysis (MCA) function</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>coord_pts <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(mca_outcome<span class="sc">$</span>ind<span class="sc">$</span>coord)</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="co">#Adding the LCA class labels to the dataframe with the coordinates</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>coord_pts<span class="sc">$</span>lca_result_class_factor <span class="ot">&lt;-</span> lca_result_class_factor</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the LCA classes as ellipses over the MCA plot of plots and save as LCA_MCA_biplot</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a>LCA_MCA_biplot <span class="ot">&lt;-</span></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(coord_pts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Dim 1</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Dim 2</span><span class="st">`</span>, <span class="at">color =</span> lca_result_class_factor)) <span class="sc">+</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">Dim 1</span><span class="st">`</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">Dim 2</span><span class="st">`</span>, <span class="at">color =</span> lca_result_class_factor), <span class="at">type =</span> <span class="st">"norm"</span>, <span class="at">level =</span> <span class="fl">0.95</span>) <span class="sc">+</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">rownames</span>(coord_pts)), <span class="at">nudge_x =</span> <span class="fl">0.02</span>, <span class="at">nudge_y =</span> <span class="fl">0.02</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"MCA Biplot with LCA Classes"</span>,</span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Dimension 1 (31.2% Variance Explained by this Dimension)"</span>,</span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Dimension 2 (25.3% Variance Explained by this Dimension)"</span>,</span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"LCA Class"</span>)</span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a><span class="co">#LCA_MCA_biplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -977,30 +953,30 @@ div.csl-indent {
 <p></p><figcaption class="figure-caption">Figure 4.4.1 - Correlation heatmap for sensitivity analysis</figcaption><p></p>
 </figure>
 </div>
-<p>As seen in the correlation heatmap (Figure 4.4.1), milk is highly correlated with both hair(0.88)and egg(-0.94). We decided to remove milk as an attribute, and re-consider our LCA model to see if it improves without this highly collinear variables included.</p>
+<p>As seen in the correlation heatmap (Figure 4.4.1), ‘milk’ is highly correlated with both hair(0.88)and egg(-0.94). We decided to remove ‘milk’ as an attribute, and re-consider our LCA model to see if it improves without this highly collinear variables included.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a dataset without 'milk' - 13-variables</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>new_zoo_int_2 <span class="ot">&lt;-</span> new_zoo_int_1  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">milk=</span><span class="cn">NULL</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Binding 13-variables into columns for modified LCA model without 'milk'</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>lca_bind_corr <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind_corr, <span class="at">data =</span> new_zoo_int_2, </span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">5</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Reordering the Model output graph to display in order from highest to lowest proprtion for easier comparison and labeling</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>probs.start.new2 <span class="ot">&lt;-</span> <span class="fu">poLCA.reorder</span>(lca_fit5_corr<span class="sc">$</span>probs.start,<span class="fu">order</span>(lca_fit5_corr<span class="sc">$</span>P,<span class="at">decreasing=</span><span class="cn">TRUE</span>))</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind_corr, <span class="at">data =</span> new_zoo_int_2,<span class="at">nclass=</span><span class="dv">5</span>,</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">graphs =</span> <span class="cn">FALSE</span>,<span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>,</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">probs.start=</span>probs.start.new2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a dataset without 'milk' - 13-variables</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>new_zoo_int_2 <span class="ot">&lt;-</span> new_zoo_int_1  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">milk=</span><span class="cn">NULL</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Binding 13-variables into columns for modified LCA model without 'milk'</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>lca_bind_corr <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                   airborne, aquatic, predator, </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                   toothed, backbone, breathes, </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                   venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind_corr, <span class="at">data =</span> new_zoo_int_2, </span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nclass =</span> <span class="dv">5</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Reordering the Model output graph to display in order from highest to lowest proprtion for easier comparison and labeling</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>probs.start.new2 <span class="ot">&lt;-</span> <span class="fu">poLCA.reorder</span>(lca_fit5_corr<span class="sc">$</span>probs.start,<span class="fu">order</span>(lca_fit5_corr<span class="sc">$</span>P,<span class="at">decreasing=</span><span class="cn">TRUE</span>))</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind_corr, <span class="at">data =</span> new_zoo_int_2,<span class="at">nclass=</span><span class="dv">5</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">graphs =</span> <span class="cn">FALSE</span>,<span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>,</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">probs.start=</span>probs.start.new2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -1014,22 +990,22 @@ div.csl-indent {
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit5_corr)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating data frame of AIC, BIC, GoF, and Entropy of both original and modified 5-Class Models</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>class5_compare <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">'Original 5-Class Model'</span>, <span class="st">'Adjusted 5-Class Model'</span>),</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">AIC =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>aic, lca_fit5_corr<span class="sc">$</span>aic),</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">BIC =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>bic, lca_fit5_corr<span class="sc">$</span>bic),</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">GoF =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>Chisq, lca_fit5_corr<span class="sc">$</span>Chisq),</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>   <span class="at">entropy =</span> <span class="fu">c</span>(lca_fit5.ent, lca_fit5_corr.ent))</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Printing table comparing original and modified 5-class stats</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(class5_compare, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Comparison Statistics for Original and Modified 5-Class Models"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lca_fit5_corr.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit5_corr)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating data frame of AIC, BIC, GoF, and Entropy of both original and modified 5-Class Models</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>class5_compare <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">Model =</span> <span class="fu">c</span>(<span class="st">'Original 5-Class Model'</span>, <span class="st">'Adjusted 5-Class Model'</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">AIC =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>aic, lca_fit5_corr<span class="sc">$</span>aic),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">BIC =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>bic, lca_fit5_corr<span class="sc">$</span>bic),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">GoF =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>Chisq, lca_fit5_corr<span class="sc">$</span>Chisq),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>   <span class="at">entropy =</span> <span class="fu">c</span>(lca_fit5.ent, lca_fit5_corr.ent))</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Printing table comparing original and modified 5-class stats</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(class5_compare, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Comparison Statistics for Original and Modified 5-Class Models"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"steelblue"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">background =</span> <span class="st">"lavender"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"darkblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 
@@ -1047,9 +1023,9 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Original 5-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 983.2301 </td>
-   <td style="text-align:right;"> 1176.749 </td>
-   <td style="text-align:right;"> 2488.472 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
+   <td style="text-align:right;"> 1176.912 </td>
+   <td style="text-align:right;"> 1858.388 </td>
    <td style="text-align:right;"> 4.137245 </td>
   </tr>
   <tr>
@@ -1150,24 +1126,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1203,42 +1162,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
