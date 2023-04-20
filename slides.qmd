@@ -1,7 +1,9 @@
+
 ---
 title: "Latent Class Analysis"
 format: 
   revealjs:
+    transition: slide
     theme: styles.scss
 editor: visual
 author: "Daniel Martin, Kameron Standhaft, Esra Acar"
@@ -29,15 +31,23 @@ author: "Daniel Martin, Kameron Standhaft, Esra Acar"
 ## Methods
 
 
-## Our dataset
+## Our dataset {.smaller}
+
+::: {.panel-tabset}
+
+### Data Overview
+
+We used a dataset from Kaggle called 'Zoo Animals.'
 
 
+### Dataset
 
-```{r}
-library(readr)
-Zoo_clean <- read_csv("Zoo_clean.csv")
-View(Zoo_clean)
-```
+Content for `Tab B`
+
+### Dropped Variables
+
+:::
+
 
 ## Our goal
 
