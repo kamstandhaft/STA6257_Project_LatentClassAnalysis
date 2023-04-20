@@ -1,0 +1,35 @@
+$primary-color: #1E6A8C;
+$link-color: #008080;
+$visited-link-color: #4DB6AC;
+
+body {
+  background-color: #F1F1F2;
+  font-family: Georgia, Times, serif;
+  color: #333;
+  
+  h1,
+  h2,
+  h3 {
+    color: $primary-color;
+  }
+
+  a:link {
+    color: $link-color;
+  }
+
+  a:visited {
+    color: $visited-link-color;
+  }
+
+  img {
+    border: 2px solid #000000;
+    width: 75%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  tr {
+    height: 50%;
+  }
+}
