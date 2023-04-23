@@ -31,7 +31,7 @@ author: "Daniel Martin, Kameron Standhaft, Esra Acar"
 ::: panel-tabset
 ### Data Overview
 
-We used a dataset from Kaggle called 'Zoo Animals.' This dataset was an ideal choice because of all of the binary variables.
+To assess the effectiveness of Latent Class Analysis, we used the 'Zoo Animals' dataset from Kaggle. This dataset has 101 entries and is an ideal choice because of its majority of binary variables.
 
 ![ ](index_files/figure-html/Zoo_Screenshot.png)
 
@@ -62,13 +62,81 @@ There was one variable in our dataset that was discrete, so we changed it to a b
 ::::
 
 ### Dataset
+To perform our analysis, we are using these 14 variables.
 
+![ ](index_files/figure-html/Variables.png)
 
 :::
 
-## Our goal
+## Our goal{.smaller}
 
-## Best number of classes
+We are not including the 'type' variable in our analysis. Instead we are going to use its different categories (mammal, bird, reptile, fish, insects, amphibian, invertebrate) as the classes in our Latent Class Analysis.
+
+```{r}
+library(readr)
+Zoo_clean <- read_csv("Zoo_clean.csv")
+
+type_table <- table(Zoo_clean$type)
+
+type_prop <- prop.table(type_table)
+
+pie(type_table, labels = paste(names(type_table), formatC(type_prop*100, format = 'f', digits = 1), '%', sep = '\n'))
+
+
+```
+
+## Best number of classes {.smaller}
+
+::: panel-tabset
+### Possible Number of Classes
+
+In order to determine the optimal number of classes that would best model our dataset, we conducted a series of analyses beginning with 2 classes and concluding at 7 classes, which was the number of different types of animals in the dataset. The code presented below was utilized to fit the model for each of the different number of classes.
+```{r}
+library(tidyverse)
+
+#Creating "has_legs" to denote whether the animal has a leg count >0 from "legs" variable
+new_zoo <- Zoo_clean %>% mutate(has_legs = ifelse(legs == 0, 0, 1))
+
+#Removing "legs" since it is continuous and not binary
+new_zoo <- new_zoo %>% mutate(legs = NULL)
+
+#Converting has_legs from integer to logical to match the rest of the dataset
+new_zoo$has_legs <- as.logical(new_zoo$has_legs)
+
+#Removing "animal","domestic", "catsize", and "type" from 18-variable dataset to make new 14-variable dataset for LCA modeling  
+new_zoo_subset <- new_zoo %>% mutate(animal=NULL, domestic=NULL, 
+                                     catsize=NULL, type=NULL)
+
+#Creating a dataset where the binary data is converted to integers 0/"FALSE" or 1/"TRUE"
+new_zoo_int <- new_zoo_subset %>% mutate_all(~as.integer(.))
+
+#Incrementing the binary integers from 0/1 to 1/2 - poLCA() can only accept integers >=1
+new_zoo_int_1 <- new_zoo_int %>% mutate_all(~. + 1)
+
+lca_bind <-  cbind(hair, feathers, eggs, milk, 
+                   airborne, aquatic, predator, 
+                   toothed, backbone, breathes, 
+                   venomous, fins, tail, has_legs) ~ 1
+```
+
+```{r, echo=TRUE}
+
+library(poLCA)
+
+lca_fit2 <- poLCA(lca_bind, data = new_zoo_int_1, 
+                  nclass = 2, graphs = FALSE, na.rm = TRUE, 
+                  nrep=100, maxiter=100, verbose = FALSE)
+```
+
+
+### Model Comparison Statistics
+
+
+
+### Chosen Model
+
+
+:::
 
 ## Analyze class attributes
 
