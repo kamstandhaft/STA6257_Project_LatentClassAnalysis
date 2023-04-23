@@ -1,4 +1,3 @@
-
 ---
 title: "Latent Class Analysis"
 format: 
@@ -10,57 +9,69 @@ author: "Daniel Martin, Kameron Standhaft, Esra Acar"
 ---
 
 ## Overview
--  What is Latent Class Analysis (LCA)?
--  Usage of LCA
--  Methods
--  Our dataset
--  Our goal
--  Best number of classes
--  Analyze class attributes
--  Correlation
--  Conclusion
+
+-   What is Latent Class Analysis (LCA)?
+-   Usage of LCA
+-   Methods
+-   Our dataset
+-   Our goal
+-   Best number of classes
+-   Analyze class attributes
+-   Correlation
+-   Conclusion
 
 ## What is Latent Class Analysis (LCA)?
 
-
-
 ## Usage of LCA
-
-
 
 ## Methods
 
-
 ## Our dataset {.smaller}
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ### Data Overview
 
-We used a dataset from Kaggle called 'Zoo Animals.'
+We used a dataset from Kaggle called 'Zoo Animals.' This dataset was an ideal choice because of all of the binary variables.
 
+![ ](index_files/figure-html/Zoo_Screenshot.png)
 
-### Dataset
+### Dropped/Changed Variables {.smaller}
 
-Content for `Tab B`
+:::: {.columns}
 
-### Dropped Variables
+::: {.column width="50%"}
+**Dropped**
+
+There were 2 variables (Catsize and Domestic) that we dropped because we thought they were subjective. And we dropped the 'Animal' variable because it was an identifier.
+
+![ ](index_files/figure-html/Dropped_variables.png)
 
 :::
 
+::: {.column width="50%"}
+**Changed**
+
+There was one variable in our dataset that was discrete, so we changed it to a binary variable.
+
+<br/><br/>
+
+
+![ ](index_files/figure-html/Legs.png)
+:::
+
+::::
+
+### Dataset
+
+
+:::
 
 ## Our goal
 
-
 ## Best number of classes
-
 
 ## Analyze class attributes
 
-
 ## Correlation
 
-
 ## Conclusion
-
-
