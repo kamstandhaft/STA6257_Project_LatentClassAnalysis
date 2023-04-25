@@ -5,6 +5,7 @@ format:
     transition: slide
     theme: styles.scss
 editor: visual
+embed-resources: true
 bibliography: references.bib # file contains bibtex for references
 #always_allow_html: true # this allows to get PDF with HTML features
 author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
@@ -169,7 +170,7 @@ The poLCA function has the following options: -nclass -graphs -na.rm -nrep -maxi
 
 This function is estimating "Latent Class Prevalence", which is the probability that each dataset entry belongs within one of the model-generated classes [@law2016primer]
 
-![Figure 4.1.1 - LCA 2-Class Model](index_files/figure-html/2_class_model.png)
+![LCA 2-Class Model](index_files/figure-html/2_class_model.png)
 :::
 
 ## Model Comparison Statistics {.smaller}

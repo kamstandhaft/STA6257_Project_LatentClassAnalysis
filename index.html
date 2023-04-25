@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -186,7 +186,6 @@ div.csl-indent {
       <p class="date">April 25, 2023</p>
     </div>
   </div>
-  
     
   </div>
   
@@ -670,7 +669,11 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 2 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1275.0796 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1350.918 </td>
+<<<<<<< HEAD
    <td style="text-align:right;background-color: lavender !important;"> 21906.5494 </td>
+=======
+   <td style="text-align:right;background-color: lavender !important;"> 21906.5555 </td>
+>>>>>>> 203d4e7061f564e5c9dd1505c8a72c8f77868fe2
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 3 </td>
@@ -686,9 +689,9 @@ div.csl-indent {
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 983.2301 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1176.749 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 2488.4715 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1176.912 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1858.3883 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6 </td>
@@ -700,7 +703,11 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 7 </td>
    <td style="text-align:right;background-color: lavender !important;"> 958.0054 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1229.978 </td>
+<<<<<<< HEAD
    <td style="text-align:right;background-color: lavender !important;"> 824.9272 </td>
+=======
+   <td style="text-align:right;background-color: lavender !important;"> 824.9365 </td>
+>>>>>>> 203d4e7061f564e5c9dd1505c8a72c8f77868fe2
   </tr>
 </tbody>
 </table>
@@ -792,7 +799,7 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 4.136046 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 4.137245 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6-Class Model </td>
@@ -1025,10 +1032,10 @@ div.csl-indent {
 <tbody>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Original 5-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 983.2301 </td>
-   <td style="text-align:right;"> 1176.749 </td>
-   <td style="text-align:right;"> 2488.471 </td>
-   <td style="text-align:right;"> 4.136046 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
+   <td style="text-align:right;"> 1176.912 </td>
+   <td style="text-align:right;"> 1858.388 </td>
+   <td style="text-align:right;"> 4.137245 </td>
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Adjusted 5-Class Model </td>
@@ -1128,24 +1135,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1181,42 +1171,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
