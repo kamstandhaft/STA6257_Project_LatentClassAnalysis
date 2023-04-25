@@ -520,7 +520,7 @@
 <section id="model-comparison-statistics" class="slide level2 smaller">
 <h2>Model Comparison Statistics</h2>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">AIC &amp; BIC</a></li><li><a href="#tabset-4-2">Goodness of Fit</a></li><li><a href="#tabset-4-3">Chosen Model</a></li></ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">AIC &amp; BIC</a></li><li><a href="#tabset-4-2">Goodness of Fit</a></li><li><a href="#tabset-4-3">Entropy</a></li><li><a href="#tabset-4-4">Chosen Model</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="quarto-figure quarto-figure-center">
@@ -539,6 +539,22 @@
 </div>
 </div>
 <div id="tabset-4-3">
+<p>Entropy is a measure of the concentration in a probability function<span class="citation" data-cites="rstudio2021">[@rstudio2021]</span></p>
+<p>We use the poLCA.entropy() function to compare our 5-Class and 6-Class models.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(poLCA)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>lca_fit5.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit5)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>lca_fit6.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/5_6_class_entropy.png"></p>
+<p></p><figcaption>LCA 5-Class Model</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-4-4">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="index_files/figure-html/5_class_ordered.png"></p>

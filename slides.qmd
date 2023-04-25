@@ -181,6 +181,22 @@ The poLCA function has the following options:
 
 ![LCA Model GoF Comparison](index_files/figure-html/gof_compare.png)
 
+### Entropy
+
+Entropy is a measure of the concentration in a probability function[@rstudio2021]
+
+We use the poLCA.entropy() function to compare our 5-Class and 6-Class models.
+
+```{r, echo=TRUE, eval=F}
+
+library(poLCA)
+
+lca_fit5.ent <- poLCA.entropy(lca_fit5)
+lca_fit6.ent <- poLCA.entropy(lca_fit6)
+```
+
+![LCA 5-Class Model](index_files/figure-html/5_6_class_entropy.png)
+
 ### Chosen Model
 
 ![LCA 5-Class Model](index_files/figure-html/5_class_ordered.png)
