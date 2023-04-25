@@ -520,7 +520,7 @@
 <section id="model-comparison-statistics" class="slide level2 smaller">
 <h2>Model Comparison Statistics</h2>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">AIC &amp; BIC</a></li><li><a href="#tabset-4-2">Goodness of Fit</a></li><li><a href="#tabset-4-3">Entropy</a></li><li><a href="#tabset-4-4">Chosen Model</a></li></ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">AIC &amp; BIC</a></li><li><a href="#tabset-4-2">Goodness of Fit</a></li><li><a href="#tabset-4-3">Entropy</a></li><li><a href="#tabset-4-4">Chosen Model</a></li><li><a href="#tabset-4-5">Biplot</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="quarto-figure quarto-figure-center">
@@ -562,11 +562,91 @@
 </figure>
 </div>
 </div>
+<div id="tabset-4-5">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/lca_5class_biplot.png"></p>
+<p></p><figcaption>LCA 5-Class Model Biplot</figcaption><p></p>
+</figure>
+</div>
+</div>
 </div>
 </div>
 </section>
-<section id="analyze-class-attributes" class="slide level2">
-<h2>Analyze class attributes</h2>
+<section id="analyze-class-attributes" class="slide level2 smaller">
+<h2>Analyze Class Attributes</h2>
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Class Distribution</a></li><li><a href="#tabset-5-2">Class 1</a></li><li><a href="#tabset-5-3">Class 2</a></li><li><a href="#tabset-5-4">Class 3</a></li><li><a href="#tabset-5-5">Class 4</a></li><li><a href="#tabset-5-6">Class 5</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/analyze_class_attributes.png"></p>
+<p></p><figcaption>Class Population Proportion Distribution</figcaption><p></p>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">#Reordering the Model output graph to display highest-&gt;lowest proportion for easier comparison and labeling</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>probs.start.new <span class="ot">&lt;-</span> <span class="fu">poLCA.reorder</span>(lca_fit5<span class="sc">$</span>probs.start,<span class="fu">order</span>(lca_fit5<span class="sc">$</span>P,<span class="at">decreasing=</span><span class="cn">TRUE</span>))</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>lca_fit5 <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind, <span class="at">data =</span> new_zoo_int_1,<span class="at">nclass=</span><span class="dv">5</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>                  <span class="at">graphs =</span> <span class="cn">FALSE</span>,<span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>                  <span class="at">probs.start=</span>probs.start.new)</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a>orig_classes <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
+<span id="cb3-10"><a href="#cb3-10"></a>   <span class="at">Class =</span> <span class="fu">c</span>(<span class="st">'Class 1'</span>, <span class="st">'Class 2'</span>, <span class="st">'Class 3'</span>, <span class="st">'Class 4'</span>, <span class="st">'Class 5'</span>),</span>
+<span id="cb3-11"><a href="#cb3-11"></a>   <span class="at">Percentage =</span> <span class="fu">c</span>(<span class="st">'35.46%'</span>, <span class="st">'20.78%'</span>,<span class="st">'17.82%'</span>,<span class="st">'13.09%'</span>,<span class="st">'12.85%'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-5-2">
+<p><strong>Class 1</strong> which, as the largest class, is estimated to contain ~35.46% of the population predicts its members to have ‘hair’, ‘toothed’, ‘backbone’, ‘breathes’, ‘tail’, ‘has_legs’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘mammal’ in the original dataset.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/mammal2.png"></p>
+<p></p><figcaption>Class 1 (view displays a subset of population)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-5-3">
+<p><strong>Class 2</strong> which is estimated to contain ~20.78% of the population predicts its members to have ‘feathers’, ‘eggs’, ‘backbone’, ‘breathes’, ‘tail’, ‘has_legs’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘bird’ in the original dataset.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/bird2.png"></p>
+<p></p><figcaption>Class 2 (view displays a subset of population)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-5-4">
+<p><strong>Class 3</strong> is estimated to contain ~17.82% of the population. It should be noted that it has two attributes (‘breathes’ and ‘predator’) which were both over 50% shown on the graph, but as we excluded our initial filtering assessment to ~80% and above, these are not selected in the filter.</p>
+<p>These class members are predicted to have ‘eggs’ and ‘has_legs’. While this limited selection duplicates a few of the previous members that were selected for other classes, this class also contains the invertebrates and insects, which were not present in the other classes. Based solely upon outside comparison to the type attribute in the original dataset, this class appears to be the least homogeneous.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/eggs_haslegs2.png"></p>
+<p></p><figcaption>Class 3 (view displays a subset of population)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-5-5">
+<p><strong>Class 4</strong> which is estimated to contain ~13.09% of the population is less homogeneous than Classes 1 &amp; 2, but not as heterogeneous as Class 3. The original classification schema of “type” had 7 unique values, which implies that with a 5-class model, overlap is inevitable. This is only visible due to the fact that we have the original data for “type” for illustration purposes, which is unlikely to be the case in research data.This class’ members ar predicted to have ‘aquatic’, ‘predator’, ‘toothed’, ‘backbone’, ‘breathes’, ‘tail’. We filtered the cleaned new_zoo dataset for these attributes. The resulting filter only yielded 5 members, which are mostly aquatic mammals and a single amphibian.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/aquatic_mammal2.png"></p>
+<p></p><figcaption>Class 4 (view displays a subset of population)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-5-6">
+<p><strong>Class 5</strong> which is the smallest class, estimated to contain ~12.85% of the population predicts its members to have ‘eggs’, ‘aquatic’, ‘toothed’, ‘backbone’, ‘fins’, ‘tail’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘fish’ in the original dataset.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/fish2.png"></p>
+<p></p><figcaption>Class 5 (view displays a subset of population)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="correlation" class="slide level2 smaller">
 <h2>Correlation</h2>

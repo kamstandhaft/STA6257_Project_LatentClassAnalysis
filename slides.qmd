@@ -200,9 +200,69 @@ lca_fit6.ent <- poLCA.entropy(lca_fit6)
 ### Chosen Model
 
 ![LCA 5-Class Model](index_files/figure-html/5_class_ordered.png)
+
+### Biplot
+
+![LCA 5-Class Model Biplot](index_files/figure-html/lca_5class_biplot.png)
+
 :::
 
-## Analyze class attributes
+## Analyze Class Attributes {.smaller}
+
+::: panel-tabset
+
+### Class Distribution
+
+![Class Population Proportion Distribution](index_files/figure-html/analyze_class_attributes.png)
+
+```{r, echo=TRUE, eval=F}
+#Reordering the Model output graph to display highest->lowest proportion for easier comparison and labeling
+probs.start.new <- poLCA.reorder(lca_fit5$probs.start,order(lca_fit5$P,decreasing=TRUE))
+
+lca_fit5 <- poLCA(lca_bind, data = new_zoo_int_1,nclass=5,
+                  graphs = FALSE,na.rm = TRUE,
+                  verbose = FALSE, nrep=100, maxiter=100,
+                  probs.start=probs.start.new)
+
+orig_classes <- data.frame( 
+   Class = c('Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5'),
+   Percentage = c('35.46%', '20.78%','17.82%','13.09%','12.85%'))
+```
+
+
+### Class 1
+
+**Class 1** which, as the largest class, is estimated to contain ~35.46% of the population predicts its members to have ‘hair’, ‘toothed’, ‘backbone’, ‘breathes’, ‘tail’, ‘has_legs’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘mammal’ in the original dataset.
+
+![Class 1 (view displays a subset of population)](index_files/figure-html/mammal2.png)
+
+### Class 2
+
+**Class 2** which is estimated to contain ~20.78% of the population predicts its members to have ‘feathers’, ‘eggs’, ‘backbone’, ‘breathes’, ‘tail’, ‘has_legs’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘bird’ in the original dataset.
+
+![Class 2 (view displays a subset of population)](index_files/figure-html/bird2.png)
+
+### Class 3
+
+**Class 3** is estimated to contain ~17.82% of the population. It should be noted that it has two attributes (‘breathes’ and ‘predator’) which were both over 50% shown on the graph, but as we excluded our initial filtering assessment to ~80% and above, these are not selected in the filter.
+
+These class members are predicted to have ‘eggs’ and ‘has_legs’. While this limited selection duplicates a few of the previous members that were selected for other classes, this class also contains the invertebrates and insects, which were not present in the other classes. Based solely upon outside comparison to the type attribute in the original dataset, this class appears to be the least homogeneous.
+
+![Class 3 (view displays a subset of population)](index_files/figure-html/eggs_haslegs2.png)
+
+### Class 4
+
+**Class 4** which is estimated to contain ~13.09% of the population is less homogeneous than Classes 1 & 2, but not as heterogeneous as Class 3. The original classification schema of “type” had 7 unique values, which implies that with a 5-class model, overlap is inevitable. This is only visible due to the fact that we have the original data for “type” for illustration purposes, which is unlikely to be the case in research data.This class’ members ar predicted to have ‘aquatic’, ‘predator’, ‘toothed’, ‘backbone’, ‘breathes’, ‘tail’. We filtered the cleaned new_zoo dataset for these attributes. The resulting filter only yielded 5 members, which are mostly aquatic mammals and a single amphibian.
+
+![Class 4 (view displays a subset of population)](index_files/figure-html/aquatic_mammal2.png)
+
+### Class 5
+
+**Class 5** which is the smallest class, estimated to contain ~12.85% of the population predicts its members to have ‘eggs’, ‘aquatic’, ‘toothed’, ‘backbone’, ‘fins’, ‘tail’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘fish’ in the original dataset.
+
+![Class 5 (view displays a subset of population)](index_files/figure-html/fish2.png)
+
+:::
 
 ## Correlation {.smaller}
 
