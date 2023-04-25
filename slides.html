@@ -7,7 +7,7 @@
 <link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="slides_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.2.335">
+  <meta name="generator" content="quarto-1.1.189">
 
   <meta name="author" content="Daniel Martin, Kameron Standhaft, Esra Acar">
   <title>Latent Class Analysis</title>
@@ -387,18 +387,11 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
+<section id="title-slide" class="center">
   <h1 class="title">Latent Class Analysis</h1>
-
-<div class="quarto-title-authors">
-<div class="quarto-title-author">
-<div class="quarto-title-author-name">
-Daniel Martin, Kameron Standhaft, Esra Acar 
-</div>
-</div>
-</div>
-
+  <p class="author">Daniel Martin, Kameron Standhaft, Esra Acar</p>
 </section>
+
 <section id="overview" class="slide level2">
 <h2>Overview</h2>
 <ul>
@@ -460,7 +453,7 @@ Daniel Martin, Kameron Standhaft, Esra Acar
 <section id="best-number-of-classes" class="slide level2 smaller">
 <h2>Best number of classes</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Possible Number of Classes</a></li><li><a href="#tabset-2-2">Model Comparison Statistics</a></li><li><a href="#tabset-2-3">Chosen Model</a></li></ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Possible Number of Classes</a></li><li><a href="#tabset-2-2">poLCA Output</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1">
 <p>In order to determine the optimal number of classes that would best model our dataset, we conducted a series of analyses beginning with 2 classes and concluding at 7 classes, which was the number of different types of animals in the dataset. The code presented below was utilized to fit the model for each of the different number of classes.</p>
@@ -476,10 +469,46 @@ Daniel Martin, Kameron Standhaft, Esra Acar
 </div>
 </div>
 <div id="tabset-2-2">
-
+<p>The poLCA function has the following options:</p>
+<p>-nclass -graphs -na.rm -nrep -maxiter -verbose</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/2_class_model.png"></p>
+<p></p><figcaption>Figure 4.1.1 - LCA 2-Class Model</figcaption><p></p>
+</figure>
 </div>
-<div id="tabset-2-3">
-
+</div>
+</div>
+</div>
+</section>
+<section id="model-comparison-statistics" class="slide level2 smaller">
+<h2>Model Comparison Statistics</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">AIC &amp; BIC</a></li><li><a href="#tabset-3-2">Goodness of Fit</a></li><li><a href="#tabset-3-3">Chosen Model</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/aic_bic_compare.png"></p>
+<p></p><figcaption>LCA Model AIC &amp; BIC Comparison</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/gof_compare.png"></p>
+<p></p><figcaption>LCA Model GoF Comparison</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-3-3">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/5_class_ordered.png"></p>
+<p></p><figcaption>LCA 5-Class Model</figcaption><p></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -487,11 +516,14 @@ Daniel Martin, Kameron Standhaft, Esra Acar
 <section id="analyze-class-attributes" class="slide level2">
 <h2>Analyze class attributes</h2>
 </section>
-<section id="correlation" class="slide level2">
+<section id="correlation" class="slide level2 smaller">
 <h2>Correlation</h2>
-</section>
-<section id="conclusion" class="slide level2">
+<p>As seen in the correlation heatmap figure below, ‘milk’ is highly positively correlated with both ‘hair’ and negatively correlated with ‘egg’. We decided to remove ‘milk’ as an attribute, and re-consider our LCA model to see if it improves without the variables exhibiting this high degree of multicollinearity included.</p>
+
+<img data-src="index_files/figure-html/Heatmap.png" class="r-stretch quarto-figure-center"><p class="caption">Correlation heatmap for sensitivity analysis</p></section>
+<section id="conclusion" class="slide level2 smaller">
 <h2>Conclusion</h2>
+<p>Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes.With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research(Kaplan 2004).</p>
 <div class="footer footer-default">
 
 </div>
@@ -713,15 +745,12 @@ Daniel Martin, Kameron Standhaft, Esra Acar
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -732,6 +761,13 @@ Daniel Martin, Kameron Standhaft, Esra Acar
               window.jQuery(currentSlide).trigger("shown");
             }
           }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
         }
 
         // hookup for slidy
@@ -783,24 +819,7 @@ Daniel Martin, Kameron Standhaft, Esra Acar
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
         setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
@@ -838,42 +857,24 @@ Daniel Martin, Kameron Standhaft, Esra Acar
           return note.innerHTML;
         });
       }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+        tippyHover(ref, function() {
+          var popup = window.document.createElement('div');
+          cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
           });
-        }
+          return popup.innerHTML;
+        });
       }
     });
     </script>

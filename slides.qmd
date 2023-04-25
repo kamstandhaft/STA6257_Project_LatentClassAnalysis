@@ -33,19 +33,17 @@ author: "Daniel Martin, Kameron Standhaft, Esra Acar"
 
 To assess the effectiveness of Latent Class Analysis, we used the 'Zoo Animals' dataset from Kaggle. This dataset has 101 entries and is an ideal choice because of its majority of binary variables.
 
-![ ](index_files/figure-html/Zoo_Screenshot.png)
+![](index_files/figure-html/Zoo_Screenshot.png)
 
 ### Dropped/Changed Variables {.smaller}
 
-:::: {.columns}
-
+::: columns
 ::: {.column width="50%"}
 **Dropped**
 
 There were 2 variables (Catsize and Domestic) that we dropped because we thought they were subjective. And we dropped the 'Animal' variable because it was an identifier.
 
-![ ](index_files/figure-html/Dropped_variables.png)
-
+![](index_files/figure-html/Dropped_variables.png)
 :::
 
 ::: {.column width="50%"}
@@ -55,20 +53,18 @@ There was one variable in our dataset that was discrete, so we changed it to a b
 
 <br/><br/>
 
-
-![ ](index_files/figure-html/Legs.png)
+![](index_files/figure-html/Legs.png)
 :::
-
-::::
+:::
 
 ### Dataset
+
 To perform our analysis, we are using these 14 variables.
 
-![ ](index_files/figure-html/Variables.png)
-
+![](index_files/figure-html/Variables.png)
 :::
 
-## Our goal{.smaller}
+## Our goal {.smaller}
 
 We are not including the 'type' variable in our analysis. Instead we are going to use its different categories (mammal, bird, reptile, fish, insects, amphibian, invertebrate) as the classes in our Latent Class Analysis.
 
@@ -91,6 +87,7 @@ pie(type_table, labels = paste(names(type_table), formatC(type_prop*100, format 
 ### Possible Number of Classes
 
 In order to determine the optimal number of classes that would best model our dataset, we conducted a series of analyses beginning with 2 classes and concluding at 7 classes, which was the number of different types of animals in the dataset. The code presented below was utilized to fit the model for each of the different number of classes.
+
 ```{r}
 library(tidyverse)
 
@@ -128,18 +125,46 @@ lca_fit2 <- poLCA(lca_bind, data = new_zoo_int_1,
                   nrep=100, maxiter=100, verbose = FALSE)
 ```
 
+### poLCA Output
 
-### Model Comparison Statistics
+The poLCA function has the following options:
+
+-nclass
+-graphs
+-na.rm
+-nrep
+-maxiter
+-verbose
+
+![Figure 4.1.1 - LCA 2-Class Model](index_files/figure-html/2_class_model.png)
+
+:::
+
+## Model Comparison Statistics {.smaller}
+::: panel-tabset
+
+### AIC & BIC
+
+![LCA Model AIC & BIC Comparison](index_files/figure-html/aic_bic_compare.png)
 
 
+### Goodness of Fit
+
+![LCA Model GoF Comparison](index_files/figure-html/gof_compare.png)
 
 ### Chosen Model
 
-
+![LCA 5-Class Model](index_files/figure-html/5_class_ordered.png)
 :::
 
 ## Analyze class attributes
 
-## Correlation
+## Correlation {.smaller}
 
-## Conclusion
+As seen in the correlation heatmap figure below, 'milk' is highly positively correlated with both 'hair' and negatively correlated with 'egg'. We decided to remove 'milk' as an attribute, and re-consider our LCA model to see if it improves without the variables exhibiting this high degree of multicollinearity included.
+
+![Correlation heatmap for sensitivity analysis](index_files/figure-html/Heatmap.png)
+
+## Conclusion {.smaller}
+
+Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes.With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research(Kaplan 2004). 
