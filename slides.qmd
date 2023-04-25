@@ -5,6 +5,8 @@ format:
     transition: slide
     theme: styles.scss
 editor: visual
+bibliography: references.bib # file contains bibtex for references
+#always_allow_html: true # this allows to get PDF with HTML features
 author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
 ---
 
@@ -25,11 +27,11 @@ author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
 ::: panel-tabset
 ### Definition
 
--   Latent Class Analysis (LCA) is a probabilistic method of unsupervised clustering that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population.
+-   Latent Class Analysis (LCA) is a probabilistic method of unsupervised clustering that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population. [@nylund2018ten]
 
--   The central assumption of LCA model is the presence of latent classes within a population.
+-   The central assumption of LCA model is the presence of latent classes within a population. [@weller2020latent]
 
--   LCA is a type of finite mixture model (FMM) which is a statistical approach used in unsupervised learning.
+-   LCA is a type of finite mixture model (FMM) which is a statistical approach used in unsupervised learning.[@grimm2021model]
 
 -   LCA is a useful model for identifying subgroups within a population based on patterns in **categorical variables**.
 
@@ -163,9 +165,9 @@ lca_fit2 <- poLCA(lca_bind, data = new_zoo_int_1,
 
 ### poLCA Output
 
-The poLCA function has the following options:
+The poLCA function has the following options: -nclass -graphs -na.rm -nrep -maxiter -verbose
 
--nclass -graphs -na.rm -nrep -maxiter -verbose
+This function is estimating "Latent Class Prevalence", which is the probability that each dataset entry belongs within one of the model-generated classes [@law2016primer]
 
 ![Figure 4.1.1 - LCA 2-Class Model](index_files/figure-html/2_class_model.png)
 :::
@@ -309,4 +311,13 @@ Given improvement in all fit statistics except entropy for the 5-Class model wit
 
 ## Conclusion {.smaller}
 
-Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes.With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research(Kaplan 2004).
+Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based
+upon their attributes. With the dataset-defined "type" classification as a reference, our 5-class predictive model has shown that LCA as a
+process can be used to successfully define where relevant classes exist when not otherwise defined from collected data, even with our relatively
+small dataset (101 points).
+
+Even with its very powerful modeling potential, LCA does pose some challenges that ust be accounted for by the researcher. As we have seen, it requires substantial testing of fit metrics to establish the most ideal number of classes for our model to achieve our desired result[@asparouhov2014auxiliary]. There are also interpretation challenges that exist once we have our best LCA model established[@weller2020latent].
+
+Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes. With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research(@kaplan2004sage).
+
+## References {.smaller}

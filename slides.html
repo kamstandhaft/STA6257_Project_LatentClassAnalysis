@@ -92,6 +92,25 @@
     code span.va { color: #111111; } /* Variable */
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
   </style>
   <link rel="stylesheet" href="slides_files/libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -413,9 +432,9 @@
 <div class="tab-content">
 <div id="tabset-1-1">
 <ul>
-<li><p>Latent Class Analysis (LCA) is a probabilistic method of unsupervised clustering that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population.</p></li>
-<li><p>The central assumption of LCA model is the presence of latent classes within a population.</p></li>
-<li><p>LCA is a type of finite mixture model (FMM) which is a statistical approach used in unsupervised learning.</p></li>
+<li><p>Latent Class Analysis (LCA) is a probabilistic method of unsupervised clustering that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population. <span class="citation" data-cites="nylund2018ten">(<a href="#/references" role="doc-biblioref" onclick="">Nylund-Gibson and Choi 2018</a>)</span></p></li>
+<li><p>The central assumption of LCA model is the presence of latent classes within a population. <span class="citation" data-cites="weller2020latent">(<a href="#/references" role="doc-biblioref" onclick="">Weller, Bowen, and Faubert 2020</a>)</span></p></li>
+<li><p>LCA is a type of finite mixture model (FMM) which is a statistical approach used in unsupervised learning.<span class="citation" data-cites="grimm2021model">(<a href="#/references" role="doc-biblioref" onclick="">Grimm, Houpt, and Rodgers 2021</a>)</span></p></li>
 <li><p>LCA is a useful model for identifying subgroups within a population based on patterns in <strong>categorical variables</strong>.</p></li>
 <li><p>In LCA, the variables are unrelated within each subgroup but similar across each one.</p></li>
 </ul>
@@ -424,7 +443,7 @@
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="index_files/figure-html/lca_2class_overlap_example.jpg"></p>
-<p></p><figcaption>Figure 1 - 2 Class Model Representation for LCA <span class="citation" data-cites="sinha2021practitioner">[@sinha2021practitioner]</span></figcaption><p></p>
+<p></p><figcaption>Figure 1 - 2 Class Model Representation for LCA <span class="citation" data-cites="sinha2021practitioner">(<a href="#/references" role="doc-biblioref" onclick="">Sinha, Calfee, and Delucchi 2021</a>)</span></figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -505,8 +524,8 @@
 </div>
 </div>
 <div id="tabset-3-2">
-<p>The poLCA function has the following options:</p>
-<p>-nclass -graphs -na.rm -nrep -maxiter -verbose</p>
+<p>The poLCA function has the following options: -nclass -graphs -na.rm -nrep -maxiter -verbose</p>
+<p>This function is estimating “Latent Class Prevalence”, which is the probability that each dataset entry belongs within one of the model-generated classes <span class="citation" data-cites="law2016primer">(<a href="#/references" role="doc-biblioref" onclick="">Law and Harrington 2016</a>)</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="index_files/figure-html/2_class_model.png"></p>
@@ -539,7 +558,7 @@
 </div>
 </div>
 <div id="tabset-4-3">
-<p>Entropy is a measure of the concentration in a probability function<span class="citation" data-cites="rstudio2021">[@rstudio2021]</span></p>
+<p>Entropy is a measure of the concentration in a probability function<span class="citation" data-cites="rstudio2021">(<a href="#/references" role="doc-biblioref" onclick="">R Core Team 2021</a>)</span></p>
 <p>We use the poLCA.entropy() function to compare our 5-Class and 6-Class models.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(poLCA)</span>
@@ -703,9 +722,40 @@
 </section>
 <section id="conclusion" class="slide level2 smaller">
 <h2>Conclusion</h2>
-<p>Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes.With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research(Kaplan 2004).</p>
+<p>Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes. With the dataset-defined “type” classification as a reference, our 5-class predictive model has shown that LCA as a process can be used to successfully define where relevant classes exist when not otherwise defined from collected data, even with our relatively small dataset (101 points).</p>
+<p>Even with its very powerful modeling potential, LCA does pose some challenges that ust be accounted for by the researcher. As we have seen, it requires substantial testing of fit metrics to establish the most ideal number of classes for our model to achieve our desired result<span class="citation" data-cites="asparouhov2014auxiliary">(<a href="#/references" role="doc-biblioref" onclick="">Asparouhov and Muthén 2014</a>)</span>. There are also interpretation challenges that exist once we have our best LCA model established<span class="citation" data-cites="weller2020latent">(<a href="#/references" role="doc-biblioref" onclick="">Weller, Bowen, and Faubert 2020</a>)</span>.</p>
+<p>Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes. With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research(<span class="citation" data-cites="kaplan2004sage">Kaplan (<a href="#/references" role="doc-biblioref" onclick="">2004</a>)</span>).</p>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 <div class="footer footer-default">
 
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-asparouhov2014auxiliary" class="csl-entry" role="doc-biblioentry">
+Asparouhov, Tihomir, and Bengt Muthén. 2014. <span>“Auxiliary Variables in Mixture Modeling: Three-Step Approaches Using m Plus.”</span> <em>Structural Equation Modeling: A Multidisciplinary Journal</em> 21 (3): 329–41.
+</div>
+<div id="ref-grimm2021model" class="csl-entry" role="doc-biblioentry">
+Grimm, Kevin J, Russell Houpt, and Danielle Rodgers. 2021. <span>“Model Fit and Comparison in Finite Mixture Models: A Review and a Novel Approach.”</span> In <em>Frontiers in Education</em>, 6:613645. Frontiers Media SA.
+</div>
+<div id="ref-kaplan2004sage" class="csl-entry" role="doc-biblioentry">
+Kaplan, Magidson, D. 2004. <em>The SAGE Handbook of Quantitative Methodology for the Social Sciences</em>. SAGE Publications, Inc. <a href="https://methods.sagepub.com/book/the-sage-handbook-of-quantitative-methodology-for-the-social-sciences">https://methods.sagepub.com/book/the-sage-handbook-of-quantitative-methodology-for-the-social-sciences</a>.
+</div>
+<div id="ref-law2016primer" class="csl-entry" role="doc-biblioentry">
+Law, Ernest H, and Rachel Harrington. 2016. <span>“A Primer on Latent Class Analysis.”</span> <em>Value &amp; Outcomes Spotlight</em> 2 (6): 18–19.
+</div>
+<div id="ref-nylund2018ten" class="csl-entry" role="doc-biblioentry">
+Nylund-Gibson, Karen, and Andrew Young Choi. 2018. <span>“Ten Frequently Asked Questions about Latent Class Analysis.”</span> <em>Translational Issues in Psychological Science</em> 4 (4): 440.
+</div>
+<div id="ref-rstudio2021" class="csl-entry" role="doc-biblioentry">
+R Core Team. 2021. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-sinha2021practitioner" class="csl-entry" role="doc-biblioentry">
+Sinha, Pratik, Carolyn S Calfee, and Kevin L Delucchi. 2021. <span>“Practitioner’s Guide to Latent Class Analysis: Methodological Considerations and Common Pitfalls.”</span> <em>Critical Care Medicine</em> 49 (1): e63.
+</div>
+<div id="ref-weller2020latent" class="csl-entry" role="doc-biblioentry">
+Weller, Bridget E, Natasha K Bowen, and Sarah J Faubert. 2020. <span>“Latent Class Analysis: A Guide to Best Practice.”</span> <em>Journal of Black Psychology</em> 46 (4): 287–311.
+</div>
 </div>
 </section>
     </div>
