@@ -406,8 +406,44 @@
 <li>Conclusion</li>
 </ul>
 </section>
-<section id="what-is-latent-class-analysis-lca" class="slide level2">
+<section id="what-is-latent-class-analysis-lca" class="slide level2 smaller">
 <h2>What is Latent Class Analysis (LCA)?</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Definition</a></li><li><a href="#tabset-1-2">Illustration</a></li><li><a href="#tabset-1-3">Advantages and Drawback</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<ul>
+<li><p>Latent Class Analysis (LCA) is a probabilistic method of unsupervised clustering that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population.</p></li>
+<li><p>The central assumption of LCA model is the presence of latent classes within a population.</p></li>
+<li><p>LCA is a type of finite mixture model (FMM) which is a statistical approach used in unsupervised learning.</p></li>
+<li><p>LCA is a useful model for identifying subgroups within a population based on patterns in <strong>categorical variables</strong>.</p></li>
+<li><p>In LCA, the variables are unrelated within each subgroup but similar across each one.</p></li>
+</ul>
+</div>
+<div id="tabset-1-2">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/lca_2class_overlap_example.jpg"></p>
+<p></p><figcaption>Figure 1 - 2-Class Model Representation for LCA [@sinha2021practitioner]</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3">
+<p><strong>Drawback:</strong></p>
+<ul>
+<li>LCA is computationally demanding, limiting the number of variables in the analysis</li>
+</ul>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><p>Identifying hidden subgroups</p></li>
+<li><p>Handling categorical data</p></li>
+<li><p>Providing probability estimates</p></li>
+<li><p>Handling missing data</p></li>
+<li><p>Model selection</p></li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 <section id="usage-of-lca" class="slide level2">
 <h2>Usage of LCA</h2>
@@ -418,13 +454,13 @@
 <section id="our-dataset" class="slide level2 smaller">
 <h2>Our dataset</h2>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Data Overview</a></li><li><a href="#tabset-1-2">Dropped/Changed Variables</a></li><li><a href="#tabset-1-3">Dataset</a></li></ul>
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Data Overview</a></li><li><a href="#tabset-2-2">Dropped/Changed Variables</a></li><li><a href="#tabset-2-3">Dataset</a></li></ul>
 <div class="tab-content">
-<div id="tabset-1-1">
+<div id="tabset-2-1">
 <p>To assess the effectiveness of Latent Class Analysis, we used the ‘Zoo Animals’ dataset from Kaggle. This dataset has 101 entries and is an ideal choice because of its majority of binary variables.</p>
 <p><img data-src="index_files/figure-html/Zoo_Screenshot.png"></p>
 </div>
-<div id="tabset-1-2" class="smaller">
+<div id="tabset-2-2" class="smaller">
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Dropped</strong></p>
@@ -438,7 +474,7 @@
 </div>
 </div>
 </div>
-<div id="tabset-1-3">
+<div id="tabset-2-3">
 <p>To perform our analysis, we are using these 14 variables.</p>
 <p><img data-src="index_files/figure-html/Variables.png"></p>
 </div>
@@ -453,9 +489,9 @@
 <section id="best-number-of-classes" class="slide level2 smaller">
 <h2>Best number of classes</h2>
 <div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Possible Number of Classes</a></li><li><a href="#tabset-2-2">poLCA Output</a></li></ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Possible Number of Classes</a></li><li><a href="#tabset-3-2">poLCA Output</a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1">
+<div id="tabset-3-1">
 <p>In order to determine the optimal number of classes that would best model our dataset, we conducted a series of analyses beginning with 2 classes and concluding at 7 classes, which was the number of different types of animals in the dataset. The code presented below was utilized to fit the model for each of the different number of classes.</p>
 <div class="cell">
 
@@ -468,7 +504,7 @@
 <span id="cb1-5"><a href="#cb1-5"></a>                  <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-2-2">
+<div id="tabset-3-2">
 <p>The poLCA function has the following options:</p>
 <p>-nclass -graphs -na.rm -nrep -maxiter -verbose</p>
 <div class="quarto-figure quarto-figure-center">
@@ -484,9 +520,9 @@
 <section id="model-comparison-statistics" class="slide level2 smaller">
 <h2>Model Comparison Statistics</h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">AIC &amp; BIC</a></li><li><a href="#tabset-3-2">Goodness of Fit</a></li><li><a href="#tabset-3-3">Chosen Model</a></li></ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">AIC &amp; BIC</a></li><li><a href="#tabset-4-2">Goodness of Fit</a></li><li><a href="#tabset-4-3">Chosen Model</a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1">
+<div id="tabset-4-1">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="index_files/figure-html/aic_bic_compare.png"></p>
@@ -494,7 +530,7 @@
 </figure>
 </div>
 </div>
-<div id="tabset-3-2">
+<div id="tabset-4-2">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="index_files/figure-html/gof_compare.png"></p>
@@ -502,7 +538,7 @@
 </figure>
 </div>
 </div>
-<div id="tabset-3-3">
+<div id="tabset-4-3">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="index_files/figure-html/5_class_ordered.png"></p>

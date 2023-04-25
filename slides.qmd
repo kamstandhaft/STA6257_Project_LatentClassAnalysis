@@ -20,7 +20,43 @@ author: "Daniel Martin, Kameron Standhaft, Esra Acar"
 -   Correlation
 -   Conclusion
 
-## What is Latent Class Analysis (LCA)?
+## What is Latent Class Analysis (LCA)? {.smaller}
+
+::: panel-tabset
+### Definition
+
+-   Latent Class Analysis (LCA) is a probabilistic method of unsupervised clustering that can be utilized when it is believed that there may be unobserved subgroups (classes) among the individuals within a population.
+
+-   The central assumption of LCA model is the presence of latent classes within a population.
+
+-   LCA is a type of finite mixture model (FMM) which is a statistical approach used in unsupervised learning.
+
+-   LCA is a useful model for identifying subgroups within a population based on patterns in **categorical variables**.
+
+-   In LCA, the variables are unrelated within each subgroup but similar across each one.
+
+### Illustration
+
+![Figure 1 - 2-Class Model Representation for LCA \[\@sinha2021practitioner\]](index_files/figure-html/lca_2class_overlap_example.jpg)
+
+### Advantages and Drawback
+
+**Drawback:**
+
+-   LCA is computationally demanding, limiting the number of variables in the analysis
+
+**Advantages:**
+
+-   Identifying hidden subgroups
+
+-   Handling categorical data
+
+-   Providing probability estimates
+
+-   Handling missing data
+
+-   Model selection
+:::
 
 ## Usage of LCA
 
@@ -129,24 +165,17 @@ lca_fit2 <- poLCA(lca_bind, data = new_zoo_int_1,
 
 The poLCA function has the following options:
 
--nclass
--graphs
--na.rm
--nrep
--maxiter
--verbose
+-nclass -graphs -na.rm -nrep -maxiter -verbose
 
 ![Figure 4.1.1 - LCA 2-Class Model](index_files/figure-html/2_class_model.png)
-
 :::
 
 ## Model Comparison Statistics {.smaller}
-::: panel-tabset
 
+::: panel-tabset
 ### AIC & BIC
 
 ![LCA Model AIC & BIC Comparison](index_files/figure-html/aic_bic_compare.png)
-
 
 ### Goodness of Fit
 
@@ -167,4 +196,4 @@ As seen in the correlation heatmap figure below, 'milk' is highly positively cor
 
 ## Conclusion {.smaller}
 
-Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes.With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research(Kaplan 2004). 
+Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes.With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research(Kaplan 2004).
