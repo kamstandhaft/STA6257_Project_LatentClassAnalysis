@@ -5,7 +5,7 @@ format:
     transition: slide
     theme: styles.scss
 editor: visual
-author: "Daniel Martin, Kameron Standhaft, Esra Acar"
+author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
 ---
 
 ## Overview
@@ -37,7 +37,7 @@ author: "Daniel Martin, Kameron Standhaft, Esra Acar"
 
 ### Illustration
 
-![Figure 1 - 2-Class Model Representation for LCA \[\@sinha2021practitioner\]](index_files/figure-html/lca_2class_overlap_example.jpg)
+![Figure 1 - 2 Class Model Representation for LCA [@sinha2021practitioner]](index_files/figure-html/lca_2class_overlap_example.jpg)
 
 ### Advantages and Drawback
 
