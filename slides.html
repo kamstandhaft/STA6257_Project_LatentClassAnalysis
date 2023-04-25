@@ -648,11 +648,59 @@
 </div>
 </div>
 </section>
-<section id="correlation" class="slide level2 smaller">
-<h2>Correlation</h2>
+<section id="sensitivity-analysis" class="slide level2 smaller">
+<h2>Sensitivity Analysis</h2>
+<div class="panel-tabset">
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Correlation</a></li><li><a href="#tabset-6-2">Model Reassessment</a></li><li><a href="#tabset-6-3">Final Model</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1">
 <p>As seen in the correlation heatmap figure below, ‘milk’ is highly positively correlated with both ‘hair’ and negatively correlated with ‘egg’. We decided to remove ‘milk’ as an attribute, and re-consider our LCA model to see if it improves without the variables exhibiting this high degree of multicollinearity included.</p>
-
-<img data-src="index_files/figure-html/Heatmap.png" class="r-stretch quarto-figure-center"><p class="caption">Correlation heatmap for sensitivity analysis</p></section>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/Heatmap.png"></p>
+<p></p><figcaption>Correlation heatmap for sensitivity analysis</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-6-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#Creating a dataset without 'milk' - 13-variables</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>new_zoo_int_2 <span class="ot">&lt;-</span> new_zoo_int_1  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">milk=</span><span class="cn">NULL</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#Binding 13-variables into columns for modified LCA model without 'milk'</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>lca_bind_corr <span class="ot">&lt;-</span>  <span class="fu">cbind</span>(hair, feathers, eggs, airborne, aquatic, predator, </span>
+<span id="cb4-6"><a href="#cb4-6"></a>                   toothed, backbone, breathes,venomous, fins, tail, has_legs) <span class="sc">~</span> <span class="dv">1</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a>lca_fit5_corr <span class="ot">&lt;-</span> <span class="fu">poLCA</span>(lca_bind_corr, <span class="at">data =</span> new_zoo_int_2, </span>
+<span id="cb4-9"><a href="#cb4-9"></a>                  <span class="at">nclass =</span> <span class="dv">5</span>, <span class="at">graphs =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-10"><a href="#cb4-10"></a>                  <span class="at">verbose =</span> <span class="cn">FALSE</span>, <span class="at">nrep=</span><span class="dv">100</span>, <span class="at">maxiter=</span><span class="dv">100</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>lca_fit5_corr.ent <span class="ot">&lt;-</span> <span class="fu">poLCA.entropy</span>(lca_fit5_corr)</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#Creating data frame of AIC, BIC, GoF, and Entropy of both original and modified 5-Class Models</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>class5_compare <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Model =</span> <span class="fu">c</span>(<span class="st">'Original 5-Class Model'</span>, <span class="st">'Adjusted 5-Class Model'</span>),</span>
+<span id="cb4-15"><a href="#cb4-15"></a>   <span class="at">AIC =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>aic, lca_fit5_corr<span class="sc">$</span>aic), <span class="at">BIC =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>bic, lca_fit5_corr<span class="sc">$</span>bic),</span>
+<span id="cb4-16"><a href="#cb4-16"></a>   <span class="at">GoF =</span> <span class="fu">c</span>(lca_fit5<span class="sc">$</span>Chisq, lca_fit5_corr<span class="sc">$</span>Chisq), <span class="at">entropy =</span> <span class="fu">c</span>(lca_fit5.ent, lca_fit5_corr.ent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/corr_compare.png"></p>
+<p></p><figcaption>Comparison of 5-Class Models</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-6-3">
+<p>Given improvement in all fit statistics except entropy for the 5-Class model with the high correlation variable ‘milk’ removed, we have decided to remove ‘milk’ for our final model and are left with 13-attributes for optimal classification by Latent Class Analysis.</p>
+<p><strong>Class 3</strong> &amp; <strong>Class 4</strong> show the greatest adjustments to the population proportions as compared to the 5-class model with ‘milk’ still considered. <strong>Class 3</strong> sees about a 1% drop in membership, and <strong>Class 4</strong> sees ~1.4% increase. Because these two classes were our most homogeneous, it makes sense that they might see the greatest changes in proportion.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-html/lca_fit5_corr_graph.png"></p>
+<p></p><figcaption>5-Class LCA Model Population Percentages without ‘milk’</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="conclusion" class="slide level2 smaller">
 <h2>Conclusion</h2>
 <p>Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes.With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research(Kaplan 2004).</p>
