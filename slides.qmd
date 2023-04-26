@@ -358,7 +358,7 @@ class5_compare <- data.frame(Model = c('Original 5-Class Model', 'Adjusted 5-Cla
 
 Given improvement in all fit statistics except entropy for the 5-Class model with the high correlation variable 'milk' removed, we have decided to remove 'milk' for our final model and are left with 13-attributes for optimal classification by Latent Class Analysis.
 
-**Class 3** & **Class 4** show the greatest adjustments to the population proportions as compared to the 5-class model with 'milk' still considered. **Class 3** sees about a 1% drop in membership, and **Class 4** sees \~1.4% increase. Because these two classes were our most homogeneous, it makes sense that they might see the greatest changes in proportion.
+**Class 3** & **Class 4** show the greatest adjustments to the population proportions as compared to the 5-class model with 'milk' still considered. **Class 3** sees about a 1% drop in membership, and **Class 4** sees \~1.4% increase. Because these two classes were our least homogeneous, it makes sense that they might see the greatest changes in proportion.
 
 ![5-Class LCA Model Population Percentages without 'milk'](index_files/figure-html/lca_fit5_corr_graph.png)
 :::
