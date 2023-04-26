@@ -158,7 +158,7 @@ To perform our analysis, we are using these 14 variables.
 
 ## Our goal {.smaller}
 
-We are not including the 'type' variable in our analysis. Instead we are going to use its different categories (mammal, bird, reptile, fish, insects, amphibian, invertebrate) as the classes in our Latent Class Analysis.
+We are not including the 'type' variable in our analysis. Instead we are going to use its different categories (mammal, bird, reptile, fish, insects, amphibian, invertebrate) as comparisons to the classes that we get from our Latent Class Analysis.
 
 ```{r}
 library(readr)
@@ -217,9 +217,9 @@ lca_fit2 <- poLCA(lca_bind, data = new_zoo_int_1,
                   nrep=100, maxiter=100, verbose = FALSE)
 ```
 
-### poLCA Output
-
 The poLCA function has the following options: -nclass -graphs -na.rm -nrep -maxiter -verbose
+
+### poLCA Output
 
 This function is estimating "Latent Class Prevalence", which is the probability that each dataset entry belongs within one of the model-generated classes [@law2016primer]
 
