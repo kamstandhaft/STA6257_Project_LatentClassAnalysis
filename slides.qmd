@@ -42,11 +42,7 @@ author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
 
 ![Figure 1 - 2 Class Model Representation for LCA [@sinha2021practitioner]](index_files/figure-html/lca_2class_overlap_example.jpg)
 
-### Advantages and Drawback
-
-**Drawback:**
-
--   LCA is computationally demanding, limiting the number of variables in the analysis
+### Advantages and Drawbacks
 
 **Advantages:**
 
@@ -59,11 +55,68 @@ author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
 -   Handling missing data
 
 -   Model selection
+
+**Drawbacks:**
+
+-   LCA is computationally demanding, limiting the number of variables in the analysis
+
+-   It may be challenging to determine appropriate number of latent classes.
 :::
 
-## Usage of LCA
+## Usage of LCA {.smaller}
 
-## Methods
+LCA has been used in various fields, such as psychology, sociology, public health, business & marketing research.
+
+-   Case 1: Applying LCA to identify subgroups of children with similar patterns of mental health symptoms.
+
+*The Application of Latent Class Analysis for Investigating Population Child Mental Health [@petersen2019application]*
+
+<!-- -->
+
+-   Case 2: Improving marketing research using LCA models.
+
+*Latent Class Analysis for Marketing Scale Development [@Bassi2011]*
+
+
+
+## Methods {.smaller}
+
+::: panel-tabset
+
+### Math behind LCA
+
+The standard equation [@naldi2020research] for LCA model is:
+
+$$ p(x_i)=\sum_{k = 1}^{K}{p_k}\prod_{n = 1}^{N}{p_n(x_{in}|k)},$$
+
+-   $p(x_i)$: the probability of observing a particular combination of responses in a group of $N$ variables
+
+-   $p_k$: the probability of membership in LC $k$
+
+-   $p_n(x_{in}|k)$: the probability of response to variable $n$, conditional on membership in LC $k$
+
+Two parameters of an LCA model:
+
+-   Inclusion probabilities ($p_k$)
+
+-   Conditional probabilities ($p_n(x_{in}|k)$)
+
+### General Steps of LCA
+
+The general steps to use latent class analysis are as follows:
+
+-   Identify the research question and define the variables
+
+-   Select the appropriate software
+
+-   Determine the number of latent classes for an ideal model
+
+-   Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation
+
+-   Evaluate the model: Goodness-of-fit statistics (the likelihood ratio test, Akaike Information Criterion $(AIC)$, Bayesian Information Criterion $(BIC)$, entropy and chi-square Goodness-of-Fit $(\chi^2)$)
+
+-   Conduct sensitivity analysis: Finally, conduct sensitivity analyses (e.g. correlation test) to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.
+:::
 
 ## Our dataset {.smaller}
 
@@ -204,10 +257,6 @@ lca_fit6.ent <- poLCA.entropy(lca_fit6)
 
 ![LCA 5-Class Model](index_files/figure-html/5_class_ordered.png)
 
-### Biplot
-
-![LCA 5-Class Model Biplot](index_files/figure-html/lca_5class_biplot.png)
-
 :::
 
 ## Analyze Class Attributes {.smaller}
@@ -235,42 +284,47 @@ orig_classes <- data.frame(
 
 ### Class 1
 
-**Class 1** which, as the largest class, is estimated to contain ~35.46% of the population predicts its members to have ‘hair’, ‘toothed’, ‘backbone’, ‘breathes’, ‘tail’, ‘has_legs’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘mammal’ in the original dataset.
+**Class 1** which, as the largest class, is estimated to contain \~35.46% of the population predicts its members to have 'hair', 'toothed', 'backbone', 'breathes', 'tail', 'has_legs'. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type 'mammal' in the original dataset.
 
 ![Class 1 (view displays a subset of population)](index_files/figure-html/mammal2.png)
 
 ### Class 2
 
-**Class 2** which is estimated to contain ~20.78% of the population predicts its members to have ‘feathers’, ‘eggs’, ‘backbone’, ‘breathes’, ‘tail’, ‘has_legs’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘bird’ in the original dataset.
+**Class 2** which is estimated to contain \~20.78% of the population predicts its members to have 'feathers', 'eggs', 'backbone', 'breathes', 'tail', 'has_legs'. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type 'bird' in the original dataset.
 
 ![Class 2 (view displays a subset of population)](index_files/figure-html/bird2.png)
 
 ### Class 3
 
-**Class 3** is estimated to contain ~17.82% of the population. It should be noted that it has two attributes (‘breathes’ and ‘predator’) which were both over 50% shown on the graph, but as we excluded our initial filtering assessment to ~80% and above, these are not selected in the filter.
+**Class 3** is estimated to contain \~17.82% of the population. It should be noted that it has two attributes ('breathes' and 'predator') which were both over 50% shown on the graph, but as we excluded our initial filtering assessment to \~80% and above, these are not selected in the filter.
 
-These class members are predicted to have ‘eggs’ and ‘has_legs’. While this limited selection duplicates a few of the previous members that were selected for other classes, this class also contains the invertebrates and insects, which were not present in the other classes. Based solely upon outside comparison to the type attribute in the original dataset, this class appears to be the least homogeneous.
+These class members are predicted to have 'eggs' and 'has_legs'. While this limited selection duplicates a few of the previous members that were selected for other classes, this class also contains the invertebrates and insects, which were not present in the other classes. Based solely upon outside comparison to the type attribute in the original dataset, this class appears to be the least homogeneous.
 
 ![Class 3 (view displays a subset of population)](index_files/figure-html/eggs_haslegs2.png)
 
 ### Class 4
 
-**Class 4** which is estimated to contain ~13.09% of the population is less homogeneous than Classes 1 & 2, but not as heterogeneous as Class 3. The original classification schema of “type” had 7 unique values, which implies that with a 5-class model, overlap is inevitable. This is only visible due to the fact that we have the original data for “type” for illustration purposes, which is unlikely to be the case in research data.This class’ members ar predicted to have ‘aquatic’, ‘predator’, ‘toothed’, ‘backbone’, ‘breathes’, ‘tail’. We filtered the cleaned new_zoo dataset for these attributes. The resulting filter only yielded 5 members, which are mostly aquatic mammals and a single amphibian.
+**Class 4** which is estimated to contain \~13.09% of the population is less homogeneous than Classes 1 & 2, but not as heterogeneous as Class 3. The original classification schema of "type" had 7 unique values, which implies that with a 5-class model, overlap is inevitable. 
+
+This is only visible due to the fact that we have the original data for "type" for illustration purposes, which is unlikely to be the case in research data.This class' members are predicted to have 'aquatic', 'predator', 'toothed', 'backbone', 'breathes', 'tail'. We filtered the cleaned new_zoo dataset for these attributes. The resulting filter only yielded 5 members, which are mostly aquatic mammals and a single amphibian.
 
 ![Class 4 (view displays a subset of population)](index_files/figure-html/aquatic_mammal2.png)
 
 ### Class 5
 
-**Class 5** which is the smallest class, estimated to contain ~12.85% of the population predicts its members to have ‘eggs’, ‘aquatic’, ‘toothed’, ‘backbone’, ‘fins’, ‘tail’. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type ‘fish’ in the original dataset.
+**Class 5** which is the smallest class, estimated to contain \~12.85% of the population predicts its members to have 'eggs', 'aquatic', 'toothed', 'backbone', 'fins', 'tail'. We filtered the cleaned new_zoo dataset for these attributes, and noted that all members were classified as type 'fish' in the original dataset.
 
 ![Class 5 (view displays a subset of population)](index_files/figure-html/fish2.png)
+
+### Biplot
+
+![LCA 5-Class Model Biplot](index_files/figure-html/lca_5class_biplot.png)
 
 :::
 
 ## Sensitivity Analysis {.smaller}
 
 ::: panel-tabset
-
 ### Correlation
 
 As seen in the correlation heatmap figure below, 'milk' is highly positively correlated with both 'hair' and negatively correlated with 'egg'. We decided to remove 'milk' as an attribute, and re-consider our LCA model to see if it improves without the variables exhibiting this high degree of multicollinearity included.
@@ -304,18 +358,14 @@ class5_compare <- data.frame(Model = c('Original 5-Class Model', 'Adjusted 5-Cla
 
 Given improvement in all fit statistics except entropy for the 5-Class model with the high correlation variable 'milk' removed, we have decided to remove 'milk' for our final model and are left with 13-attributes for optimal classification by Latent Class Analysis.
 
-**Class 3** & **Class 4** show the greatest adjustments to the population proportions as compared to the 5-class model with 'milk' still considered. **Class 3** sees about a 1% drop in membership, and **Class 4** sees ~1.4% increase. Because these two classes were our most homogeneous, it makes sense that they might see the greatest changes in proportion.
+**Class 3** & **Class 4** show the greatest adjustments to the population proportions as compared to the 5-class model with 'milk' still considered. **Class 3** sees about a 1% drop in membership, and **Class 4** sees \~1.4% increase. Because these two classes were our least homogeneous, it makes sense that they might see the greatest changes in proportion.
 
 ![5-Class LCA Model Population Percentages without 'milk'](index_files/figure-html/lca_fit5_corr_graph.png)
-
 :::
 
 ## Conclusion {.smaller}
 
-Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based
-upon their attributes. With the dataset-defined "type" classification as a reference, our 5-class predictive model has shown that LCA as a
-process can be used to successfully define where relevant classes exist when not otherwise defined from collected data, even with our relatively
-small dataset (101 points).
+Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes. With the dataset-defined "type" classification as a reference, our 5-class predictive model has shown that LCA as a process can be used to successfully define where relevant classes exist when not otherwise defined from collected data, even with our relatively small dataset (101 points).
 
 Even with its very powerful modeling potential, LCA does pose some challenges that ust be accounted for by the researcher. As we have seen, it requires substantial testing of fit metrics to establish the most ideal number of classes for our model to achieve our desired result[@asparouhov2014auxiliary]. There are also interpretation challenges that exist once we have our best LCA model established[@weller2020latent].
 
