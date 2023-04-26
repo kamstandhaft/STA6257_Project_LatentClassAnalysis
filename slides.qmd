@@ -42,7 +42,7 @@ author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
 
 ![Figure 1 - 2 Class Model Representation for LCA [@sinha2021practitioner]](index_files/figure-html/lca_2class_overlap_example.jpg)
 
-### Advantages and Drawback
+### Advantages and Drawbacks
 
 **Advantages:**
 
@@ -56,9 +56,11 @@ author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
 
 -   Model selection
 
-**Drawback:**
+**Drawbacks:**
 
 -   LCA is computationally demanding, limiting the number of variables in the analysis
+
+-   It may be challenging to determine appropriate number of latent classes.
 :::
 
 ## Usage of LCA {.smaller}
@@ -67,15 +69,54 @@ LCA has been used in various fields, such as psychology, sociology, public healt
 
 -   Case 1: Applying LCA to identify subgroups of children with similar patterns of mental health symptoms.
 
-    The Application of Latent Class Analysis for Investigating Population Child Mental Health [@petersen2019application]
+*The Application of Latent Class Analysis for Investigating Population Child Mental Health [@petersen2019application]*
 
-  
+<!-- -->
 
 -   Case 2: Improving marketing research using LCA models.
 
-    Latent Class Analysis for Marketing Scale Development [@Bassi2011]
+*Latent Class Analysis for Marketing Scale Development [@Bassi2011]*
 
-## Methods
+
+
+## Methods {.smaller}
+
+::: panel-tabset
+
+### Math behind LCA
+
+The standard equation [@naldi2020research] for LCA model is:
+
+$$ p(x_i)=\sum_{k = 1}^{K}{p_k}\prod_{n = 1}^{N}{p_n(x_{in}|k)},$$
+
+-   $p(x_i)$: the probability of observing a particular combination of responses in a group of $N$ variables
+
+-   $p_k$: the probability of membership in LC $k$
+
+-   $p_n(x_{in}|k)$: the probability of response to variable $n$, conditional on membership in LC $k$
+
+Two parameters of an LCA model:
+
+-   Inclusion probabilities ($p_k$)
+
+-   Conditional probabilities ($p_n(x_{in}|k)$)
+
+### General Steps of LCA
+
+The general steps to use latent class analysis are as follows:
+
+-   Identify the research question and define the variables
+
+-   Select the appropriate software
+
+-   Determine the number of latent classes for an ideal model
+
+-   Estimate the model: Estimate the model parameters using maximum likelihood estimation or Bayesian estimation
+
+-   Evaluate the model: Goodness-of-fit statistics (the likelihood ratio test, Akaike Information Criterion $(AIC)$, Bayesian Information Criterion $(BIC)$, entropy and chi-square Goodness-of-Fit $(\chi^2)$)
+
+-   Conduct sensitivity analysis: Finally, conduct sensitivity analyses (e.g. correlation test) to test the robustness of the results and evaluate the stability of the estimated probabilities across different subgroups or samples.
+:::
 
 ## Our dataset {.smaller}
 
