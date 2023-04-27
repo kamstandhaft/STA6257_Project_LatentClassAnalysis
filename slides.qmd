@@ -314,6 +314,10 @@ This is only visible due to the fact that we have the original data for "type" f
 ### Code
 
 ```{r, echo=TRUE, eval=F}
+library(FactoMineR)
+library(factoextra)
+library(ggalt)
+
 # Here we are converting the new_zoo_int_2 into a factor so it can be used with MCA() function
 new_zoo_int_1_factor <- as.data.frame(lapply(new_zoo_int_1, factor))
 
