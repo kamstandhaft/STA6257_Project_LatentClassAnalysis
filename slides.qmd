@@ -78,7 +78,7 @@ LCA has been used in various fields, such as psychology, sociology, public healt
 ## Methods {.smaller}
 
 ::: panel-tabset
-### Theory of LCA 
+### Theory of LCA
 
 The standard equation [@naldi2020research] for LCA model is:
 
@@ -356,14 +356,14 @@ Given improvement in all fit statistics except entropy for the 5-Class model wit
 
 **Benefits of LCA**
 
-- LCA is highly effective in classifying categorical variables based on attributes
-- Successful in defining relevant classes even with small dataset (101 points)
-- Reference "type" classification validates LCA's ability to find group commonalities
+-   LCA is highly effective in classifying categorical variables based on attributes
+-   Successful in defining relevant classes even with small dataset (101 points)
+-   Reference "type" classification validates LCA's ability to find group commonalities
 
 **Challenges to Consider**
 
-- Requires extensive testing of fit metrics to determine optimal number of classes
-- Interpretation challenges once the best LCA model is established
-- Running enough iterations of each model to ensure quality can lead to computational complexity
+-   Requires extensive testing of fit metrics to determine optimal number of classes
+-   Interpretation challenges once the best LCA model is established
+-   Running enough iterations of each model to ensure quality can lead to computational complexity
 
 ## References {.smaller}
