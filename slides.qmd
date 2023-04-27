@@ -354,10 +354,16 @@ Given improvement in all fit statistics except entropy for the 5-Class model wit
 
 ## Conclusion {.smaller}
 
-Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes. With the dataset-defined "type" classification as a reference, our 5-class predictive model has shown that LCA as a process can be used to successfully define where relevant classes exist when not otherwise defined from collected data, even with our relatively small dataset (101 points).
+**Benefits of LCA**
 
-Even with its very powerful modeling potential, LCA does pose some challenges that ust be accounted for by the researcher. As we have seen, it requires substantial testing of fit metrics to establish the most ideal number of classes for our model to achieve our desired result[@asparouhov2014auxiliary]. There are also interpretation challenges that exist once we have our best LCA model established[@weller2020latent].
+- LCA is highly effective in classifying categorical variables based on attributes
+- Successful in defining relevant classes even with small dataset (101 points)
+- Reference "type" classification validates LCA's ability to find group commonalities
 
-Our research indicates that Latent Class Analysis (LCA) is an exceptionally effective tool at classifying categorical variables based upon their attributes. With larger datasets, and proper screening of models, LCA is a powerful tool for finding group commonalities between members of a group, particularly in disciplines where research is often done through self-reporting and assessment of softer-science categories such as opinion, behavioral observations, and medical research(@kaplan2004sage).
+**Challenges to Consider**
+
+- Requires extensive testing of fit metrics to determine optimal number of classes
+- Interpretation challenges once the best LCA model is established
+- Running enough iterations of each model to ensure quality can lead to computational complexity
 
 ## References {.smaller}
