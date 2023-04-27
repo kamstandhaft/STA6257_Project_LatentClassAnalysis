@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Daniel Martin, Kameron Standhaft, Esra Ari Acar">
-<meta name="dcterms.date" content="2023-04-25">
+<meta name="dcterms.date" content="2023-04-27">
 
 <title>Latent Class Analysis</title>
 <style>
@@ -183,7 +183,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 25, 2023</p>
+      <p class="date">April 27, 2023</p>
     </div>
   </div>
     
@@ -640,11 +640,11 @@ div.csl-indent {
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>fit_stats <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(class_count, fit_AIC, fit_BIC, fit_GoF)</span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a copy with easier to read column names</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Making a copy with easier to read column names</span></span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>fit_stats_copy <span class="ot">&lt;-</span> fit_stats</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fit_stats_copy) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Class Count"</span>, <span class="st">"AIC"</span>, <span class="st">"BIC"</span>, <span class="st">"Goodness of Fit"</span>)</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the knitr library</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the knitr library</span></span>
 <span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(fit_stats_copy, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Fit Statistics Table"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>)) <span class="sc">%&gt;%</span></span>
@@ -669,11 +669,7 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 2 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1275.0796 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1350.918 </td>
-<<<<<<< HEAD
-   <td style="text-align:right;background-color: lavender !important;"> 21906.5494 </td>
-=======
-   <td style="text-align:right;background-color: lavender !important;"> 21906.5555 </td>
->>>>>>> 203d4e7061f564e5c9dd1505c8a72c8f77868fe2
+   <td style="text-align:right;background-color: lavender !important;"> 21906.5544 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 3 </td>
@@ -691,23 +687,19 @@ div.csl-indent {
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 5 </td>
    <td style="text-align:right;background-color: lavender !important;"> 983.3932 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1176.912 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1858.3883 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1858.3882 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 966.5493 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1199.295 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 1598.4462 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 965.9335 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 1198.679 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 2283.3574 </td>
   </tr>
   <tr>
    <td style="text-align:right;font-weight: bold;color: white !important;background-color: steelblue !important;"> 7 </td>
-   <td style="text-align:right;background-color: lavender !important;"> 958.0054 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 958.0055 </td>
    <td style="text-align:right;background-color: lavender !important;"> 1229.978 </td>
-<<<<<<< HEAD
-   <td style="text-align:right;background-color: lavender !important;"> 824.9272 </td>
-=======
-   <td style="text-align:right;background-color: lavender !important;"> 824.9365 </td>
->>>>>>> 203d4e7061f564e5c9dd1505c8a72c8f77868fe2
+   <td style="text-align:right;background-color: lavender !important;"> 824.9051 </td>
   </tr>
 </tbody>
 </table>
@@ -803,7 +795,7 @@ div.csl-indent {
   </tr>
   <tr>
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> 6-Class Model </td>
-   <td style="text-align:right;background-color: lavender !important;"> 3.905344 </td>
+   <td style="text-align:right;background-color: lavender !important;"> 3.902091 </td>
   </tr>
 </tbody>
 </table>
@@ -1041,7 +1033,7 @@ div.csl-indent {
    <td style="text-align:left;font-weight: bold;color: white !important;background-color: steelblue !important;"> Adjusted 5-Class Model </td>
    <td style="text-align:right;background-color: lavender !important;"> 954.2627 </td>
    <td style="text-align:right;"> 1134.706 </td>
-   <td style="text-align:right;"> 1568.740 </td>
+   <td style="text-align:right;"> 1568.741 </td>
    <td style="text-align:right;"> 4.043642 </td>
   </tr>
 </tbody>

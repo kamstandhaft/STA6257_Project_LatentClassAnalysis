@@ -520,11 +520,11 @@ fit_GoF <- c(lca_fit2$Chisq, lca_fit3$Chisq, lca_fit4$Chisq, lca_fit5$Chisq, lca
 
 fit_stats <- data.frame(class_count, fit_AIC, fit_BIC, fit_GoF)
 
-#Making a copy with easier to read column names
+# Making a copy with easier to read column names
 fit_stats_copy <- fit_stats
 colnames(fit_stats_copy) <- c("Class Count", "AIC", "BIC", "Goodness of Fit")
 
-#Using the knitr library
+# Using the knitr library
 
 kable(fit_stats_copy, format = "html", caption = "Fit Statistics Table") %>%
   kable_styling(bootstrap_options = c("striped", "hover")) %>%
