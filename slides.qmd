@@ -19,8 +19,9 @@ author: "Daniel Martin, Kameron Standhaft, Esra Ari Acar"
 -   Our dataset
 -   Our goal
 -   Best number of classes
--   Analyze class attributes
--   Correlation
+-   Model Comparison Statistics
+-   Analyze Class Attributes
+-   Sensitivity Analysis
 -   Conclusion
 
 ## What is Latent Class Analysis (LCA)? {.smaller}
